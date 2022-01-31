@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Page titles">
+    <test name="Test" >
+<!--        <packages>-->
+<!--            <package name="tests.userAuthentication"/>-->
+<!--        </packages>-->
+        <classes>
+            <class name="tests.pagesTests.HomePageTests"/>
+        </classes>
+    </test>
+</suite>
