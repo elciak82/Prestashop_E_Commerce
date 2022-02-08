@@ -10,14 +10,15 @@ import tests.BaseTest;
 
 public class HomePageTests extends BaseTest {
 
-    //@Link(name = "PRESTASHOP-1", url = LinkEnums.SuiteLinks.PAGE_TITLES_SUITE.getLinkToCase())
-    @TmsLink("PRESTASHOP-1")
+
     @Test(description = "Verify Home Page Title")
     @Description("Test verifying Home Page title")
     @Severity(SeverityLevel.CRITICAL)
+    @TmsLink("PRESTASHOP-1")
     @Parameters("browser: chrome")
     public void verifyHomePageTitleTest(){
         String title = header.getPageTitle();
-        Assert.assertEquals(title, PageTitleEnums.TitlesEnums.HOME_PAGE.getPageTitle());
+        Assert.assertEquals(title, "title");
+        //Assert.assertEquals(title, PageTitleEnums.TitlesEnums.HOME_PAGE.getPageTitle());
     }
 }

@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -31,4 +32,19 @@ public class Header extends GenericPage {
 
     @FindBy (id = "_desktop_cart")
     WebElement cart;
+
+    @FindBy (id = "category-3")
+    WebElement clothesLink;
+
+    @Step("Contact Us link click.")
+    public ContactUsPage clickOnContactUsLink () {
+        contactUsLink.click();
+        return new ContactUsPage(driver);
+    }
+
+    @Step("Clothes link click.")
+    public ClothesPage clickOnClothesLink () {
+        clothesLink.click();
+        return new ClothesPage(driver);
+    }
 }

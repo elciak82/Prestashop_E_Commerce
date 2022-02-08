@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -32,7 +33,7 @@ public class GenericPage {
             readyStateComplete = executor.executeScript("return document.readyState").equals("complete");
         }
     }
-
+    @Step("Get page title.")
     public String getPageTitle() {
         String title = driver.getTitle();
         System.out.println("The page title is " + title);
