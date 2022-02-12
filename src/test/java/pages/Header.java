@@ -36,6 +36,18 @@ public class Header extends GenericPage {
     @FindBy (id = "category-3")
     WebElement clothesLink;
 
+    @FindBy (id = "category-6")
+    WebElement accessoriesLink;
+
+    @FindBy (id = "category-9")
+    WebElement artLink;
+
+    @FindBy (id = "category-4")
+    WebElement menLink;
+
+    @FindBy (id = "category-5")
+    WebElement womenLink;
+
     @Step("Contact Us link click.")
     public ContactUsPage clickOnContactUsLink () {
         contactUsLink.click();
@@ -47,4 +59,37 @@ public class Header extends GenericPage {
         clothesLink.click();
         return new ClothesPage(driver);
     }
+
+    @Step("Accessories link click.")
+    public AccessoriesPage clickOnAccessoriesLink () {
+        accessoriesLink.click();
+        return new AccessoriesPage(driver);
+    }
+
+    @Step("Art link click.")
+    public ArtPage clickOnArtLink () {
+        artLink.click();
+        return new ArtPage(driver);
+    }
+
+    @Step("Men link click.")
+    public MenPage clickOnMenLink () {
+        mouseClickByLocator(clothesLink);
+        menLink.click();
+        return new MenPage(driver);
+    }
+
+    @Step("Women link click.")
+    public WomenPage clickOnWomenLink () {
+        mouseClickByLocator(clothesLink);
+        womenLink.click();
+        return new WomenPage(driver);
+    }
+
+    @Step("Login link click.")
+    public LoginPage clickOnLoginLink () {
+        signIn.click();
+        return new LoginPage(driver);
+    }
+
 }

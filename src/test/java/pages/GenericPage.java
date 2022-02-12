@@ -5,6 +5,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.FluentWait;
 
 import java.time.Duration;
@@ -33,11 +34,18 @@ public class GenericPage {
             readyStateComplete = executor.executeScript("return document.readyState").equals("complete");
         }
     }
+
     @Step("Get page title.")
     public String getPageTitle() {
         String title = driver.getTitle();
-        System.out.println("The page title is " + title);
+        System.out.println("The page title is " + title + ".");
         return title;
+    }
+
+    public void mouseClickByLocator( WebElement cssLocator ) {
+        Actions builder = new Actions(driver);
+        builder.moveToElement(cssLocator);
+        builder.perform();
     }
 
 }

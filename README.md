@@ -1,5 +1,7 @@
 # Prestashop_E_Commerce
-mvn clean test
-allure serve allure-results
+start tests: mvn clean test
+generate report: allure serve allure-results
+clean old data: allure generate --clean --output allure-results
+
 
 

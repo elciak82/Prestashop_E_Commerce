@@ -13,16 +13,16 @@ import tests.BaseTest;
 
 public class ClothesPageTests extends BaseTest {
 
-    @Test(description = "Verify Clothes Page Title")
-    @Description("Test verifying Clothes Page title")
+    @Test(description = "Verify Clothes Page title.")
+    @Description("Test verifying Clothes Page title.")
     @Severity(SeverityLevel.CRITICAL)
     @TmsLink("PRESTASHOP-3")
     @Parameters("browser: chrome")
-    public void verifyClothesPageTitleTest(){
+    public void verifyClothesPageTitleTest() {
         header.clickOnClothesLink();
 
         String title = header.getPageTitle();
-        Assert.assertEquals(title, PageTitleEnums.TitlesEnums.CONTACT_US_PAGE.getPageTitle());
+        Assert.assertEquals(title, PageTitleEnums.TitlesEnums.CLOTHES_PAGE.getPageTitle());
 
     }
 }

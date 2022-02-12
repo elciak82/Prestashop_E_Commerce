@@ -10,17 +10,18 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import tests.BaseTest;
 
-public class ContactUsPageTests extends BaseTest {
+public class AccessoriesPageTest extends BaseTest {
 
-    @Test(description = "Verify Contact Us Page title.")
-    @Description("Test verifying Contact Us Page title.")
+    @Test(description = "Verify Accessories Page title.")
+    @Description("Test verifying Accessories Page title.")
     @Severity(SeverityLevel.CRITICAL)
-    @TmsLink("PRESTASHOP-2")
+    @TmsLink("PRESTASHOP-4")
     @Parameters("browser: chrome")
-    public void verifyContactUsPageTitleTest() {
-        header.clickOnContactUsLink();
+    public void verifyAccessoriesPageTitleTest() {
+        header.clickOnAccessoriesLink();
 
         String title = header.getPageTitle();
-        Assert.assertEquals(title, PageTitleEnums.TitlesEnums.CONTACT_US_PAGE.getPageTitle());
+        Assert.assertEquals(title, PageTitleEnums.TitlesEnums.ACCESSORIES_PAGE.getPageTitle());
+
     }
 }
