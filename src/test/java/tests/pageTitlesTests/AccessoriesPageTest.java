@@ -21,8 +21,8 @@ public class AccessoriesPageTest extends BaseTest {
         header.clickOnAccessoriesLink();
 
         String title = header.getPageTitle();
-        Assert.assertEquals(title, "test");
-        //Assert.assertEquals(title, PageTitleEnums.TitlesEnums.ACCESSORIES_PAGE.getPageTitle());
+        //Assert.assertEquals(title, "test");
+        Assert.assertEquals(title, PageTitleEnums.TitlesEnums.ACCESSORIES_PAGE.getPageTitle());
 
     }
 }

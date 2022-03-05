@@ -45,7 +45,6 @@
             <version>${testng-version}</version>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>ru.yandex.qatools.ashot</groupId>
             <artifactId>ashot</artifactId>
