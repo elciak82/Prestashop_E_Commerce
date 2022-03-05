@@ -8,12 +8,16 @@ public class Configuration {
     private static final String DRIVER_LOCATION = "driver.location";
     private static final String EMAIL = "email";
     private static final String PASSWORD = "password";
+    private static final String FIRSTNAME = "firstName";
+    private static final String LASTNAME = "lastName";
     private static Configuration configuration;
     private final Properties properties;
     private final String siteURL;
     private final String driverLocation;
     public final String email;
     public final String password;
+    public final String firstName;
+    public final String lastname;
 
     private Configuration() {
         try {
@@ -27,6 +31,8 @@ public class Configuration {
         driverLocation = extractProperty(DRIVER_LOCATION);
         email = extractProperty(EMAIL);
         password = extractProperty(PASSWORD);
+        firstName = extractProperty(FIRSTNAME);
+        lastname = extractProperty(LASTNAME);
     }
 
     private String extractProperty(String propertyName) {
@@ -62,5 +68,13 @@ public class Configuration {
 
     public String getPassword() {
         return password;
+    }
+
+    public String getFirstname() {
+        return firstName;
+    }
+
+    public String getLastname() {
+        return lastname;
     }
 }

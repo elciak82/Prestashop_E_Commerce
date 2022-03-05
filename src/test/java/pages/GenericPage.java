@@ -48,4 +48,8 @@ public class GenericPage {
         builder.perform();
     }
 
+    public String getTextFromWebElement (WebElement webElement) {
+        return webElement.getText();
+    }
+
 }

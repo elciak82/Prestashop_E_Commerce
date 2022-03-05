@@ -12,84 +12,95 @@ public class Header extends GenericPage {
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy (id = "contact-link")
+    @FindBy(id = "contact-link")
     WebElement contactUsLink;
 
-    @FindBy (css = "[class='expand-more']")
+    @FindBy(css = "[class='expand-more']")
     WebElement languageDropdown;
 
-    @FindBy (css = "[class = 'expand-more _gray-darker']")
+    @FindBy(css = "[class = 'expand-more _gray-darker']")
     WebElement currencyDropdown;
 
-    @FindBy (css = "[class = 'logout hidden-sm-down']")
+    @FindBy(css = "[class = 'logout hidden-sm-down']")
     WebElement signOut;
 
-    @FindBy (className = "user-info")
+    @FindBy(className = "user-info")
     WebElement signIn;
 
-    @FindBy (className = "account")
+    @FindBy(className = "account")
     WebElement account;
 
-    @FindBy (id = "_desktop_cart")
+    @FindBy(id = "_desktop_cart")
     WebElement cart;
 
-    @FindBy (id = "category-3")
+    @FindBy(id = "category-3")
     WebElement clothesLink;
 
-    @FindBy (id = "category-6")
+    @FindBy(id = "category-6")
     WebElement accessoriesLink;
 
-    @FindBy (id = "category-9")
+    @FindBy(id = "category-9")
     WebElement artLink;
 
-    @FindBy (id = "category-4")
+    @FindBy(id = "category-4")
     WebElement menLink;
 
-    @FindBy (id = "category-5")
+    @FindBy(id = "category-5")
     WebElement womenLink;
 
+    @FindBy(css = "[class = 'account'] span[class = 'hidden-sm-down']")
+    WebElement userFirstNameLastname;
+
     @Step("Contact Us link click.")
-    public ContactUsPage clickOnContactUsLink () {
+    public ContactUsPage clickOnContactUsLink() {
         contactUsLink.click();
         return new ContactUsPage(driver);
     }
 
     @Step("Clothes link click.")
-    public ClothesPage clickOnClothesLink () {
+    public ClothesPage clickOnClothesLink() {
         clothesLink.click();
         return new ClothesPage(driver);
     }
 
     @Step("Accessories link click.")
-    public AccessoriesPage clickOnAccessoriesLink () {
+    public AccessoriesPage clickOnAccessoriesLink() {
         accessoriesLink.click();
         return new AccessoriesPage(driver);
     }
 
     @Step("Art link click.")
-    public ArtPage clickOnArtLink () {
+    public ArtPage clickOnArtLink() {
         artLink.click();
         return new ArtPage(driver);
     }
 
     @Step("Men link click.")
-    public MenPage clickOnMenLink () {
+    public MenPage clickOnMenLink() {
         mouseClickByLocator(clothesLink);
         menLink.click();
         return new MenPage(driver);
     }
 
     @Step("Women link click.")
-    public WomenPage clickOnWomenLink () {
+    public WomenPage clickOnWomenLink() {
         mouseClickByLocator(clothesLink);
         womenLink.click();
         return new WomenPage(driver);
     }
 
     @Step("Login link click.")
-    public LoginPage clickOnLoginLink () {
+    public LoginPage clickOnLoginLink() {
         signIn.click();
         return new LoginPage(driver);
     }
 
+    @Step("Get user data from page header.")
+    public String getUserFirstnameLastnameFromPage() {
+        return getTextFromWebElement(userFirstNameLastname);
+    }
+
+    public void clickOnSignOutButton(){
+        signOut.click();
+    }
 }
