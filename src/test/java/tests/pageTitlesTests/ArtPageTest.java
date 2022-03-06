@@ -21,7 +21,8 @@ public class ArtPageTest extends BaseTest {
         header.clickOnArtLink();
 
         String title = header.getPageTitle();
-        Assert.assertEquals(title, PageTitleEnums.TitlesEnums.ART_PAGE.getPageTitle());
+        Assert.assertEquals(title, "test");
+        //Assert.assertEquals(title, PageTitleEnums.TitlesEnums.ART_PAGE.getPageTitle());
 
     }
 }
