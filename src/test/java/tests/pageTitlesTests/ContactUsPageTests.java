@@ -21,7 +21,7 @@ public class ContactUsPageTests extends BaseTest {
         header.clickOnContactUsLink();
 
         String title = header.getPageTitle();
-        Assert.assertEquals(title, "test");
-        //Assert.assertEquals(title, PageTitleEnums.TitlesEnums.CONTACT_US_PAGE.getPageTitle());
+//        Assert.assertEquals(title, "test");
+        Assert.assertEquals(title, PageTitleEnums.TitlesEnums.CONTACT_US_PAGE.getPageTitle());
     }
 }
