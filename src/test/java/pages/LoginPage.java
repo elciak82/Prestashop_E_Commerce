@@ -14,6 +14,7 @@ public class LoginPage extends GenericPage {
         super(driver);
         PageFactory.initElements(driver, this);
     }
+
     Header header = new Header(driver);
 
     @FindBy(id = "field-email")
@@ -24,6 +25,12 @@ public class LoginPage extends GenericPage {
 
     @FindBy(id = "submit-login")
     WebElement signInButton;
+
+    @FindBy(css = "[class*='alert']")
+    WebElement authenticationFailedAlert;
+
+    @FindBy(className = "forgot-password")
+    WebElement forgotPasswordButton;
 
     @Step("Input correct email and password.")
     public void logIn_fillData(String email, String password) {
@@ -43,6 +50,7 @@ public class LoginPage extends GenericPage {
         signInButton.click();
     }
 
+    @Step("Correct log in to an account.")
     public AccountPage correctLogInToAccount() {
         String email = Configuration.getConfiguration().getEmail();
         String password = Configuration.getConfiguration().getPassword();
@@ -51,7 +59,18 @@ public class LoginPage extends GenericPage {
         return new AccountPage(driver);
     }
 
-    public void logOutFromAccount(){
+    @Step("Log out from an account.")
+    public void logOutFromAccount() {
         header.clickOnSignOutButton();
+    }
+
+    public String getAlertText() {
+        return authenticationFailedAlert.getText();
+    }
+
+    @Step("Click on the Forgot your password? button.")
+    public ForgotYourPasswordPage clickOnForgetPasswordButton() {
+        forgotPasswordButton.click();
+        return new ForgotYourPasswordPage(driver);
     }
 }

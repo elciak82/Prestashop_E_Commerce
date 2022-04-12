@@ -3,7 +3,8 @@ package helpers.enums;
 public class AlertEnums {
 
     public enum AlertMessageEnums {
-        INVALID_EMAIL_ADDRESS_ERROR("Invalid email address.");
+        AUTHENTICATION_FIELD("Authentication failed."),
+        RESET_YOUR_PASSWORD("If this email address has been registered in our shop, you will receive a link to reset your password at");
 
         private final String alertMessage;
 

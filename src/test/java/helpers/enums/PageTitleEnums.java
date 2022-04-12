@@ -11,7 +11,8 @@ public class PageTitleEnums {
         ART_PAGE("Art"),
         MEN_PAGE("Men"),
         WOMEN_PAGE("Women"),
-        MY_ACCOUNT_PAGE("My account");
+        MY_ACCOUNT_PAGE("My account"),
+        FORGOT_YOUR_PASSWORD_PAGE ("Forgot your password");
 
         private final String pageTitle;
 
