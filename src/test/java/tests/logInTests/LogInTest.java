@@ -42,8 +42,6 @@ public class LogInTest extends BaseTest {
     @TmsLink("PRESTASHOP-12")
     @Parameters("browser: chrome")
     public void correctLogInAndLogOutFromAccountTest() {
-        String email = Configuration.getConfiguration().getEmail();
-        String password = Configuration.getConfiguration().getPassword();
 
         header.clickOnLoginLink();
         LoginPage loginPage = new LoginPage(driver);
