@@ -1,6 +1,7 @@
 package mysqlconnection;
 
 import helpers.Configuration;
+import io.qameta.allure.Step;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -42,15 +43,16 @@ public class MySql {
         return stmt;
     }
 
-    public void executeQuery(String query) throws SQLException {
+    public String executeQuery(String query) throws SQLException {
         ResultSet res = databaseConnection()
                 .executeQuery(query);
+        String result = null;
         while (res.next()) {
-            System.out.println(res.getString(1));
+            result = res.getString(1);
+            System.out.println(result);
         }
-
-        System.out.println(res);
-
+        return result;
     }
+
 
 }

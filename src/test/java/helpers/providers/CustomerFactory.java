@@ -8,7 +8,7 @@ public class CustomerFactory {
 
     private static final String NUMERIC_STRING = "1234567890";
     private static final String ALPHA_STRING = "abcdefghijklmnoprstuvwxyz";
-    private static String suffix = generateSuffix();
+    private String suffix = generateSuffix();
 
     public String randomNumericString(int count) {
         StringBuilder builder = new StringBuilder();
@@ -28,23 +28,23 @@ public class CustomerFactory {
         return builder.toString();
     }
 
-    public static String generateSuffix() {
+    public String generateSuffix() {
         return randomAlphaString(6);
     }
 
-    public static String customerRandomFirstName() {
+    public String customerRandomFirstName() {
         return "FirstName" + suffix;
     }
 
-    public static String customerRandomLastName() {
+    public String customerRandomLastName() {
         return "LastName" + suffix;
     }
 
-    public static String customerRandomEmail() {
+    public String customerRandomEmail() {
         return "email@" + suffix + ".com";
     }
 
-    public static String customerRandomPassword() {
+    public String customerRandomPassword() {
         return "pass" + suffix;
     }
 
