@@ -1,12 +1,12 @@
 package pages;
 
 import helpers.Configuration;
+import helpers.models.Customer;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import pages.Header;
 
 
 public class LoginPage extends GenericPage {
@@ -31,6 +31,9 @@ public class LoginPage extends GenericPage {
 
     @FindBy(className = "forgot-password")
     WebElement forgotPasswordButton;
+
+    @FindBy(className = "no-account")
+    WebElement createAccount;
 
     @Step("Input correct email and password.")
     public void logIn_fillData(String email, String password) {
@@ -73,4 +76,10 @@ public class LoginPage extends GenericPage {
         forgotPasswordButton.click();
         return new ForgotYourPasswordPage(driver);
     }
+
+    @Step("Click on the 'No account? Create one here.' link.")
+    public void clickOnTheCreateAccountLink(){
+        createAccount.click();
+    }
+
 }

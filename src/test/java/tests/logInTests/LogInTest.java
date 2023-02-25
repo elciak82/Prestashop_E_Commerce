@@ -28,7 +28,7 @@ public class LogInTest extends BaseTest {
         String email = Configuration.getConfiguration().getEmail();
         String password = Configuration.getConfiguration().getPassword();
 
-        header.clickOnLoginLink();
+        header.clickOnSignInLink();
         LoginPage loginPage = new LoginPage(driver);
         loginPage.logIn_fillData(email, password);
         loginPage.clickOnSignInButton();
@@ -47,7 +47,7 @@ public class LogInTest extends BaseTest {
     @Parameters("browser: chrome")
     public void correctLogInAndLogOutFromAccountTest() {
 
-        header.clickOnLoginLink();
+        header.clickOnSignInLink();
         LoginPage loginPage = new LoginPage(driver);
         loginPage.correctLogInToAccount();
         loginPage.logOutFromAccount();
@@ -67,7 +67,7 @@ public class LogInTest extends BaseTest {
         String email = "email@email.com";
         String password = "12345";
 
-        header.clickOnLoginLink();
+        header.clickOnSignInLink();
         LoginPage loginPage = new LoginPage(driver);
         loginPage.logIn_fillData(email, password);
         loginPage.clickOnSignInButton();
@@ -85,7 +85,7 @@ public class LogInTest extends BaseTest {
 
         String email = "email@email.com";
 
-        header.clickOnLoginLink();
+        header.clickOnSignInLink();
         LoginPage loginPage = new LoginPage(driver);
         loginPage.clickOnForgetPasswordButton().insertEmail(email);
         ForgotYourPasswordPage forgotYourPasswordPage = new ForgotYourPasswordPage(driver);

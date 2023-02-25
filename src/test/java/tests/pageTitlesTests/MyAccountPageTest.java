@@ -18,7 +18,7 @@ public class MyAccountPageTest extends BaseTest {
     @TmsLink("PRESTASHOP-9")
     @Parameters("browser: chrome")
     public void verifyMyAccountPageTitleTest() {
-        header.clickOnLoginLink().correctLogInToAccount();
+        header.clickOnSignInLink().correctLogInToAccount();
 
         String title = header.getPageTitle();
         Assert.assertEquals(title, PageTitleEnums.TitlesEnums.MY_ACCOUNT_PAGE.getPageTitle());

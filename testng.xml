@@ -9,6 +9,7 @@
     <test name="Test" >
         <packages>
             <package name="tests.pageTitlesTests"/>
+            <package name="tests.logInTests"/>
         </packages>
 <!--        <classes>-->
 <!--            <class name="tests.pageTitlesTests.HomePageTests"/>-->

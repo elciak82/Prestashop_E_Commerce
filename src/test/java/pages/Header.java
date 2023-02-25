@@ -89,14 +89,15 @@ public class Header extends GenericPage {
         return new WomenPage(driver);
     }
 
-    @Step("Login link click.")
-    public LoginPage clickOnLoginLink() {
+    @Step("Sign In link click.")
+    public LoginPage clickOnSignInLink() {
         signIn.click();
         return new LoginPage(driver);
     }
 
     @Step("Get user data from page header.")
     public String getUserFirstnameLastnameFromPage() {
+        fluentWaitForElementDisplayed(userFirstNameLastname);
         return getTextFromWebElement(userFirstNameLastname);
     }
 

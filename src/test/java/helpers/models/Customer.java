@@ -33,7 +33,7 @@ public class Customer {
         return customerEmail;
     }
 
-    public void setCustomerPEmail(String customerEmail) {
+    public void setCustomerEmail(String customerEmail) {
         this.customerEmail = customerEmail;
     }
 
