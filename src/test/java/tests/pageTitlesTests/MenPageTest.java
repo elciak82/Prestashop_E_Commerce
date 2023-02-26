@@ -21,7 +21,7 @@ public class MenPageTest extends BaseTest {
         header.clickOnMenLink();
 
         String title = header.getPageTitle();
-        Assert.assertEquals(title, PageTitleEnums.TitlesEnums.MEN_PAGE.getPageTitle());
+        Assert.assertEquals(title, PageTitleEnums.Titles.MEN_PAGE.getPageTitle());
 
     }
 }

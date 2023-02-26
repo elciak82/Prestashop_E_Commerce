@@ -22,7 +22,7 @@ public class ArtPageTest extends BaseTest {
 
         String title = header.getPageTitle();
 //        Assert.assertEquals(title, "test");
-        Assert.assertEquals(title, PageTitleEnums.TitlesEnums.ART_PAGE.getPageTitle());
+        Assert.assertEquals(title, PageTitleEnums.Titles.ART_PAGE.getPageTitle());
 
     }
 }

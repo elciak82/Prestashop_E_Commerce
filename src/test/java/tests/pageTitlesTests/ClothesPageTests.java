@@ -19,7 +19,7 @@ public class ClothesPageTests extends BaseTest {
 
         String title = header.getPageTitle();
 //        Assert.assertEquals(title, "test");
-        Assert.assertEquals(title, PageTitleEnums.TitlesEnums.CLOTHES_PAGE.getPageTitle());
+        Assert.assertEquals(title, PageTitleEnums.Titles.CLOTHES_PAGE.getPageTitle());
 
     }
 }

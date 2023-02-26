@@ -8,7 +8,7 @@ public class Customer {
     private String customerLastName;
     private String customerEmail;
     private String customerPassword;
-    private Date customerBirthday;
+    private String customerBirthday;
 
     public Customer() {
     }
@@ -45,11 +45,11 @@ public class Customer {
         this.customerPassword = customerPassword;
     }
 
-    public Date getCustomerBirthday() {
+    public String getCustomerBirthday() {
         return customerBirthday;
     }
 
-    public void setCustomerBirthday(Date customerBirthday) {
+    public void setCustomerBirthday(String customerBirthday) {
         this.customerBirthday = customerBirthday;
     }
 
@@ -58,7 +58,7 @@ public class Customer {
         private String customerLastName;
         private String customerEmail;
         private String customerPassword;
-        private Date customerBirthday;
+        private String customerBirthday;
 
         public Builder customerFirstName(String customerFirstName) {
             this.customerFirstName = customerFirstName;
@@ -80,7 +80,7 @@ public class Customer {
             return this;
         }
 
-        public Builder customerBirthday(Date customerBirthday) {
+        public Builder customerBirthday(String customerBirthday) {
             this.customerBirthday = customerBirthday;
             return this;
         }

@@ -21,7 +21,7 @@ public class LoginPageTest extends BaseTest {
         header.clickOnSignInLink();
 
         String title = header.getPageTitle();
-        Assert.assertEquals(title, PageTitleEnums.TitlesEnums.LOGIN_PAGE.getPageTitle());
+        Assert.assertEquals(title, PageTitleEnums.Titles.LOGIN_PAGE.getPageTitle());
 
     }
 }

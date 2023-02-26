@@ -17,6 +17,6 @@ public class HomePageTests extends BaseTest {
     @Parameters("browser: chrome")
     public void verifyHomePageTitleTest() {
         String title = header.getPageTitle();
-        Assert.assertEquals(title, PageTitleEnums.TitlesEnums.HOME_PAGE.getPageTitle());
+        Assert.assertEquals(title, PageTitleEnums.Titles.HOME_PAGE.getPageTitle());
     }
 }

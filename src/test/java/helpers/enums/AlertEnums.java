@@ -2,13 +2,13 @@ package helpers.enums;
 
 public class AlertEnums {
 
-    public enum AlertMessageEnums {
+    public enum AlertMessages {
         AUTHENTICATION_FIELD("Authentication failed."),
         RESET_YOUR_PASSWORD("If this email address has been registered in our shop, you will receive a link to reset your password at");
 
         private final String alertMessage;
 
-        AlertMessageEnums(String alertMessage) {
+        AlertMessages(String alertMessage) {
             this.alertMessage = alertMessage;
         }
 

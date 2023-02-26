@@ -13,6 +13,12 @@ public class CreateAccountPage extends GenericPage{
         PageFactory.initElements(driver, this);
     }
 
+    @FindBy(id = "field-id_gender-1")
+    WebElement genderMr;
+
+    @FindBy(id = "field-id_gender-2")
+    WebElement genderMrs;
+
     @FindBy(id = "field-firstname")
     WebElement customerFirstName;
 
@@ -38,8 +44,8 @@ public class CreateAccountPage extends GenericPage{
     WebElement saveButton;
 
 
-    @Step("Create an account Step with required fields: {method}")
-    public void fillAllRequiredFieldsInCreateAnAccountForm(Customer customer) {
+    @Step("Fill required fields: {method}")
+    public void fillRequiredFieldsInCreateAnAccountForm(Customer customer) {
         customerLastName.isDisplayed();
         customerFirstName.sendKeys(customer.getCustomerFirstName());
         customerLastName.sendKeys(customer.getCustomerLastName());
@@ -49,9 +55,33 @@ public class CreateAccountPage extends GenericPage{
         termsAndConditionsCheckbox.click();
     }
 
+    @Step("Fill all fields: {method}")
+    public void fillAllFieldsInCreateAnAccountForm(Customer customer, String gender) {
+        customerLastName.isDisplayed();
+
+        if (gender.equals("Mr")) {
+            genderMr.click();
+        } else
+            genderMrs.click();;
+
+        customerFirstName.sendKeys(customer.getCustomerFirstName());
+        customerLastName.sendKeys(customer.getCustomerLastName());
+        customerEmail.sendKeys(customer.getCustomerEmail());
+        customerPassword.sendKeys(customer.getCustomerPassword());
+        customerBirthDate.sendKeys(customer.getCustomerBirthday().toString());
+        privacyCheckbox.click();
+        termsAndConditionsCheckbox.click();
+    }
+
     @Step("Create an account Step with required fields: {method}")
     public void createAnAccountRequiredFields(Customer customer) {
-        fillAllRequiredFieldsInCreateAnAccountForm(customer);
+        fillRequiredFieldsInCreateAnAccountForm(customer);
+        saveButton.click();
+    }
+
+    @Step("Create an account Step with all fields: {method}")
+    public void createAnAccountAllFields(Customer customer, String gender) {
+        fillAllFieldsInCreateAnAccountForm(customer, gender);
         saveButton.click();
     }
 }

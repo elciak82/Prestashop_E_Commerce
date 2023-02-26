@@ -53,7 +53,7 @@ public class LogInTest extends BaseTest {
         loginPage.logOutFromAccount();
 
         String title = header.getPageTitle();
-        Assert.assertEquals(title, PageTitleEnums.TitlesEnums.LOGIN_PAGE.getPageTitle());
+        Assert.assertEquals(title, PageTitleEnums.Titles.LOGIN_PAGE.getPageTitle());
 
     }
 
@@ -72,7 +72,7 @@ public class LogInTest extends BaseTest {
         loginPage.logIn_fillData(email, password);
         loginPage.clickOnSignInButton();
 
-        Assert.assertEquals(loginPage.getAlertText(), AlertEnums.AlertMessageEnums.AUTHENTICATION_FIELD.getAlertMessage());
+        Assert.assertEquals(loginPage.getAlertText(), AlertEnums.AlertMessages.AUTHENTICATION_FIELD.getAlertMessage());
 
     }
 
@@ -91,7 +91,7 @@ public class LogInTest extends BaseTest {
         ForgotYourPasswordPage forgotYourPasswordPage = new ForgotYourPasswordPage(driver);
         forgotYourPasswordPage.clickOnSendResetLinkButton();
 
-        Assert.assertEquals(forgotYourPasswordPage.getResetYourPasswordAlertText(), AlertEnums.AlertMessageEnums.RESET_YOUR_PASSWORD.getAlertMessage() + " " + email + ".");
+        Assert.assertEquals(forgotYourPasswordPage.getResetYourPasswordAlertText(), AlertEnums.AlertMessages.RESET_YOUR_PASSWORD.getAlertMessage() + " " + email + ".");
 
     }
 

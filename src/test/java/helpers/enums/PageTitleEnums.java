@@ -2,7 +2,7 @@ package helpers.enums;
 
 public class PageTitleEnums {
 
-    public enum TitlesEnums {
+    public enum Titles {
         LOGIN_PAGE("Login"),
         CONTACT_US_PAGE("Contact us"),
         CLOTHES_PAGE("Clothes"),
@@ -16,7 +16,7 @@ public class PageTitleEnums {
 
         private final String pageTitle;
 
-        TitlesEnums(String pageTitle) {
+        Titles(String pageTitle) {
             this.pageTitle = pageTitle;
         }
         public String getPageTitle() {

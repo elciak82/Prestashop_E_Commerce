@@ -22,7 +22,7 @@ public class AccessoriesPageTest extends BaseTest {
 
         String title = header.getPageTitle();
 //        Assert.assertEquals(title, "test");
-        Assert.assertEquals(title, PageTitleEnums.TitlesEnums.ACCESSORIES_PAGE.getPageTitle());
+        Assert.assertEquals(title, PageTitleEnums.Titles.ACCESSORIES_PAGE.getPageTitle());
 
     }
 }
