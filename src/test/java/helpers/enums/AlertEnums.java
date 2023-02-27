@@ -4,7 +4,10 @@ public class AlertEnums {
 
     public enum AlertMessages {
         AUTHENTICATION_FIELD("Authentication failed."),
-        RESET_YOUR_PASSWORD("If this email address has been registered in our shop, you will receive a link to reset your password at");
+        RESET_YOUR_PASSWORD("If this email address has been registered in our shop, you will receive a link to reset your password at"),
+        INVALID_FORMAT("Invalid format."),
+        INVALID_DATE_FORMAT ("Format should be 05/31/1970.");
+
 
         private final String alertMessage;
 
