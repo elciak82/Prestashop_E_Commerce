@@ -35,6 +35,7 @@ public class LoginPage extends GenericPage {
     @FindBy(className = "no-account")
     WebElement createAccount;
 
+
     @Step("Input correct email and password.")
     public void logIn_fillData(String email, String password) {
         emailField.sendKeys(email);

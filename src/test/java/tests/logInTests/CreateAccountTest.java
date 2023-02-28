@@ -2,6 +2,7 @@ package tests.logInTests;
 
 import helpers.enums.ColumnNameEnums;
 import helpers.enums.GenderEnums;
+import helpers.models.Customer;
 import helpers.providers.CustomerFactory;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
@@ -67,4 +68,52 @@ public class CreateAccountTest extends BaseTest {
         String lastNameResult = queries.checkSavedDataInDatabase(ColumnNameEnums.Columns.LAST_NAME_COLUMN.getColumnName(), ColumnNameEnums.Columns.EMAIL_COLUMN.getColumnName(), customerFactory.customerRandomEmail());
         Assert.assertEquals(lastNameResult, customerFactory.customerRandomLastName());
     }
+
+
+    @Test(description = "Try to create an account - all fields are empty.")
+    @Description("Test verifying the app behaviour when the User tries to create an account when all fields are empty.")
+    @Severity(SeverityLevel.MINOR)
+    @TmsLink("PRESTASHOP-17")
+    @Parameters("browser: chrome")
+    public void tryToCreateAccount_allFieldsAreEmpty() {
+
+        header.clickOnSignInLink();
+
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.clickOnTheCreateAccountLink();
+
+        CreateAccountPage createAccountPage = new CreateAccountPage(driver);
+        createAccountPage.clickOnSaveButton();
+
+        Assert.assertTrue(createAccountPage.saveButtonIsVisible());
+    }
+
+    @Test(description = "Try to create an account - Firstname is incorrect.")
+    @Description("Test verifying the app behave when the User tries to create an account with incorrect Firstname - warning message appears.")
+    @Severity(SeverityLevel.CRITICAL)
+    @TmsLink("PRESTASHOP-18")
+    @Parameters("browser: chrome")
+    public void tryToCreateAccount_firstnameIsIncorrect() {
+
+        header.clickOnSignInLink();
+
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.clickOnTheCreateAccountLink();
+
+        CreateAccountPage createAccountPage = new CreateAccountPage(driver);
+        CustomerFactory customerFactory = new CustomerFactory();
+        createAccountPage.fillRequiredFieldsInCreateAnAccountForm(customerFactory.getCustomerToRegister_required());
+
+        String incorrectFirstname = "1234567";
+        Customer customer = new Customer();
+        customer.setCustomerFirstName(incorrectFirstname);
+        createAccountPage.setCustomerFirstName(incorrectFirstname);
+
+        createAccountPage.clickOnSaveButton();
+
+        Assert.assertTrue(createAccountPage.saveButtonIsVisible()); //to do
+    }
+
+
+
 }

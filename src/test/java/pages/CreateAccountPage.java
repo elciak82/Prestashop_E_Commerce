@@ -84,4 +84,25 @@ public class CreateAccountPage extends GenericPage{
         fillAllFieldsInCreateAnAccountForm(customer, gender);
         saveButton.click();
     }
+
+    public String getValidationMessageForFirstname () {
+        return customerFirstName.getAttribute("validationMessage");
+    }
+    @Step("Click on the Save button")
+    public void clickOnSaveButton() {
+        saveButton.click();
+    }
+    @Step("Check if the Save button is visible")
+    public boolean saveButtonIsVisible (){
+        boolean element = false;
+        if (saveButton.isDisplayed()){
+            return element = true;
+        }
+        return false;
+    }
+
+    public void setCustomerFirstName(String firstName){
+        customerFirstName.sendKeys(firstName);
+    }
+
 }
