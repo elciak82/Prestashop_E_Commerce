@@ -1,5 +1,6 @@
 package tests.logInTests;
 
+import helpers.enums.AlertEnums;
 import helpers.enums.ColumnNameEnums;
 import helpers.enums.GenderEnums;
 import helpers.models.Customer;
@@ -111,7 +112,7 @@ public class CreateAccountTest extends BaseTest {
 
         createAccountPage.clickOnSaveButton();
 
-        Assert.assertTrue(createAccountPage.saveButtonIsVisible()); //to do
+        Assert.assertEquals(createAccountPage.getAlertInvalidFormatText(), AlertEnums.AlertMessages.INVALID_FORMAT.getAlertMessage());
     }
 
 

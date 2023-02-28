@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class CreateAccountPage extends GenericPage{
+public class CreateAccountPage extends GenericPage {
     public CreateAccountPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -43,6 +43,9 @@ public class CreateAccountPage extends GenericPage{
     @FindBy(css = "[data-link-action='save-customer']")
     WebElement saveButton;
 
+    @FindBy(css = "[class='alert alert-danger']")
+    WebElement alertInvalidFormat;
+
 
     @Step("Fill required fields: {method}")
     public void fillRequiredFieldsInCreateAnAccountForm(Customer customer) {
@@ -62,7 +65,8 @@ public class CreateAccountPage extends GenericPage{
         if (gender.equals("Mr")) {
             genderMr.click();
         } else
-            genderMrs.click();;
+            genderMrs.click();
+        ;
 
         customerFirstName.sendKeys(customer.getCustomerFirstName());
         customerLastName.sendKeys(customer.getCustomerLastName());
@@ -85,24 +89,31 @@ public class CreateAccountPage extends GenericPage{
         saveButton.click();
     }
 
-    public String getValidationMessageForFirstname () {
+    public String getValidationMessageForFirstname() {
         return customerFirstName.getAttribute("validationMessage");
     }
+
     @Step("Click on the Save button")
     public void clickOnSaveButton() {
         saveButton.click();
     }
+
     @Step("Check if the Save button is visible")
-    public boolean saveButtonIsVisible (){
+    public boolean saveButtonIsVisible() {
         boolean element = false;
-        if (saveButton.isDisplayed()){
+        if (saveButton.isDisplayed()) {
             return element = true;
         }
         return false;
     }
 
-    public void setCustomerFirstName(String firstName){
+    public void setCustomerFirstName(String firstName) {
         customerFirstName.sendKeys(firstName);
+    }
+
+    @Step("Check the alert text")
+    public String getAlertInvalidFormatText() {
+        return alertInvalidFormat.getText();
     }
 
 }
