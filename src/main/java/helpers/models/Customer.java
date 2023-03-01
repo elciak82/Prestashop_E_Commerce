@@ -1,7 +1,5 @@
 package helpers.models;
 
-import java.util.Date;
-
 public class Customer {
 
     private String customerFirstName;

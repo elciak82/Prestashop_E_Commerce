@@ -2,12 +2,12 @@ package tests;
 
 import helpers.Configuration;
 import helpers.Driver;
-import listeners.TestAllureListener;
+import utils.listeners.TestAllureListener;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
-import pages.HeaderComponent;
+import webui.components.HeaderComponent;
 
 @Listeners({TestAllureListener.class})
 public class BaseTest {

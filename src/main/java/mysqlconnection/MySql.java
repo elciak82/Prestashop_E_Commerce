@@ -1,7 +1,6 @@
 package mysqlconnection;
 
 import helpers.Configuration;
-import io.qameta.allure.Step;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

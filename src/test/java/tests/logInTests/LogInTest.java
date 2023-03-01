@@ -13,8 +13,8 @@ import org.testng.Assert;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import pages.ForgotYourPasswordPage;
-import pages.LoginPage;
+import webui.pages.ForgotYourPasswordPage;
+import webui.pages.LoginPage;
 import tests.BaseTest;
 
 public class LogInTest extends BaseTest {

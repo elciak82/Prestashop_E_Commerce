@@ -1,7 +1,6 @@
 package tests;
 
 import mysqlconnection.MySql;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.sql.SQLException;

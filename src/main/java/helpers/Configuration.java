@@ -1,7 +1,5 @@
 package helpers;
 
-import com.mysql.cj.util.DnsSrv;
-
 import java.io.IOException;
 import java.util.Properties;
 

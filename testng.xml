@@ -3,7 +3,7 @@
 <suite name="Page titles">
 
     <listeners>
-        <listener class-name="listeners.TestAllureListener"/>
+        <listener class-name="utils.listeners.TestAllureListener"/>
     </listeners>
 
     <test name="Test" >

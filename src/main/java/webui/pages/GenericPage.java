@@ -1,4 +1,4 @@
-package pages;
+package webui.pages;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.JavascriptExecutor;
@@ -11,9 +11,9 @@ import org.openqa.selenium.support.ui.FluentWait;
 import java.time.Duration;
 
 public class GenericPage {
-    WebDriver driver;
+    public WebDriver driver;
 
-    GenericPage(WebDriver driver) {
+    protected GenericPage(WebDriver driver) {
         this.driver = driver;
 //        documentReady();
     }

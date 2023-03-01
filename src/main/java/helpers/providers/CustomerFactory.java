@@ -2,7 +2,6 @@ package helpers.providers;
 
 import helpers.models.Customer;
 
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class CustomerFactory {
