@@ -7,13 +7,12 @@ import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
-import org.testng.annotations.Test;
-import pages.Header;
+import pages.HeaderComponent;
 
 @Listeners({TestAllureListener.class})
 public class BaseTest {
     public static WebDriver driver;
-    public Header header;
+    public HeaderComponent header;
     public static WebDriver getDriver() {
         return driver;
     }
@@ -22,7 +21,7 @@ public class BaseTest {
     public void setUp() {
         driver = Driver.initializeWebDriver();
         driver.get(Configuration.getConfiguration().getSiteURL());
-        header = new Header(driver);
+        header = new HeaderComponent(driver);
     }
 
     @AfterMethod

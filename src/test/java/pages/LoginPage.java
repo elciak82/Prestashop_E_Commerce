@@ -1,7 +1,6 @@
 package pages;
 
 import helpers.Configuration;
-import helpers.models.Customer;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,7 +14,7 @@ public class LoginPage extends GenericPage {
         PageFactory.initElements(driver, this);
     }
 
-    Header header = new Header(driver);
+    HeaderComponent header = new HeaderComponent(driver);
 
     @FindBy(id = "field-email")
     WebElement emailField;

@@ -6,8 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class Header extends GenericPage {
-    public Header(WebDriver driver) {
+public class HeaderComponent extends GenericPage {
+    public HeaderComponent(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }

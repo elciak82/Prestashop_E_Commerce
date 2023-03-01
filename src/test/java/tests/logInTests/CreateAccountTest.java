@@ -21,7 +21,7 @@ import java.sql.SQLException;
 
 public class CreateAccountTest extends BaseTest {
 
-    @Test(description = "Create an account - all fields.")
+    @Test(testName = "CreateAccountAllFieldsTest",description = "Create an account - all fields.")
     @Description("Test verifying the correctness of creating an account with all data.")
     @Severity(SeverityLevel.CRITICAL)
     @TmsLink("PRESTASHOP-15")
