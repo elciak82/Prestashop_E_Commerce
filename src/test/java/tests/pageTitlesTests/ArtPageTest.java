@@ -12,7 +12,7 @@ import tests.BaseTest;
 
 public class ArtPageTest extends BaseTest {
 
-    @Test(description = "Verify Art Page title.")
+    @Test(testName = "Verify Art Page title.")
     @Description("Test verifying Art Page title.")
     @Severity(SeverityLevel.CRITICAL)
     @TmsLink("PRESTASHOP-5")

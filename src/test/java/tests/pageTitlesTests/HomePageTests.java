@@ -10,7 +10,7 @@ import tests.BaseTest;
 public class HomePageTests extends BaseTest {
 
 
-    @Test(description = "Verify Home Page title.")
+    @Test(testName = "Verify Home Page title.")
     @Description("Test verifying Home Page title.")
     @Severity(SeverityLevel.CRITICAL)
     @TmsLink("PRESTASHOP-1")

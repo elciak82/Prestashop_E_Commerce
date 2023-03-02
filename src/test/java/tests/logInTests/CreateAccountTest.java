@@ -21,7 +21,7 @@ import java.sql.SQLException;
 
 public class CreateAccountTest extends BaseTest {
 
-    @Test(testName = "CreateAccountAllFieldsTest",description = "Create an account - all fields.")
+    @Test(testName = "Create an account - all fields.")
     @Description("Test verifying the correctness of creating an account with all data.")
     @Severity(SeverityLevel.CRITICAL)
     @TmsLink("PRESTASHOP-15")
@@ -46,7 +46,7 @@ public class CreateAccountTest extends BaseTest {
     }
 
 
-    @Test(description = "Create an account - only required fields.")
+    @Test(testName = "Create an account - only required fields.")
     @Description("Test verifying the correctness of creating an account only with required data.")
     @Severity(SeverityLevel.CRITICAL)
     @TmsLink("PRESTASHOP-16")
@@ -71,7 +71,7 @@ public class CreateAccountTest extends BaseTest {
     }
 
 
-    @Test(description = "Try to create an account - all fields are empty.")
+    @Test(testName = "Try to create an account - all fields are empty.")
     @Description("Test verifying the app behaviour when the User tries to create an account when all fields are empty.")
     @Severity(SeverityLevel.MINOR)
     @TmsLink("PRESTASHOP-17")
@@ -89,7 +89,7 @@ public class CreateAccountTest extends BaseTest {
         Assert.assertTrue(createAccountPage.saveButtonIsVisible());
     }
 
-    @Test(description = "Try to create an account - Firstname is incorrect.")
+    @Test(testName = "Try to create an account - Firstname is incorrect.")
     @Description("Test verifying the app behave when the User tries to create an account with incorrect Firstname - warning message appears.")
     @Severity(SeverityLevel.CRITICAL)
     @TmsLink("PRESTASHOP-18")
@@ -109,6 +109,32 @@ public class CreateAccountTest extends BaseTest {
         Customer customer = new Customer();
         customer.setCustomerFirstName(incorrectFirstname);
         createAccountPage.setCustomerFirstName(incorrectFirstname);
+
+        createAccountPage.clickOnSaveButton();
+
+        Assert.assertEquals(createAccountPage.getAlertInvalidFormatText(), AlertEnums.AlertMessages.INVALID_FORMAT.getAlertMessage());
+    }
+
+    @Test(testName = "Try to create an account - Lastname is incorrect.")
+    @Description("Test verifying the app behave when the User tries to create an account with incorrect Lastname - warning message appears.")
+    @Severity(SeverityLevel.CRITICAL)
+    @TmsLink("PRESTASHOP-19")
+    @Parameters("browser: chrome")
+    public void tryToCreateAccount_lastnameIsIncorrect() {
+
+        header.clickOnSignInLink();
+
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.clickOnTheCreateAccountLink();
+
+        CreateAccountPage createAccountPage = new CreateAccountPage(driver);
+        CustomerFactory customerFactory = new CustomerFactory();
+        createAccountPage.fillRequiredFieldsInCreateAnAccountForm(customerFactory.getCustomerToRegister_required());
+
+        String incorrectLastname = "1234567";
+        Customer customer = new Customer();
+        customer.setCustomerLastName(incorrectLastname);
+        createAccountPage.setCustomerFirstName(incorrectLastname);
 
         createAccountPage.clickOnSaveButton();
 
