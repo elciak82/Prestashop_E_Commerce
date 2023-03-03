@@ -12,8 +12,9 @@ import java.time.Duration;
 
 public class GenericPage {
     public WebDriver driver;
+    private static final String ALPHA_STRING = "abcdefghijklmnoprstuvwxyz";
 
-    protected GenericPage(WebDriver driver) {
+    public GenericPage(WebDriver driver) {
         this.driver = driver;
 //        documentReady();
     }
@@ -50,6 +51,15 @@ public class GenericPage {
 
     public String getTextFromWebElement (WebElement webElement) {
         return webElement.getText();
+    }
+
+    public static String randomAlphaString(int count) {
+        StringBuilder builder = new StringBuilder();
+        while (count-- != 0) {
+            int character = (int) (Math.random() * ALPHA_STRING.length());
+            builder.append(ALPHA_STRING.charAt(character));
+        }
+        return builder.toString();
     }
 
 }

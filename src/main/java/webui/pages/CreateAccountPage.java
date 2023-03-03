@@ -112,9 +112,21 @@ public class CreateAccountPage extends GenericPage {
         customerFirstName.sendKeys(firstName);
     }
 
+    public void setCustomerLastName(String lastName) {
+        customerLastName.sendKeys(lastName);
+    }
+
     @Step("Check the alert text")
     public String getAlertInvalidFormatText() {
         return alertInvalidFormat.getText();
+    }
+
+    public void clearFirstnameField(){
+        customerFirstName.clear();
+    }
+
+    public void clearLastnameField(){
+        customerLastName.clear();
     }
 
 }

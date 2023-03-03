@@ -140,6 +140,61 @@ public class CreateAccountTest extends BaseTest {
 
         Assert.assertEquals(createAccountPage.getAlertInvalidFormatText(), AlertEnums.AlertMessages.INVALID_FORMAT.getAlertMessage());
     }
+    /// todo
+    @Test(testName = "Try to create an account - Firstname is too long.")
+    @Description("Test verifying the app behave when the User tries to create an account with too long Firstname (more than 255 characters) - warning message appears.")
+    @Severity(SeverityLevel.CRITICAL)
+    @TmsLink("PRESTASHOP-20")
+    @Parameters("browser: chrome")
+    public void tryToCreateAccount_firstnameIsTooLong() {
+
+        header.clickOnSignInLink();
+
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.clickOnTheCreateAccountLink();
+
+        CreateAccountPage createAccountPage = new CreateAccountPage(driver);
+        CustomerFactory customerFactory = new CustomerFactory();
+        createAccountPage.fillRequiredFieldsInCreateAnAccountForm(customerFactory.getCustomerToRegister_required());
+
+        String tooLongFirstname = CustomerFactory.randomAlphaString(256);
+        Customer customer = new Customer();
+        customer.setCustomerFirstName(tooLongFirstname);
+        createAccountPage.clearFirstnameField();
+        createAccountPage.setCustomerFirstName(tooLongFirstname);
+
+        createAccountPage.clickOnSaveButton();
+
+        Assert.assertEquals(createAccountPage.getAlertInvalidFormatText(), AlertEnums.AlertMessages.FIRST_NAME_TOO_LONG.getAlertMessage());
+    }
+
+    /// todo
+    @Test(testName = "Try to create an account - Lastname is too long.")
+    @Description("Test verifying the app behave when the User tries to create an account with too long Lastname (more than 255 characters) - warning message appears.")
+    @Severity(SeverityLevel.CRITICAL)
+    @TmsLink("PRESTASHOP-21")
+    @Parameters("browser: chrome")
+    public void tryToCreateAccount_lastnameIsTooLong() {
+
+        header.clickOnSignInLink();
+
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.clickOnTheCreateAccountLink();
+
+        CreateAccountPage createAccountPage = new CreateAccountPage(driver);
+        CustomerFactory customerFactory = new CustomerFactory();
+        createAccountPage.fillRequiredFieldsInCreateAnAccountForm(customerFactory.getCustomerToRegister_required());
+
+        String tooLongLastname = CustomerFactory.randomAlphaString(256);
+        Customer customer = new Customer();
+        customer.setCustomerLastName(tooLongLastname);
+        createAccountPage.clearLastnameField();
+        createAccountPage.setCustomerLastName(tooLongLastname);
+
+        createAccountPage.clickOnSaveButton();
+
+        Assert.assertEquals(createAccountPage.getAlertInvalidFormatText(), AlertEnums.AlertMessages.LAST_NAME_TOO_LONG.getAlertMessage());
+    }
 
 
 
