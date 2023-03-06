@@ -19,7 +19,7 @@ import tests.BaseTest;
 
 public class LogInTest extends BaseTest {
 
-    @Test(testName = "Correct log in to the account.")
+    @Test(testName = "Correct log in to the account.", description = "Behavior = Positive")
     @Description("Test verifying correct log in to the account - the user has an account.")
     @Severity(SeverityLevel.CRITICAL)
     @TmsLink("PRESTASHOP-11")
@@ -40,7 +40,7 @@ public class LogInTest extends BaseTest {
         Assert.assertEquals(header.getUserFirstnameLastnameFromPage(), loggedUserData);
     }
 
-    @Test(testName = "Correct log out from the account.")
+    @Test(testName = "Correct log out from the account.", description = "Behavior = Positive")
     @Description("Test verifying correct log out from the account - the user has an account.")
     @Severity(SeverityLevel.CRITICAL)
     @TmsLink("PRESTASHOP-12")
@@ -57,7 +57,7 @@ public class LogInTest extends BaseTest {
 
     }
 
-    @Test(testName = "Incorrect log in to the account.")
+    @Test(testName = "Incorrect log in to the account.", description = "Behavior = Negative")
     @Description("Test verifying incorrect log in to the account - the user has not an account.")
     @Severity(SeverityLevel.NORMAL)
     @TmsLink("PRESTASHOP-13")
@@ -76,8 +76,8 @@ public class LogInTest extends BaseTest {
 
     }
 
-    @Test(testName = "User forgot the password.")
-    @Description("Test verifying behaviour when the user forgot the password.")
+    @Test(testName = "User forgot the password.", description = "Behavior = Negative")
+    @Description("Test verifying behavior when the user forgot the password.")
     @Severity(SeverityLevel.NORMAL)
     @TmsLink("PRESTASHOP-14")
     @Parameters("browser: chrome")

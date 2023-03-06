@@ -47,6 +47,9 @@ public class CreateAccountPage extends GenericPage {
     @FindBy(css = "[class='alert alert-danger']")
     WebElement alertInvalidFormat;
 
+    @FindBy(css = "[data-action='show-password']")
+    WebElement showPasswordButton;
+
 
     @Step("Fill required fields: {method}")
     public void fillRequiredFieldsInCreateAnAccountForm(Customer customer) {
@@ -116,9 +119,22 @@ public class CreateAccountPage extends GenericPage {
         customerLastName.sendKeys(lastName);
     }
 
+    public void setCustomerPassword(String password) {
+        customerPassword.sendKeys(password);
+    }
+
+    public void setCustomerBirthday(String birthday) {
+        customerBirthDate.sendKeys(birthday);
+    }
+
     @Step("Check the alert text")
     public String getAlertInvalidFormatText() {
         return alertInvalidFormat.getText();
+    }
+
+    @Step("Check the password text")
+    public String getPasswordText() {
+        return customerPassword.getText();
     }
 
     public void clearFirstnameField(){
@@ -127,6 +143,14 @@ public class CreateAccountPage extends GenericPage {
 
     public void clearLastnameField(){
         customerLastName.clear();
+    }
+
+    public void clearPasswordField(){
+        customerPassword.clear();
+    }
+
+    public void showPasswordButtonClick(){
+        showPasswordButton.click();
     }
 
 }
