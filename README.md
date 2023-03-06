@@ -13,6 +13,28 @@
 
 
 # Prestashop_E_Commerce
+Project for test automation covering UI acceptance for web and mobile.
+
+## Concepts included
+* Page Object pattern
+* Common web page interaction methods
+* Externalised test configuration
+
+## Tools
+* Maven
+* TestNG
+* Selenium Webdriver
+* Allure
+
+## Requirements
+In order to utilise this project you need to have the following installed locally:
+
+* Java 11
+* Maven 3
+* Chrome and Chromedriver (UI tests use Chrome by default, can be changed in config)
+* 
+
+
 start tests: mvn clean test
 generate report: allure serve allure-results
 clean old data: allure generate --clean --output allure-results
