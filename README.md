@@ -32,12 +32,16 @@ In order to utilise this project you need to have the following installed locall
 * Java 11
 * Maven 3
 * Chrome and Chromedriver (UI tests use Chrome by default, can be changed in config)
-* 
+* Allure Framework
 
-
+## Usage
 start tests: mvn clean test
+
+## Reporting
 generate report: allure serve allure-results
 clean old data: allure generate --clean --output allure-results
+
+## CI/CD - todo
 
 restart jenkins: http://localhost:8080/safeRestart - Allows all running jobs to complete. New jobs will remain in the queue to run after the restart is complete.
 restart jenkins: http://localhost:8080/restart - Forces a restart without waiting for builds to complete.
