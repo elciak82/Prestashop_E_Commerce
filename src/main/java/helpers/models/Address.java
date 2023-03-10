@@ -1,9 +1,12 @@
 package helpers.models;
 
+import java.security.SecureRandom;
+
 public class Address {
 
     private String customerAlias;
     private String customerCompany;
+    private String customerVATNumber;
     private String customerAddress;
     private String customerAddressComplement;
     private String customerCity;
@@ -29,6 +32,14 @@ public class Address {
 
     public void setCustomerCompany(String customerCompany) {
         this.customerCompany = customerCompany;
+    }
+
+    public String getCustomerVATNumber() {
+        return customerVATNumber;
+    }
+
+    public void setCustomerVATNumber(String customerVATNumber) {
+        this.customerVATNumber = customerVATNumber;
     }
 
     public String getCustomerAddress() {
@@ -90,6 +101,7 @@ public class Address {
     public static final class Builder {
         private String customerAlias;
         private String customerCompany;
+        private String customerVATNumber;
         private String customerAddress;
         private String customerAddressComplement;
         private String customerCity;
@@ -105,6 +117,11 @@ public class Address {
 
         public Builder customerCompany(String customerCompany) {
             this.customerCompany = customerCompany;
+            return this;
+        }
+
+        public Builder customerVATNumber(String customerVATNumber) {
+            this.customerVATNumber = customerVATNumber;
             return this;
         }
 
