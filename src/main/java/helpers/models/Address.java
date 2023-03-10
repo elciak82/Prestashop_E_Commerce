@@ -164,6 +164,7 @@ public class Address {
             Address address = new Address();
             address.customerAlias = this.customerAlias;
             address.customerCompany = this.customerCompany;
+            address.customerVATNumber = this.customerVATNumber;
             address.customerAddress = this.customerAddress;
             address.customerAddressComplement = this.customerAddressComplement;
             address.customerCity = this.customerCity;
