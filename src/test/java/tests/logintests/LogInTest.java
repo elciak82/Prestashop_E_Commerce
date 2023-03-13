@@ -1,4 +1,4 @@
-package tests.logInTests;
+package tests.logintests;
 
 import helpers.Configuration;
 import helpers.enums.AlertEnums;

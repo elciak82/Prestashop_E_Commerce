@@ -1,4 +1,4 @@
-package tests.pageTitlesTests;
+package tests.pagetitlestests;
 
 import helpers.enums.PageTitleEnums;
 import io.qameta.allure.*;

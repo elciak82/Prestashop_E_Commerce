@@ -1,4 +1,4 @@
-package tests.logInTests;
+package tests.logintests;
 
 import helpers.enums.AlertEnums;
 import helpers.enums.ColumnNameEnums;
