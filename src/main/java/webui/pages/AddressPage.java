@@ -49,6 +49,9 @@ public class AddressPage extends GenericPage {
     @FindBy(css = "[data-link-action='add-address']")
     WebElement createNewAddressButton;
 
+    @FindBy(css = "[class*='alert']")
+    WebElement successAlert;
+
     @Step("Fill required fields: {method}")
     public void fillRequiredFieldsAddressForm(Address address) {
         fieldAlias.isDisplayed();
@@ -74,4 +77,10 @@ public class AddressPage extends GenericPage {
     public void clickOnCreateNewAddressButton() {
         createNewAddressButton.click();
     }
+
+    @Step("Get alert text.")
+    public String getSuccessAlertText(){
+        return successAlert.getText();
+    }
+
 }

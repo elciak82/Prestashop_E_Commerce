@@ -69,6 +69,7 @@ public class LoginPage extends GenericPage {
         header.clickOnSignOutButton();
     }
 
+    @Step("Get alert text.")
     public String getAlertText() {
         return authenticationFailedAlert.getText();
     }
