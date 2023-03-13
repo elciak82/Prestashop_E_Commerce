@@ -3,10 +3,12 @@ package helpers.providers;
 import helpers.enums.CountryEnums;
 import helpers.enums.StateEnums;
 import helpers.models.Address;
+import org.bouncycastle.cms.PasswordRecipientId;
 
 public class AddressFactory extends DataFactory {
 
     private String suffix = generateSuffix();
+    private String zipCode = randomNumericString(5);
 
     public String generateSuffix() {
         return randomAlphaString(5);
@@ -25,7 +27,7 @@ public class AddressFactory extends DataFactory {
     }
 
     public String customerZip() {
-        return suffix;
+        return zipCode;
     }
 
     public String customerCountry(CountryEnums.Country country) {

@@ -1,4 +1,4 @@
-package tests.logintests;
+package tests.login;
 
 import helpers.enums.AlertEnums;
 import helpers.enums.ColumnNameEnums;
@@ -19,7 +19,7 @@ import tests.BaseTest;
 
 import java.sql.SQLException;
 
-public class CreateAccountTest extends BaseTest {
+public class CreateAccountTests extends BaseTest {
 
     @Test(testName = "Create an account - all fields.", description = "Behavior = Positive")
     @Description("Test verifying the correctness of creating an account with all data.")

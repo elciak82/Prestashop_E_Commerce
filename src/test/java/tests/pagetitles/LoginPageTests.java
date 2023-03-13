@@ -1,4 +1,4 @@
-package tests.pagetitlestests;
+package tests.pagetitles;
 
 import helpers.enums.PageTitleEnums;
 import io.qameta.allure.Description;
@@ -10,18 +10,18 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import tests.BaseTest;
 
-public class MyAccountPageTest extends BaseTest {
+public class LoginPageTests extends BaseTest {
 
-    @Test(testName = "Verify My Account Page title.")
-    @Description("Test verifying My Account Page title.")
+    @Test(testName = "Verify Login Page title.")
+    @Description("Test verifying Login Page title.")
     @Severity(SeverityLevel.CRITICAL)
-    @TmsLink("PRESTASHOP-9")
+    @TmsLink("PRESTASHOP-8")
     @Parameters("browser: chrome")
-    public void verifyMyAccountPageTitleTest() {
-        header.clickOnSignInLink().correctLogInToAccount();
+    public void verifyLoginPageTitleTest() {
+        header.clickOnSignInLink();
 
         String title = header.getPageTitle();
-        Assert.assertEquals(title, PageTitleEnums.Titles.MY_ACCOUNT_PAGE.getPageTitle());
+        Assert.assertEquals(title, PageTitleEnums.Titles.LOGIN_PAGE.getPageTitle());
 
     }
 }

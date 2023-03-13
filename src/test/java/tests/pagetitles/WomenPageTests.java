@@ -1,4 +1,4 @@
-package tests.pagetitlestests;
+package tests.pagetitles;
 
 import helpers.enums.PageTitleEnums;
 import io.qameta.allure.Description;
@@ -10,18 +10,18 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import tests.BaseTest;
 
-public class MenPageTest extends BaseTest {
+public class WomenPageTests extends BaseTest {
 
-    @Test(testName = "Verify Men Page title.")
-    @Description("Test verifying Men Page title.")
+    @Test(testName = "Verify Women Page title.")
+    @Description("Test verifying Women Page title.")
     @Severity(SeverityLevel.CRITICAL)
-    @TmsLink("PRESTASHOP-6")
+    @TmsLink("PRESTASHOP-7")
     @Parameters("browser: chrome")
-    public void verifyMenPageTitleTest() {
-        header.clickOnMenLink();
+    public void verifyWomenPageTitleTest() {
+        header.clickOnWomenLink();
 
         String title = header.getPageTitle();
-        Assert.assertEquals(title, PageTitleEnums.Titles.MEN_PAGE.getPageTitle());
+        Assert.assertEquals(title, PageTitleEnums.Titles.WOMEN_PAGE.getPageTitle());
 
     }
 }

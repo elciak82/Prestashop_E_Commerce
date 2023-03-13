@@ -1,4 +1,4 @@
-package tests.pagetitlestests;
+package tests.pagetitles;
 
 import helpers.enums.PageTitleEnums;
 import io.qameta.allure.Description;
@@ -10,7 +10,7 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import tests.BaseTest;
 
-public class ArtPageTest extends BaseTest {
+public class ArtPageTests extends BaseTest {
 
     @Test(testName = "Verify Art Page title.")
     @Description("Test verifying Art Page title.")

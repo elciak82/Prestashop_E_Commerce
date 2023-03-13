@@ -8,12 +8,12 @@
 
     <test name="Test" >
         <packages>
-            <package name="tests.pagetitlestests"/>
-            <package name="tests.logintests"/>
+            <package name="tests.pagetitles"/>
+            <package name="tests.login"/>
         </packages>
 <!--        <classes>-->
-<!--            <class name="tests.pagetitlestests.HomePageTests"/>-->
-<!--            <class name="tests.pagetitlestests.ContactUsPageTests"/>-->
+<!--            <class name="tests.pagetitles.HomePageTests"/>-->
+<!--            <class name="tests.pagetitles.ContactUsPageTests"/>-->
 <!--        </classes>-->
     </test>
 </suite>

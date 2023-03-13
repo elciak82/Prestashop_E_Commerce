@@ -1,4 +1,4 @@
-package tests.logintests;
+package tests.login;
 
 import helpers.Configuration;
 import helpers.enums.AlertEnums;
@@ -17,7 +17,7 @@ import webui.pages.ForgotYourPasswordPage;
 import webui.pages.LoginPage;
 import tests.BaseTest;
 
-public class LogInTest extends BaseTest {
+public class LogInTests extends BaseTest {
 
     @Test(testName = "Correct log in to the account.", description = "Behavior = Positive")
     @Description("Test verifying correct log in to the account - the user has an account.")
