@@ -13,7 +13,7 @@ public class Address {
     private String customerState;
     private String customerZip;
     private String customerCountry;
-    private int customerPhone;
+    private String customerPhone;
 
     public Address() {
     }
@@ -90,11 +90,11 @@ public class Address {
         this.customerCountry = customerCountry;
     }
 
-    public int getCustomerPhone() {
+    public String getCustomerPhone() {
         return customerPhone;
     }
 
-    public void setCustomerPhone(int customerPhone) {
+    public void setCustomerPhone(String customerPhone) {
         this.customerPhone = customerPhone;
     }
 
@@ -108,7 +108,7 @@ public class Address {
         private String customerState;
         private String customerZip;
         private String customerCountry;
-        private int customerPhone;
+        private String customerPhone;
 
         public Builder customerAlias(String customerAlias) {
             this.customerAlias = customerAlias;
@@ -155,7 +155,7 @@ public class Address {
             return this;
         }
 
-        public Builder customerPhone(int customerPhone) {
+        public Builder customerPhone(String customerPhone) {
             this.customerPhone = customerPhone;
             return this;
         }

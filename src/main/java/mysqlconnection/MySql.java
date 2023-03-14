@@ -53,5 +53,7 @@ public class MySql {
         return result;
     }
 
-
+    public int executeUpdate(String query) throws SQLException {
+        return databaseConnection().executeUpdate(query);
+    }
 }

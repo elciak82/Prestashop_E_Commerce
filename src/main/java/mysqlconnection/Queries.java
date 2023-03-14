@@ -12,6 +12,12 @@ public class Queries extends MySql{
         return mySql.executeQuery(query);
     }
 
+    @Step("Execute delete.")
+    public int executeDelete(String query) throws SQLException {
+        MySql mySql = new MySql();
+        return mySql.executeUpdate(query);
+    }
+
     public String customerQuery(String selectValue, String whereValue, String cellValue)  {
         return "SELECT " + selectValue + " FROM prestashop.customer WHERE " + whereValue + " = '" + cellValue + "'";
     }
@@ -25,6 +31,12 @@ public class Queries extends MySql{
     public String checkSavedDataInDatabase(String selectValue, String whereValue, String cellValue) throws SQLException {
         String query = customerQuery(selectValue, whereValue, cellValue);
         return executeQuery(query);
+    }
+
+    @Step("Delete record from the database.")
+    public int deleteRecordFromDatabase(String whereValue) throws SQLException {
+        String query = deleteAddress(whereValue);
+        return executeDelete(query);
     }
 
 }
