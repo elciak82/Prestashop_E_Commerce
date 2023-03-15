@@ -52,6 +52,9 @@ public class HeaderComponent extends GenericPage {
     @FindBy(css = "[class = 'account'] span[class = 'hidden-sm-down']")
     WebElement userFirstNameLastname;
 
+    @FindBy (xpath = "//*[@id='search_widget']/form/input[2]")
+    WebElement searchBy;
+
     @Step("Contact Us link click.")
     public ContactUsPage clickOnContactUsLink() {
         contactUsLink.click();
