@@ -8,19 +8,20 @@ import org.openqa.selenium.support.PageFactory;
 
 
 public class ForgotYourPasswordPage extends BasePage {
+
+    @FindBy(id = "email")
+    private WebElement emailField;
+
+    @FindBy(id = "send-reset-link")
+    private WebElement sendResetLinkButton;
+
+    @FindBy(className = "item")
+    private WebElement alertResetYourPassword;
+
     public ForgotYourPasswordPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
-
-    @FindBy(id = "email")
-    WebElement emailField;
-
-    @FindBy(id = "send-reset-link")
-    WebElement sendResetLinkButton;
-
-    @FindBy(className = "item")
-    WebElement alertResetYourPassword;
 
     @Step("Insert an email to the email field.")
     public void insertEmail(String email) {

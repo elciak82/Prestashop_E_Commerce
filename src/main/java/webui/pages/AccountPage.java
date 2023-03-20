@@ -7,13 +7,14 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class AccountPage extends BasePage {
+
+    @FindBy(id = "addresses-link")
+    private WebElement addressesLink;
+
     public AccountPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
-
-    @FindBy(id = "addresses-link")
-    WebElement addressesLink;
 
     @Step("Click on the Addresses link.")
     public void clickOnAddressesLink () {

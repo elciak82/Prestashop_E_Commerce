@@ -19,10 +19,13 @@ public class SearchComponent extends HeaderComponent {
     }
 
     @FindBy(className ="ui-menu-item")
-    List<WebElement> searchListItem;
+    private List<WebElement> searchListItem;
 
     @FindBy(id="ui-id-1")
-    WebElement searchWidget;
+    private WebElement searchWidget;
+
+    @FindBy (xpath = "//*[@id='search_widget']/form/input[2]")
+    private WebElement searchBy;
 
     @Step("Search by clicking on the Enter.")
     public void searchElement_enter(String value) {

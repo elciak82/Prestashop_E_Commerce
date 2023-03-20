@@ -8,52 +8,51 @@ import org.openqa.selenium.support.PageFactory;
 import webui.pages.*;
 
 public class HeaderComponent extends BasePage {
+
+    @FindBy(id = "contact-link")
+    private WebElement contactUsLink;
+
+    @FindBy(css = "[class='expand-more']")
+    private WebElement languageDropdown;
+
+    @FindBy(css = "[class = 'expand-more _gray-darker']")
+    private WebElement currencyDropdown;
+
+    @FindBy(css = "[class = 'logout hidden-sm-down']")
+    private WebElement signOut;
+
+    @FindBy(className = "user-info")
+    private WebElement signIn;
+
+    @FindBy(className = "account")
+    private WebElement account;
+
+    @FindBy(id = "_desktop_cart")
+    private WebElement cart;
+
+    @FindBy(id = "category-3")
+    private WebElement clothesLink;
+
+    @FindBy(id = "category-6")
+    private WebElement accessoriesLink;
+
+    @FindBy(id = "category-9")
+    private WebElement artLink;
+
+    @FindBy(id = "category-4")
+    private WebElement menLink;
+
+    @FindBy(id = "category-5")
+    private WebElement womenLink;
+
+    @FindBy(css = "[class = 'account'] span[class = 'hidden-sm-down']")
+    private WebElement userFirstNameLastname;
+
     public HeaderComponent(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(id = "contact-link")
-    WebElement contactUsLink;
-
-    @FindBy(css = "[class='expand-more']")
-    WebElement languageDropdown;
-
-    @FindBy(css = "[class = 'expand-more _gray-darker']")
-    WebElement currencyDropdown;
-
-    @FindBy(css = "[class = 'logout hidden-sm-down']")
-    WebElement signOut;
-
-    @FindBy(className = "user-info")
-    WebElement signIn;
-
-    @FindBy(className = "account")
-    WebElement account;
-
-    @FindBy(id = "_desktop_cart")
-    WebElement cart;
-
-    @FindBy(id = "category-3")
-    WebElement clothesLink;
-
-    @FindBy(id = "category-6")
-    WebElement accessoriesLink;
-
-    @FindBy(id = "category-9")
-    WebElement artLink;
-
-    @FindBy(id = "category-4")
-    WebElement menLink;
-
-    @FindBy(id = "category-5")
-    WebElement womenLink;
-
-    @FindBy(css = "[class = 'account'] span[class = 'hidden-sm-down']")
-    WebElement userFirstNameLastname;
-
-    @FindBy (xpath = "//*[@id='search_widget']/form/input[2]")
-    WebElement searchBy;
 
     @Step("Contact Us link click.")
     public ContactUsPage clickOnContactUsLink() {

@@ -9,46 +9,47 @@ import org.openqa.selenium.support.PageFactory;
 
 
 public class AddressPage extends BasePage {
+
+    @FindBy(id = "field-alias")
+    private WebElement fieldAlias;
+
+    @FindBy(id = "field-company")
+    private WebElement fieldCompany;
+
+    @FindBy(id = "field-address1")
+    private WebElement fieldAddress1;
+
+    @FindBy(id = "field-address2")
+    private WebElement fieldAddressComplement;
+
+    @FindBy(id = "field-city")
+    private WebElement fieldCity;
+
+    @FindBy(id = "field-id_state")
+    private WebElement fieldState;
+
+    @FindBy(id = "field-postcode")
+    private WebElement fieldZip;
+
+    @FindBy(id = "field-id_country")
+    private WebElement fieldCountry;
+
+    @FindBy(id = "field-phone")
+    private WebElement fieldPhone;
+
+    @FindBy(xpath = "//*[@id='content']/div/div/form/footer/button")
+    private WebElement saveButton;
+
+    @FindBy(css = "[data-link-action='add-address']")
+    private WebElement createNewAddressButton;
+
+    @FindBy(css = "[class*='alert']")
+    private WebElement successAlert;
+
     public AddressPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
-
-    @FindBy(id = "field-alias")
-    WebElement fieldAlias;
-
-    @FindBy(id = "field-company")
-    WebElement fieldCompany;
-
-    @FindBy(id = "field-address1")
-    WebElement fieldAddress1;
-
-    @FindBy(id = "field-address2")
-    WebElement fieldAddressComplement;
-
-    @FindBy(id = "field-city")
-    WebElement fieldCity;
-
-    @FindBy(id = "field-id_state")
-    WebElement fieldState;
-
-    @FindBy(id = "field-postcode")
-    WebElement fieldZip;
-
-    @FindBy(id = "field-id_country")
-    WebElement fieldCountry;
-
-    @FindBy(id = "field-phone")
-    WebElement fieldPhone;
-
-    @FindBy(xpath = "//*[@id='content']/div/div/form/footer/button")
-    WebElement saveButton;
-
-    @FindBy(css = "[data-link-action='add-address']")
-    WebElement createNewAddressButton;
-
-    @FindBy(css = "[class*='alert']")
-    WebElement successAlert;
 
     @Step("Fill required fields: {method}")
     public void fillRequiredFieldsAddressForm(Address address) {

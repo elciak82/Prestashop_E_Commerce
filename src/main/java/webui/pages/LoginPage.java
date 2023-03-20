@@ -8,33 +8,34 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import webui.components.HeaderComponent;
 
-
-
 public class LoginPage extends BasePage {
+
+    @FindBy(id = "field-email")
+    private WebElement emailField;
+
+    @FindBy(id = "field-password")
+    private WebElement passwordField;
+
+    @FindBy(id = "submit-login")
+    private WebElement signInButton;
+
+    @FindBy(css = "[class*='alert']")
+    private WebElement authenticationFailedAlert;
+
+    @FindBy(className = "forgot-password")
+    private WebElement forgotPasswordButton;
+
+    @FindBy(className = "no-account")
+    private WebElement createAccount;
+
+
     public LoginPage(WebDriver driver) {
         super(driver);
+        header = new HeaderComponent(driver);
         PageFactory.initElements(driver, this);
     }
 
-    HeaderComponent header = new HeaderComponent(driver);
-
-    @FindBy(id = "field-email")
-    WebElement emailField;
-
-    @FindBy(id = "field-password")
-    WebElement passwordField;
-
-    @FindBy(id = "submit-login")
-    WebElement signInButton;
-
-    @FindBy(css = "[class*='alert']")
-    WebElement authenticationFailedAlert;
-
-    @FindBy(className = "forgot-password")
-    WebElement forgotPasswordButton;
-
-    @FindBy(className = "no-account")
-    WebElement createAccount;
+    private final HeaderComponent header;
 
 
     @Step("Input correct email and password.")

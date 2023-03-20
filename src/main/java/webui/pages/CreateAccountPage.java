@@ -8,47 +8,47 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class CreateAccountPage extends BasePage {
+
+    @FindBy(id = "field-id_gender-1")
+    private WebElement genderMr;
+
+    @FindBy(id = "field-id_gender-2")
+    private WebElement genderMrs;
+
+    @FindBy(id = "field-firstname")
+    private WebElement customerFirstName;
+
+    @FindBy(id = "field-lastname")
+    private WebElement customerLastName;
+
+    @FindBy(id = "field-email")
+    private WebElement customerEmail;
+
+    @FindBy(id = "field-password")
+    private WebElement customerPassword;
+
+    @FindBy(id = "field-birthday")
+    private WebElement customerBirthDate;
+
+    @FindBy(css = "[name='customer_privacy']")
+    private WebElement privacyCheckbox;
+
+    @FindBy(css = "[name='psgdpr']")
+    private WebElement termsAndConditionsCheckbox;
+
+    @FindBy(css = "[data-link-action='save-customer']")
+    private WebElement saveButton;
+
+    @FindBy(css = "[class='alert alert-danger']")
+    private WebElement alertInvalidFormat;
+
+    @FindBy(css = "[data-action='show-password']")
+    private WebElement showPasswordButton;
+
     public CreateAccountPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
-
-    @FindBy(id = "field-id_gender-1")
-    WebElement genderMr;
-
-    @FindBy(id = "field-id_gender-2")
-    WebElement genderMrs;
-
-    @FindBy(id = "field-firstname")
-    WebElement customerFirstName;
-
-    @FindBy(id = "field-lastname")
-    WebElement customerLastName;
-
-    @FindBy(id = "field-email")
-    WebElement customerEmail;
-
-    @FindBy(id = "field-password")
-    WebElement customerPassword;
-
-    @FindBy(id = "field-birthday")
-    WebElement customerBirthDate;
-
-    @FindBy(css = "[name='customer_privacy']")
-    WebElement privacyCheckbox;
-
-    @FindBy(css = "[name='psgdpr']")
-    WebElement termsAndConditionsCheckbox;
-
-    @FindBy(css = "[data-link-action='save-customer']")
-    WebElement saveButton;
-
-    @FindBy(css = "[class='alert alert-danger']")
-    WebElement alertInvalidFormat;
-
-    @FindBy(css = "[data-action='show-password']")
-    WebElement showPasswordButton;
-
 
     @Step("Fill required fields: {method}")
     public void fillRequiredFieldsInCreateAnAccountForm(Customer customer) {
