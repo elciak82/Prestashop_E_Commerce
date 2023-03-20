@@ -4,11 +4,9 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import webui.pages.*;
 
@@ -26,7 +24,7 @@ public class SearchComponent extends HeaderComponent {
     @FindBy(id="ui-id-1")
     WebElement searchWidget;
 
-    @Step("Search by clicking on the lookup button.")
+    @Step("Search by clicking on the Enter.")
     public void searchElement_enter(String value) {
         searchBy.sendKeys(value);
         searchBy.sendKeys(Keys.ENTER);
@@ -37,7 +35,7 @@ public class SearchComponent extends HeaderComponent {
         searchBy.sendKeys(value);
         WebElement myDynamicElement = (new WebDriverWait(driver, 2))
                 .until(ExpectedConditions.visibilityOf(searchWidget));
-        return new GenericPage(driver).getAllResults(searchListItem);
+        return new BasePage(driver).getAllResults(searchListItem);
     }
 
     @Step("Select element from the Search list")

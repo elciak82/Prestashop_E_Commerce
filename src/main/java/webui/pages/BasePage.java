@@ -9,11 +9,11 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GenericPage {
+public class BasePage {
     public WebDriver driver;
     private static final String ALPHA_STRING = "abcdefghijklmnoprstuvwxyz";
 
-    public GenericPage(WebDriver driver) {
+    public BasePage(WebDriver driver) {
         this.driver = driver;
 //        documentReady();
     }

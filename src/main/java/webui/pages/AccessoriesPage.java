@@ -4,8 +4,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import webui.components.HeaderComponent;
 
-public class AccessoriesPage extends GenericPage {
+public class AccessoriesPage extends HeaderComponent {
     public AccessoriesPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);

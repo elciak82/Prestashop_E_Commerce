@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import webui.pages.*;
 
-public class HeaderComponent extends GenericPage {
+public class HeaderComponent extends BasePage {
     public HeaderComponent(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);

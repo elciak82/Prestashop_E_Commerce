@@ -10,7 +10,7 @@ import webui.components.HeaderComponent;
 
 
 
-public class LoginPage extends GenericPage {
+public class LoginPage extends BasePage {
     public LoginPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
