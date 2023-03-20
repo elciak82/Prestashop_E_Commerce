@@ -10,8 +10,7 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.TmsLink;
 
 import org.testng.Assert;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import webui.pages.ForgotYourPasswordPage;
 import webui.pages.LoginPage;
