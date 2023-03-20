@@ -13,10 +13,6 @@ import webui.pages.*;
 import java.util.List;
 
 public class SearchComponent extends HeaderComponent {
-    public SearchComponent(WebDriver driver) {
-        super(driver);
-        PageFactory.initElements(driver, this);
-    }
 
     @FindBy(className ="ui-menu-item")
     private List<WebElement> searchListItem;
@@ -26,6 +22,11 @@ public class SearchComponent extends HeaderComponent {
 
     @FindBy (xpath = "//*[@id='search_widget']/form/input[2]")
     private WebElement searchBy;
+
+    public SearchComponent(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(driver, this);
+    }
 
     @Step("Search by clicking on the Enter.")
     public void searchElement_enter(String value) {
