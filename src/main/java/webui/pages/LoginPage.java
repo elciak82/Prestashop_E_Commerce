@@ -1,6 +1,7 @@
 package webui.pages;
 
 import helpers.Configuration;
+import helpers.models.Customer;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -60,6 +61,15 @@ public class LoginPage extends BasePage {
     public AccountPage correctLogInToAccount() {
         String email = Configuration.getConfiguration().getEmail();
         String password = Configuration.getConfiguration().getPassword();
+
+        logInToAccount(email, password);
+        return new AccountPage(driver);
+    }
+
+    @Step("Correct log in to an account - new customer.")
+    public AccountPage correctLogInToAccountByNewCustomer(Customer customer) {
+        String email = customer.getCustomerEmail();
+        String password = customer.getCustomerPassword();
 
         logInToAccount(email, password);
         return new AccountPage(driver);

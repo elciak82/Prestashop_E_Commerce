@@ -1,7 +1,6 @@
 package tests.editaccount;
 
 import helpers.enums.*;
-import helpers.models.Address;
 import helpers.models.Customer;
 import helpers.providers.AddressFactory;
 import helpers.providers.CustomerFactory;
@@ -9,17 +8,24 @@ import io.qameta.allure.*;
 import mysqlconnection.Queries;
 import org.testng.Assert;
 import org.testng.annotations.*;
-import webui.pages.AccountPage;
 import webui.pages.AddressPage;
-import webui.pages.CreateAccountPage;
-import webui.pages.LoginPage;
 import tests.BaseTest;
 
 import java.sql.SQLException;
 
 public class AddressTests extends BaseTest {
 
-    @BeforeClass (description = "Creating new Customer")
+    CustomerFactory customerFactory = new CustomerFactory();
+    Customer newCustomer = new Customer();
+
+    @BeforeClass (description = "Creating a new Customer")
+    public void createNewCustomer() throws SQLException {
+        newCustomer = customerFactory.getCustomerToRegisterRequired();
+        Queries queries = new Queries();
+        queries.addNewCustomerToDatabase(newCustomer);
+
+        //insert
+    }
     // create new Customer
 
     @AfterMethod
@@ -35,13 +41,14 @@ public class AddressTests extends BaseTest {
     @Parameters("browser: chrome")
     public void addNewAddressWithRequiredFieldsTest() throws SQLException {
 
-        header.clickOnSignInLink().correctLogInToAccount().clickOnAddressesLink();
+
+        header.clickOnSignInLink().correctLogInToAccountByNewCustomer(newCustomer).clickOnAddressesLink();
 
         AddressPage addressPage = new AddressPage(driver);
         addressPage.clickOnCreateNewAddressButton();
 
         AddressFactory addressFactory = new AddressFactory();
-        addressPage.addNewCustomerAddress(addressFactory.getCustomerAddress_required(CountryEnums.Country.UNITED_STATES, StateEnums.State.ALABAMA));
+        addressPage.addNewCustomerAddress(addressFactory.getCustomerAddressRequired(CountryEnums.Country.UNITED_STATES, StateEnums.State.ALABAMA));
 
         Assert.assertEquals(AlertEnums.AlertMessages.ADDRESS_SUCCESSFULLY_ADDED.getAlertMessage(), addressPage.getSuccessAlertText());
 
@@ -63,7 +70,7 @@ public class AddressTests extends BaseTest {
         addressPage.clickOnCreateNewAddressButton();
 
         AddressFactory addressFactory = new AddressFactory();
-        addressPage.addNewCustomerAddress(addressFactory.getCustomerAddress_required(CountryEnums.Country.UNITED_STATES, StateEnums.State.ALABAMA));
+        addressPage.addNewCustomerAddress(addressFactory.getCustomerAddressRequired(CountryEnums.Country.UNITED_STATES, StateEnums.State.ALABAMA));
 
         Assert.assertEquals(AlertEnums.AlertMessages.ADDRESS_SUCCESSFULLY_ADDED.getAlertMessage(), addressPage.getSuccessAlertText());
 

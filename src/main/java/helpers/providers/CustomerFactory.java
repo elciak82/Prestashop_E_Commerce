@@ -33,7 +33,7 @@ public class CustomerFactory extends DataFactory{
         return birthDate;
     }
 
-    public Customer getCustomerToRegister_required() {
+    public Customer getCustomerToRegisterRequired() {
         String firstName = customerRandomFirstName();
         String lastName = customerRandomLastName();
         String password = customerRandomPassword();

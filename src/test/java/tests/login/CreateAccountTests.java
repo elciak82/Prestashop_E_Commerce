@@ -60,7 +60,7 @@ public class CreateAccountTests extends BaseTest {
 
         CreateAccountPage createAccountPage = new CreateAccountPage(driver);
         CustomerFactory customerFactory = new CustomerFactory();
-        createAccountPage.createAnAccountRequiredFields(customerFactory.getCustomerToRegister_required());
+        createAccountPage.createAnAccountRequiredFields(customerFactory.getCustomerToRegisterRequired());
 
         String customerFirstNameLastName = header.getUserFirstnameLastnameFromPage();
         Assert.assertEquals(customerFirstNameLastName, customerFactory.getCustomerFirstNameLastName());
@@ -103,7 +103,7 @@ public class CreateAccountTests extends BaseTest {
 
         CreateAccountPage createAccountPage = new CreateAccountPage(driver);
         CustomerFactory customerFactory = new CustomerFactory();
-        createAccountPage.fillRequiredFieldsInCreateAnAccountForm(customerFactory.getCustomerToRegister_required());
+        createAccountPage.fillRequiredFieldsInCreateAnAccountForm(customerFactory.getCustomerToRegisterRequired());
 
         String incorrectFirstname = "1234567";
         Customer customer = new Customer();
@@ -129,7 +129,7 @@ public class CreateAccountTests extends BaseTest {
 
         CreateAccountPage createAccountPage = new CreateAccountPage(driver);
         CustomerFactory customerFactory = new CustomerFactory();
-        createAccountPage.fillRequiredFieldsInCreateAnAccountForm(customerFactory.getCustomerToRegister_required());
+        createAccountPage.fillRequiredFieldsInCreateAnAccountForm(customerFactory.getCustomerToRegisterRequired());
 
         String incorrectLastname = "1234567";
         Customer customer = new Customer();
@@ -155,7 +155,7 @@ public class CreateAccountTests extends BaseTest {
 
         CreateAccountPage createAccountPage = new CreateAccountPage(driver);
         CustomerFactory customerFactory = new CustomerFactory();
-        createAccountPage.fillRequiredFieldsInCreateAnAccountForm(customerFactory.getCustomerToRegister_required());
+        createAccountPage.fillRequiredFieldsInCreateAnAccountForm(customerFactory.getCustomerToRegisterRequired());
 
         String tooLongFirstname = CustomerFactory.randomAlphaString(256);
         Customer customer = new Customer();
@@ -182,7 +182,7 @@ public class CreateAccountTests extends BaseTest {
 
         CreateAccountPage createAccountPage = new CreateAccountPage(driver);
         CustomerFactory customerFactory = new CustomerFactory();
-        createAccountPage.fillRequiredFieldsInCreateAnAccountForm(customerFactory.getCustomerToRegister_required());
+        createAccountPage.fillRequiredFieldsInCreateAnAccountForm(customerFactory.getCustomerToRegisterRequired());
 
         String tooLongLastname = CustomerFactory.randomAlphaString(256);
         Customer customer = new Customer();
@@ -209,7 +209,7 @@ public class CreateAccountTests extends BaseTest {
 
         CreateAccountPage createAccountPage = new CreateAccountPage(driver);
         CustomerFactory customerFactory = new CustomerFactory();
-        createAccountPage.fillRequiredFieldsInCreateAnAccountForm(customerFactory.getCustomerToRegister_required());
+        createAccountPage.fillRequiredFieldsInCreateAnAccountForm(customerFactory.getCustomerToRegisterRequired());
 
         String tooLongPassword = CustomerFactory.randomAlphaString(73);
         Customer customer = new Customer();
@@ -236,7 +236,7 @@ public class CreateAccountTests extends BaseTest {
 
         CreateAccountPage createAccountPage = new CreateAccountPage(driver);
         CustomerFactory customerFactory = new CustomerFactory();
-        createAccountPage.fillRequiredFieldsInCreateAnAccountForm(customerFactory.getCustomerToRegister_required());
+        createAccountPage.fillRequiredFieldsInCreateAnAccountForm(customerFactory.getCustomerToRegisterRequired());
 
         String invalidBirthday = CustomerFactory.randomAlphaString(9);
         Customer customer = new Customer();
