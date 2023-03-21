@@ -9,6 +9,7 @@ import org.testng.Assert;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import tests.BaseTest;
+import webui.pages.HomePage;
 
 public class WomenPageTests extends BaseTest {
 
@@ -18,9 +19,10 @@ public class WomenPageTests extends BaseTest {
     @TmsLink("PRESTASHOP-7")
     @Parameters("browser: chrome")
     public void verifyWomenPageTitleTest() {
-        header.clickOnWomenLink();
+        String title = new HomePage(driver)
+                .openWomenPage()
+                .getPageTitle();
 
-        String title = header.getPageTitle();
         Assert.assertEquals(title, PageTitleEnums.Titles.WOMEN_PAGE.getPageTitle());
 
     }

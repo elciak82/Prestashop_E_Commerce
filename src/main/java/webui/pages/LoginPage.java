@@ -8,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import webui.components.HeaderComponent;
 
-public class LoginPage extends BasePage {
+public class LoginPage extends HeaderComponent {
 
     @FindBy(id = "field-email")
     private WebElement emailField;
@@ -31,29 +31,51 @@ public class LoginPage extends BasePage {
 
     public LoginPage(WebDriver driver) {
         super(driver);
-        header = new HeaderComponent(driver);
         PageFactory.initElements(driver, this);
     }
 
-    private final HeaderComponent header;
+    public WebElement getEmailField() {
+        return emailField;
+    }
 
+    public WebElement getPasswordField() {
+        return passwordField;
+    }
+
+    public WebElement getSignInButton() {
+        return signInButton;
+    }
+
+    public WebElement getAuthenticationFailedAlert() {
+        return authenticationFailedAlert;
+    }
+
+    public WebElement getForgotPasswordButton() {
+        return forgotPasswordButton;
+    }
+
+    public WebElement getCreateAccount() {
+        return createAccount;
+    }
 
     @Step("Input correct email and password.")
-    public void logIn_fillData(String email, String password) {
+    public LoginPage fillCredentials(String email, String password) {
         emailField.sendKeys(email);
         passwordField.sendKeys(password);
+        return this;
     }
 
     @Step("Click on the Sign in button")
-    public AccountPage clickOnSignInButton() {
+    public LoginPage clickOnSignInButton() {
         signInButton.click();
-        return new AccountPage(driver);
+        return this;
     }
 
     @Step("Log in to account.")
-    public void logInToAccount(String email, String password) {
-        logIn_fillData(email, password);
-        signInButton.click();
+    public AccountPage logInToAccount(String email, String password) {
+        fillCredentials(email, password);
+        clickOnSignInButton();
+        return new AccountPage(driver);
     }
 
     @Step("Correct log in to an account.")
@@ -66,8 +88,9 @@ public class LoginPage extends BasePage {
     }
 
     @Step("Log out from an account.")
-    public void logOutFromAccount() {
-        header.clickOnSignOutButton();
+    public LoginPage logOutFromAccount() {
+        signOut();
+        return this;
     }
 
     @Step("Get alert text.")

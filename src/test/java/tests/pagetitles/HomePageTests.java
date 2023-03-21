@@ -6,6 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import tests.BaseTest;
+import webui.pages.HomePage;
 
 public class HomePageTests extends BaseTest {
 
@@ -16,7 +17,9 @@ public class HomePageTests extends BaseTest {
     @TmsLink("PRESTASHOP-1")
     @Parameters("browser: chrome")
     public void verifyHomePageTitleTest() {
-        String title = header.getPageTitle();
+        String title = new HomePage(driver)
+                .getPageTitle();
+
         Assert.assertEquals(title, PageTitleEnums.Titles.HOME_PAGE.getPageTitle());
     }
 }

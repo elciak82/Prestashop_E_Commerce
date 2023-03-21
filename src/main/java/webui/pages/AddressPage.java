@@ -62,9 +62,10 @@ public class AddressPage extends BasePage {
     }
 
     @Step("Add the new Customer address - only required fields.")
-    public void addNewCustomerAddress(Address address) {
+    public AddressPage addNewCustomerAddress(Address address) {
         fillRequiredFieldsAddressForm(address);
         clickOnSaveButton();
+        return this;
     }
 
     @Step("Click on the Save button.")
@@ -73,8 +74,9 @@ public class AddressPage extends BasePage {
     }
 
     @Step("Click on the create new address button.")
-    public void clickOnCreateNewAddressButton() {
+    public AddressPage clickOnCreateNewAddressButton() {
         createNewAddressButton.click();
+        return this;
     }
 
     @Step("Get alert text.")

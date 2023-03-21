@@ -8,14 +8,13 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import webui.pages.*;
+import webui.WebEntity;
+import webui.elements.SearchMenu;
+import webui.pages.SearchResultsPage;
 
 import java.util.List;
 
-public class SearchComponent extends HeaderComponent {
-
-    @FindBy(className ="ui-menu-item")
-    private List<WebElement> searchListItem;
+public class SearchComponent extends WebEntity {
 
     @FindBy(id="ui-id-1")
     private WebElement searchWidget;
@@ -29,24 +28,17 @@ public class SearchComponent extends HeaderComponent {
     }
 
     @Step("Search by clicking on the Enter.")
-    public void searchElement_enter(String value) {
+    public SearchResultsPage search(String value) {
         searchBy.sendKeys(value);
         searchBy.sendKeys(Keys.ENTER);
+        return new SearchResultsPage(driver);
     }
 
     @Step("Get list of all elements from the Search list.")
-    public List<String> getAllElementsFromSearchList(String value) {
+    public SearchMenu fillSearchField(String value) {
         searchBy.sendKeys(value);
-        WebElement myDynamicElement = (new WebDriverWait(driver, 2))
+        new WebDriverWait(driver, 2)
                 .until(ExpectedConditions.visibilityOf(searchWidget));
-        return new BasePage(driver).getAllResults(searchListItem);
+        return new SearchMenu(driver, searchWidget);
     }
-
-    @Step("Select element from the Search list")
-    public void selectElementFromSearchList(int elementFromTheList){
-        searchListItem.get(elementFromTheList).click();
-
-    }
-
-
 }

@@ -13,7 +13,9 @@ import org.testng.Assert;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import webui.pages.AccountPage;
 import webui.pages.ForgotYourPasswordPage;
+import webui.pages.HomePage;
 import webui.pages.LoginPage;
 import tests.BaseTest;
 
@@ -28,16 +30,15 @@ public class LogInTests extends BaseTest {
         String email = Configuration.getConfiguration().getEmail();
         String password = Configuration.getConfiguration().getPassword();
 
-        header.clickOnSignInLink();
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.logIn_fillData(email, password);
-        loginPage.clickOnSignInButton();
+        AccountPage accountPage = new HomePage(driver)
+                .goToLoginPage()
+                .logInToAccount(email, password);
 
         String firstName = Configuration.getConfiguration().getFirstname();
         String lastname = Configuration.getConfiguration().getLastname();
         String loggedUserData = firstName + " " + lastname;
 
-        Assert.assertEquals(header.getUserFirstnameLastnameFromPage(), loggedUserData);
+        Assert.assertEquals(accountPage.getUserFirstnameLastnameFromPage(), loggedUserData);
     }
 
     @Test(testName = "Correct log out from the account.", description = "Behavior = Positive")
@@ -46,13 +47,13 @@ public class LogInTests extends BaseTest {
     @TmsLink("PRESTASHOP-12")
     @Parameters("browser: chrome")
     public void correctLogInAndLogOutFromAccountTest() {
+        String title = new HomePage(driver)
+                .goToLoginPage()
+                .correctLogInToAccount()
+                .goToLoginPage()
+                .logOutFromAccount()
+                .getPageTitle();
 
-        header.clickOnSignInLink();
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.correctLogInToAccount();
-        loginPage.logOutFromAccount();
-
-        String title = header.getPageTitle();
         Assert.assertEquals(title, PageTitleEnums.Titles.LOGIN_PAGE.getPageTitle());
 
     }
@@ -63,16 +64,18 @@ public class LogInTests extends BaseTest {
     @TmsLink("PRESTASHOP-13")
     @Parameters("browser: chrome")
     public void incorrectLogInToAccountTest() {
-
         String email = "email@email.com";
         String password = "12345";
 
-        header.clickOnSignInLink();
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.logIn_fillData(email, password);
-        loginPage.clickOnSignInButton();
+        LoginPage loginPage = new HomePage(driver)
+                .goToLoginPage()
+                .fillCredentials(email, password)
+                .clickOnSignInButton();
 
-        Assert.assertEquals(loginPage.getAlertText(), AlertEnums.AlertMessages.AUTHENTICATION_FIELD.getAlertMessage());
+        Assert.assertEquals(
+                loginPage.getAlertText(),
+                AlertEnums.AlertMessages.AUTHENTICATION_FIELD.getAlertMessage()
+        );
 
     }
 
@@ -85,7 +88,7 @@ public class LogInTests extends BaseTest {
 
         String email = "email@email.com";
 
-        header.clickOnSignInLink();
+        header.goToLoginPage();
         LoginPage loginPage = new LoginPage(driver);
         loginPage.clickOnForgetPasswordButton().insertEmail(email);
         ForgotYourPasswordPage forgotYourPasswordPage = new ForgotYourPasswordPage(driver);

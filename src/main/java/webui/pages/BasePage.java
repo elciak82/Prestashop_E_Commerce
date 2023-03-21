@@ -4,21 +4,19 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.FluentWait;
+import webui.WebEntity;
 
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.List;
 
-public class BasePage {
-    public WebDriver driver;
+public abstract class BasePage extends WebEntity {
     private static final String ALPHA_STRING = "abcdefghijklmnoprstuvwxyz";
 
     public BasePage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
 //        documentReady();
     }
 
-    public void fluentWaitForElementDisplayed(WebElement elementToBeDisplayed) {
+    protected void fluentWaitForElementDisplayed(WebElement elementToBeDisplayed) {
         new FluentWait<>(elementToBeDisplayed)
                 .withTimeout(Duration.ofSeconds(10))
                 .pollingEvery(Duration.ofMillis(500))
@@ -26,7 +24,7 @@ public class BasePage {
                 .until(WebElement::isDisplayed);
     }
 
-    public void documentReady() {
+    protected void documentReady() {
         boolean readyStateComplete = false;
         while (!readyStateComplete) {
             JavascriptExecutor executor = (JavascriptExecutor) driver;
@@ -42,17 +40,11 @@ public class BasePage {
         return title;
     }
 
-    public void mouseClickByLocator( WebElement cssLocator ) {
-        Actions builder = new Actions(driver);
-        builder.moveToElement(cssLocator);
-        builder.perform();
-    }
-
-    public String getTextFromWebElement (WebElement webElement) {
+    protected String getTextFromWebElement (WebElement webElement) {
         return webElement.getText();
     }
 
-    public static String randomAlphaString(int count) {
+    protected static String randomAlphaString(int count) {
         StringBuilder builder = new StringBuilder();
         while (count-- != 0) {
             int character = (int) (Math.random() * ALPHA_STRING.length());
@@ -60,16 +52,4 @@ public class BasePage {
         }
         return builder.toString();
     }
-
-    public List<String> getAllResults(List<WebElement> webElements){
-        List<String> searchResultsLists = new ArrayList<>(); //deklarujemy listę stringów
-        //dekladujemy listę webelementów
-        List<WebElement> searchResultsWebElementsList = new ArrayList<>(webElements); //UZYJ EWALUATE (NOTATKI) dodajemy wszystkie wyszukane wartości do listy
-        for (WebElement element : searchResultsWebElementsList) { //dla kazdego elementu z listy webelementów iteracja
-            searchResultsLists.add(element.getText()); //pobierz jego text i dodaj do do listy stringów
-        }
-        System.out.println(searchResultsLists);
-        return searchResultsLists; //na końcu ją zwróć. To jest cała lista. lista jest ok dla list, dla tebael lepsza jest mapa
-    }
-
 }

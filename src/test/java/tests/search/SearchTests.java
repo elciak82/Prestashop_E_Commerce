@@ -1,6 +1,5 @@
 package tests.search;
 
-import helpers.enums.PageTitleEnums;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
@@ -11,6 +10,8 @@ import org.testng.annotations.Test;
 import tests.BaseTest;
 import webui.components.SearchComponent;
 import webui.pages.AccessoriesPage;
+import webui.pages.HomePage;
+import webui.pages.ProductPage;
 
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class SearchTests extends BaseTest {
     @TmsLink("PRESTASHOP-..")
     @Parameters("browser: chrome")
     public void search() {
-        new SearchComponent(driver).searchElement_enter("mug");
+        new SearchComponent(driver).search("mug");
         String title = header.getPageTitle();
 //        Assert.assertEquals(title, "test");
         Assert.assertEquals(title, "Search");
@@ -37,17 +38,13 @@ public class SearchTests extends BaseTest {
     @TmsLink("PRESTASHOP-..")
     @Parameters("browser: chrome")
     public void searchLists() {
-        String searchingValue = "mug";
-        SearchComponent search = new SearchComponent(driver);
-        List<String> listsOfElements = search.getAllElementsFromSearchList(searchingValue);
+        String searchingValue = "CUSTOMIZABLE MUG";
+        ProductPage productPage = new HomePage(driver)
+                .getSearchBar()
+                .fillSearchField(searchingValue)
+                .selectItemByName(searchingValue);
+        String foundProductTitle = productPage.getProductTitleText();
 
-        int elementNumber = 1;
-        search.selectElementFromSearchList(elementNumber);
-
-        Assert.assertEquals(listsOfElements.get(elementNumber), new AccessoriesPage(driver).getAccessoryTitle());
-
-
-
-
+        Assert.assertEquals(searchingValue.toLowerCase(), foundProductTitle.toLowerCase());
     }
 }

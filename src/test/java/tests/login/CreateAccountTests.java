@@ -28,7 +28,7 @@ public class CreateAccountTests extends BaseTest {
     @Parameters("browser: chrome")
     public void createAccountAllFieldsTest() throws SQLException {
 
-        header.clickOnSignInLink();
+        header.goToLoginPage();
 
         LoginPage loginPage = new LoginPage(driver);
         loginPage.clickOnTheCreateAccountLink();
@@ -53,7 +53,7 @@ public class CreateAccountTests extends BaseTest {
     @Parameters("browser: chrome")
     public void createAccountOnlyRequiredFieldsTest() throws SQLException {
 
-        header.clickOnSignInLink();
+        header.goToLoginPage();
 
         LoginPage loginPage = new LoginPage(driver);
         loginPage.clickOnTheCreateAccountLink();
@@ -78,7 +78,7 @@ public class CreateAccountTests extends BaseTest {
     @Parameters("browser: chrome")
     public void tryToCreateAccount_allFieldsAreEmpty() {
 
-        header.clickOnSignInLink();
+        header.goToLoginPage();
 
         LoginPage loginPage = new LoginPage(driver);
         loginPage.clickOnTheCreateAccountLink();
@@ -96,7 +96,7 @@ public class CreateAccountTests extends BaseTest {
     @Parameters("browser: chrome")
     public void tryToCreateAccount_firstnameIsIncorrect() {
 
-        header.clickOnSignInLink();
+        header.goToLoginPage();
 
         LoginPage loginPage = new LoginPage(driver);
         loginPage.clickOnTheCreateAccountLink();
@@ -122,7 +122,7 @@ public class CreateAccountTests extends BaseTest {
     @Parameters("browser: chrome")
     public void tryToCreateAccount_lastnameIsIncorrect() {
 
-        header.clickOnSignInLink();
+        header.goToLoginPage();
 
         LoginPage loginPage = new LoginPage(driver);
         loginPage.clickOnTheCreateAccountLink();
@@ -148,7 +148,7 @@ public class CreateAccountTests extends BaseTest {
     @Parameters("browser: chrome")
     public void tryToCreateAccount_firstnameIsTooLong() {
 
-        header.clickOnSignInLink();
+        header.goToLoginPage();
 
         LoginPage loginPage = new LoginPage(driver);
         loginPage.clickOnTheCreateAccountLink();
@@ -175,7 +175,7 @@ public class CreateAccountTests extends BaseTest {
     @Parameters("browser: chrome")
     public void tryToCreateAccount_lastnameIsTooLong() {
 
-        header.clickOnSignInLink();
+        header.goToLoginPage();
 
         LoginPage loginPage = new LoginPage(driver);
         loginPage.clickOnTheCreateAccountLink();
@@ -202,7 +202,7 @@ public class CreateAccountTests extends BaseTest {
     @Parameters("browser: chrome")
     public void tryToCreateAccount_passwordIsTooLong() {
 
-        header.clickOnSignInLink();
+        header.goToLoginPage();
 
         LoginPage loginPage = new LoginPage(driver);
         loginPage.clickOnTheCreateAccountLink();
@@ -229,7 +229,7 @@ public class CreateAccountTests extends BaseTest {
     @Parameters("browser: chrome")
     public void tryToCreateAccount_birthdateIsInvalid() {
 
-        header.clickOnSignInLink();
+        header.goToLoginPage();
 
         LoginPage loginPage = new LoginPage(driver);
         loginPage.clickOnTheCreateAccountLink();

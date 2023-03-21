@@ -9,6 +9,7 @@ import org.testng.Assert;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import tests.BaseTest;
+import webui.pages.HomePage;
 
 public class ContactUsPageTests extends BaseTest {
 
@@ -18,10 +19,10 @@ public class ContactUsPageTests extends BaseTest {
     @TmsLink("PRESTASHOP-2")
     @Parameters("browser: chrome")
     public void verifyContactUsPageTitleTest() {
-        header.clickOnContactUsLink();
+        String title = new HomePage(driver)
+                .openContactUsPage()
+                .getPageTitle();
 
-        String title = header.getPageTitle();
-//        Assert.assertEquals(title, "test");
         Assert.assertEquals(title, PageTitleEnums.Titles.CONTACT_US_PAGE.getPageTitle());
     }
 }

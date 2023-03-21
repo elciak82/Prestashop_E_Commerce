@@ -5,8 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import webui.components.HeaderComponent;
 
-public class AccountPage extends BasePage {
+public class AccountPage extends HeaderComponent {
 
     @FindBy(id = "addresses-link")
     private WebElement addressesLink;
@@ -17,8 +18,9 @@ public class AccountPage extends BasePage {
     }
 
     @Step("Click on the Addresses link.")
-    public void clickOnAddressesLink () {
+    public AddressPage openAdressPage() {
         addressesLink.click();
+        return new AddressPage(driver);
     }
 }
 

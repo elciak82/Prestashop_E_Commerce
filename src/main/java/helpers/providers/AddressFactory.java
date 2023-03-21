@@ -43,7 +43,7 @@ public class AddressFactory extends DataFactory {
 
     public String customerPhone() { return number; }
 
-    public Address getCustomerAddress_required(CountryEnums.Country country, StateEnums.State state) {
+    public Address getCustomerAddressWithRequiredFields(CountryEnums.Country country, StateEnums.State state) {
         String customerAddress = customerAddress();
         String customerCity = customerCity();
         String customerState = customerState(state);

@@ -9,6 +9,11 @@ import webui.pages.*;
 
 public class HeaderComponent extends BasePage {
 
+    private final SearchComponent searchBar;
+
+    @FindBy(className = "logo img-fluid")
+    private WebElement logo;
+
     @FindBy(id = "contact-link")
     private WebElement contactUsLink;
 
@@ -51,49 +56,57 @@ public class HeaderComponent extends BasePage {
     public HeaderComponent(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
+        searchBar = new SearchComponent(driver);
     }
 
+    public SearchComponent getSearchBar() {
+        return searchBar;
+    }
+
+    public WebElement getLogo() {
+        return logo;
+    }
 
     @Step("Contact Us link click.")
-    public ContactUsPage clickOnContactUsLink() {
+    public ContactUsPage openContactUsPage() {
         contactUsLink.click();
         return new ContactUsPage(driver);
     }
 
     @Step("Clothes link click.")
-    public ClothesPage clickOnClothesLink() {
+    public ClothesPage openClothePage() {
         clothesLink.click();
         return new ClothesPage(driver);
     }
 
     @Step("Accessories link click.")
-    public AccessoriesPage clickOnAccessoriesLink() {
+    public AccessoriesPage openAccessoriesPage() {
         accessoriesLink.click();
         return new AccessoriesPage(driver);
     }
 
     @Step("Art link click.")
-    public ArtPage clickOnArtLink() {
+    public ArtPage openArtPage() {
         artLink.click();
         return new ArtPage(driver);
     }
 
     @Step("Men link click.")
-    public MenPage clickOnMenLink() {
-        mouseClickByLocator(clothesLink);
+    public MenPage openMenPage() {
+        hoverOnElement(clothesLink);
         menLink.click();
         return new MenPage(driver);
     }
 
     @Step("Women link click.")
-    public WomenPage clickOnWomenLink() {
-        mouseClickByLocator(clothesLink);
+    public WomenPage openWomenPage() {
+        hoverOnElement(clothesLink);
         womenLink.click();
         return new WomenPage(driver);
     }
 
     @Step("Sign In link click.")
-    public LoginPage clickOnSignInLink() {
+    public LoginPage goToLoginPage() {
         signIn.click();
         return new LoginPage(driver);
     }
@@ -104,7 +117,12 @@ public class HeaderComponent extends BasePage {
         return getTextFromWebElement(userFirstNameLastname);
     }
 
-    public void clickOnSignOutButton(){
+    public HomePage goToHomePage() {
+        getLogo().click();
+        return new HomePage(driver);
+    }
+
+    public void signOut(){
         signOut.click();
     }
 }
