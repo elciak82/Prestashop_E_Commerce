@@ -28,6 +28,7 @@ public class MySql {
         return stmt;
     }
 
+
     public String executeQuery(String query) throws SQLException {
         ResultSet res = databaseConnection()
                 .executeQuery(query);

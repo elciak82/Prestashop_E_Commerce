@@ -21,7 +21,7 @@ import tests.BaseTest;
 import java.sql.SQLException;
 
 public class CreateAccountTests extends BaseTest {
-    HeaderComponent header = new HeaderComponent(driver);
+    HeaderComponent header;
 
     @Test(testName = "Create an account - all fields.", description = "Behavior = Positive")
     @Description("Test verifying the correctness of creating an account with all data.")
@@ -30,6 +30,7 @@ public class CreateAccountTests extends BaseTest {
     @Parameters("browser: chrome")
     public void createAccountAllFieldsTest() throws SQLException {
 
+        header = new HeaderComponent(driver);
         header.clickOnSignInLink();
 
         LoginPage loginPage = new LoginPage(driver);

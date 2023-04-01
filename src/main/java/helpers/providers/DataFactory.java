@@ -27,7 +27,7 @@ public class DataFactory {
         return start + (int)Math.round(Math.random() * (end - start));
     }
 
-    public String randomNumericString(int count) {
+    public static String randomNumericString(int count) {
         StringBuilder builder = new StringBuilder();
         while (count-- != 0) {
             int character = (int) (Math.random() * NUMERIC_STRING.length());

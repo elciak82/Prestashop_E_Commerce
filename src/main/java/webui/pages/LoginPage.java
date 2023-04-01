@@ -52,9 +52,10 @@ public class LoginPage extends BasePage {
     }
 
     @Step("Log in to account.")
-    public void logInToAccount(String email, String password) {
+    public AccountPage logInToAccount(String email, String password) {
         logIn_fillData(email, password);
         signInButton.click();
+        return new AccountPage(driver);
     }
 
     @Step("Correct log in to an account.")

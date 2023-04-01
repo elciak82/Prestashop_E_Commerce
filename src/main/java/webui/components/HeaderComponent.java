@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import webui.pages.*;
 
 public class HeaderComponent extends BasePage {
@@ -53,7 +55,6 @@ public class HeaderComponent extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-
     @Step("Contact Us link click.")
     public ContactUsPage clickOnContactUsLink() {
         contactUsLink.click();
@@ -94,7 +95,15 @@ public class HeaderComponent extends BasePage {
 
     @Step("Sign In link click.")
     public LoginPage clickOnSignInLink() {
+//        WebDriverWait wait = new WebDriverWait(driver, 2);
+//        wait.until(ExpectedConditions.stalenessOf(signIn));
         signIn.click();
+        return new LoginPage(driver);
+    }
+
+    @Step("Sign Out link click.")
+    public LoginPage clickOnSignOutLink() {
+        signOut.click();
         return new LoginPage(driver);
     }
 

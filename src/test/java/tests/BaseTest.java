@@ -18,7 +18,6 @@ import java.sql.Statement;
 public class BaseTest {
     public static WebDriver driver;
     public static Statement statement;
-    public HeaderComponent header;
     public static WebDriver getDriver() {
         return driver;
     }
@@ -29,8 +28,7 @@ public class BaseTest {
         driver = Driver.initializeWebDriver();
         driver.get(Configuration.getConfiguration().getSiteURL());
         statement = new MySql().databaseConnection();
-        header = new HeaderComponent(driver);
-        //database connection
+
     }
 
 
@@ -38,7 +36,6 @@ public class BaseTest {
     public void tearDown() {
 
         driver.quit();
-        //close connection
     }
 }
 

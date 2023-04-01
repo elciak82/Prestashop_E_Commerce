@@ -6,44 +6,44 @@ import helpers.models.Address;
 
 public class AddressFactory extends DataFactory {
 
-    private String suffix = generateSuffix();
-    private String number = randomNumericString(5);
+    private static String suffix = generateSuffix();
+    private static String number = randomNumericString(5);
 
-    public String generateSuffix() {
+    public static String generateSuffix() {
         return randomAlphaString(5);
     }
 
-    public String customerAlias() { return "Alias" + suffix; }
+    public static String customerAlias() { return "Alias" + suffix; }
 
-    public String customerCompany() { return "Company" + suffix; }
+    public static String customerCompany() { return "Company" + suffix; }
 
-    public String customerVatNumber() { return number; }
+    public static String customerVatNumber() { return number; }
 
-    public String customerAddress() {
+    public static String customerAddress() {
         return "Address" + suffix;
     }
 
-    public String customerAddressComplement() { return "AddressComplement" + suffix; }
+    public static String customerAddressComplement() { return "AddressComplement" + suffix; }
 
-    public String customerCity() {
+    public static String customerCity() {
         return "City" + suffix;
     }
 
-    public String customerState(StateEnums.State state) {
+    public static String customerState(StateEnums.State state) {
         return state.getState();
     }
 
-    public String customerZip() {
+    public static String customerZip() {
         return number;
     }
 
-    public String customerCountry(CountryEnums.Country country) {
+    public static String customerCountry(CountryEnums.Country country) {
         return country.getCountry() ;
     }
 
-    public String customerPhone() { return number; }
+    public static String customerPhone() { return number; }
 
-    public Address getCustomerAddressRequired(CountryEnums.Country country, StateEnums.State state) {
+    public static Address getCustomerAddressRequired(CountryEnums.Country country, StateEnums.State state) {
         String customerAddress = customerAddress();
         String customerCity = customerCity();
         String customerState = customerState(state);
@@ -59,7 +59,7 @@ public class AddressFactory extends DataFactory {
                 .build();
     }
 
-    public Address getCustomerAddressAllForUnitedStates(StateEnums.State state) {
+    public static Address getCustomerAddressAllForUnitedStates(StateEnums.State state) {
         String customerAlias = customerAlias();
         String customerCompany = customerCompany();
         String customerAddress = customerAddress();
@@ -84,7 +84,7 @@ public class AddressFactory extends DataFactory {
                 .build();
     }
 
-    public Address getCustomerAddress(CountryEnums.Country country,StateEnums.State state) {
+    public static Address getCustomerAddress(CountryEnums.Country country,StateEnums.State state) {
         String customerAlias = customerAlias();
         String customerCompany = customerCompany();
         String customerVatNumber = customerVatNumber();
