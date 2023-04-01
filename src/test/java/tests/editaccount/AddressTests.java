@@ -4,13 +4,11 @@ import helpers.enums.*;
 import helpers.models.Address;
 import helpers.providers.AddressFactory;
 import io.qameta.allure.*;
-import mysqlconnection.Queries;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import webui.components.HeaderComponent;
 import webui.pages.AddressPage;
 import tests.BaseTest;
-
 import java.sql.SQLException;
 
 public class AddressTests extends BaseTest {
@@ -19,10 +17,7 @@ public class AddressTests extends BaseTest {
     AddressPage addressPage;
     String customerEmail;
     String customerPasswd;
-    String customerFirstName;
     HeaderComponent header;
-
-    Queries queries = new Queries();
 
     @BeforeMethod(description = "Creating a new Address")
     //cannot insert a new customer - a password issue in the prestashop
@@ -51,7 +46,6 @@ public class AddressTests extends BaseTest {
     @Parameters("browser: chrome")
     public void addNewAddressWithRequiredFieldsTest() {
 
-
         header.clickOnSignInLink()
                 .logInToAccount(customerEmail, customerPasswd)
                 .clickOnAddressesLink()
@@ -67,20 +61,16 @@ public class AddressTests extends BaseTest {
     @Severity(SeverityLevel.MINOR)
     @TmsLink("PRESTASHOP-25")
     @Parameters("browser: chrome")
-    public void addNewAddressWithAllFields_UnitedStatesTest() throws SQLException {
+    public void addNewAddressWithAllFields_UnitedStatesTest() {
 
-//        header.clickOnSignInLink().correctLogInToAccount().clickOnAddressesLink();
-
-        AddressPage addressPage = new AddressPage(driver);
-        addressPage.clickOnCreateNewAddressButton();
-
-        addressPage.addNewCustomerAddress(AddressFactory.getCustomerAddressRequired(CountryEnums.Country.UNITED_STATES, StateEnums.State.ALABAMA));
+        header.clickOnSignInLink()
+                .logInToAccount(customerEmail, customerPasswd)
+                .clickOnAddressesLink()
+                .addNewCustomerAddress(AddressFactory.getCustomerAddressAllForUnitedStates(StateEnums.State.ALABAMA));
 
         Assert.assertEquals(AlertEnums.AlertMessages.ADDRESS_SUCCESSFULLY_ADDED.getAlertMessage(), addressPage.getSuccessAlertText());
 
-//        Queries queries = new Queries();
-//        queries.executeDelete(queries.deleteAddress(addressFactory.customerAddress()));
-
+        header.clickOnSignOutLink();
     }
 
 }
