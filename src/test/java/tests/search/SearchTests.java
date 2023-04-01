@@ -9,12 +9,14 @@ import org.testng.Assert;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import tests.BaseTest;
+import webui.components.HeaderComponent;
 import webui.components.SearchComponent;
 import webui.pages.AccessoriesPage;
 
 import java.util.List;
 
 public class SearchTests extends BaseTest {
+    HeaderComponent header = new HeaderComponent(driver);
 
     // TODO: 3/15/2023
     @Test(testName = "Search.")

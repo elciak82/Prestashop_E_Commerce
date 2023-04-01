@@ -12,11 +12,13 @@ import io.qameta.allure.TmsLink;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
+import webui.components.HeaderComponent;
 import webui.pages.ForgotYourPasswordPage;
 import webui.pages.LoginPage;
 import tests.BaseTest;
 
 public class LogInTests extends BaseTest {
+    HeaderComponent header = new HeaderComponent(driver);
 
     @Test(testName = "Correct log in to the account.", description = "Behavior = Positive")
     @Description("Test verifying correct log in to the account - the user has an account.")

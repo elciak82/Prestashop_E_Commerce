@@ -9,8 +9,10 @@ import org.testng.Assert;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import tests.BaseTest;
+import webui.components.HeaderComponent;
 
 public class ContactUsPageTests extends BaseTest {
+    HeaderComponent header = new HeaderComponent(driver);
 
     @Test(testName = "Verify Contact Us Page title.")
     @Description("Test verifying Contact Us Page title.")

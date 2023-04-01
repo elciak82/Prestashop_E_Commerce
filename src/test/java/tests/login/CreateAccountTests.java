@@ -13,6 +13,7 @@ import mysqlconnection.Queries;
 import org.testng.Assert;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import webui.components.HeaderComponent;
 import webui.pages.CreateAccountPage;
 import webui.pages.LoginPage;
 import tests.BaseTest;
@@ -20,6 +21,7 @@ import tests.BaseTest;
 import java.sql.SQLException;
 
 public class CreateAccountTests extends BaseTest {
+    HeaderComponent header = new HeaderComponent(driver);
 
     @Test(testName = "Create an account - all fields.", description = "Behavior = Positive")
     @Description("Test verifying the correctness of creating an account with all data.")
