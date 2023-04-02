@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class AddressPage extends BasePage {
@@ -79,6 +81,8 @@ public class AddressPage extends BasePage {
 
     @Step("Get alert text.")
     public String getSuccessAlertText(){
+        WebDriverWait wait = new WebDriverWait(driver, 2);
+        wait.until(ExpectedConditions.visibilityOf(successAlert));
         return successAlert.getText();
     }
 
