@@ -9,6 +9,7 @@ import org.testng.annotations.*;
 import webui.components.HeaderComponent;
 import webui.pages.AddressPage;
 import tests.BaseTest;
+
 import java.sql.SQLException;
 
 public class AddressTests extends BaseTest {
@@ -19,23 +20,31 @@ public class AddressTests extends BaseTest {
     String customerPasswd;
     HeaderComponent header;
 
-    @BeforeMethod(description = "Creating a new Address")
-    //cannot insert a new customer - a password issue in the prestashop
+    @BeforeMethod(description = "Creating a new Address")//cannot insert a new customer - a password issue in the prestashop
     public void createNewAddress() {
-
         newAddress = AddressFactory.getCustomerAddress(CountryEnums.Country.UNITED_STATES, StateEnums.State.ALABAMA);
+    }
+
+    @BeforeMethod(description = "Log In to the account")
+    public void logIn() {
+        header = new HeaderComponent(driver);
         customerEmail = "noaddress@noaddress.com";
         customerPasswd = "noaddress";
 
-        header = new HeaderComponent(driver);
-        addressPage = new AddressPage(driver);
+        header.clickOnSignInLink()
+                .logInToAccount(customerEmail, customerPasswd).clickOnAddressesLink();
 
+        addressPage = new AddressPage(driver);
     }
 
-    @AfterMethod
-    // delete customer address
+    @AfterMethod(description = "Deleting customer address")
     public void deleteNewAddress() throws SQLException {
         statement.executeUpdate("DELETE FROM prestashop.address WHERE address1 = '" + AddressFactory.customerAddress() + "'");
+    }
+
+    @AfterMethod(description = "Log Out from the account")
+    public void logOut() {
+        header.clickOnSignOutLink();
     }
 
 
@@ -46,14 +55,10 @@ public class AddressTests extends BaseTest {
     @Parameters("browser: chrome")
     public void addNewAddressWithRequiredFieldsTest() {
 
-        header.clickOnSignInLink()
-                .logInToAccount(customerEmail, customerPasswd)
-                .clickOnAddressesLink()
-                .addNewCustomerAddress(AddressFactory.getCustomerAddressRequired(CountryEnums.Country.UNITED_STATES, StateEnums.State.ALABAMA));
+        addressPage.addNewCustomerAddress(AddressFactory.getCustomerAddressRequired(CountryEnums.Country.UNITED_STATES, StateEnums.State.ALABAMA));
 
         Assert.assertEquals(AlertEnums.AlertMessages.ADDRESS_SUCCESSFULLY_ADDED.getAlertMessage(), addressPage.getSuccessAlertText());
 
-        header.clickOnSignOutLink();
     }
 
     @Test(testName = "Add a new Customer address - all fields for United States.", description = "Behavior = Positive")
