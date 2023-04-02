@@ -6,34 +6,34 @@ import java.util.GregorianCalendar;
 
 public class CustomerFactory extends DataFactory{
 
-    private String suffix = generateSuffix();
-    private String birthDate = generateRandomBirthdate();
+    private static String suffix = generateSuffix();
+    private static String birthDate = generateRandomBirthdate();
 
-    public String generateSuffix() {
+    public static String generateSuffix() {
         return randomAlphaString(6);
     }
 
-    public String customerRandomFirstName() {
+    public static String customerRandomFirstName() {
         return "FirstName" + suffix;
     }
 
-    public String customerRandomLastName() {
+    public static String customerRandomLastName() {
         return "LastName" + suffix;
     }
 
-    public String customerRandomEmail() {
+    public static String customerRandomEmail() {
         return "email@" + suffix + ".com";
     }
 
-    public String customerRandomPassword() {
+    public static String customerRandomPassword() {
         return "pass" + suffix;
     }
 
-    public String customerRandomBirthdate() {
+    public static String customerRandomBirthdate() {
         return birthDate;
     }
 
-    public Customer getCustomerToRegisterRequired() {
+    public static Customer getCustomerToRegisterRequired() {
         String firstName = customerRandomFirstName();
         String lastName = customerRandomLastName();
         String password = customerRandomPassword();
@@ -47,11 +47,11 @@ public class CustomerFactory extends DataFactory{
                 .build();
     }
 
-    public String getCustomerFirstNameLastName(){
+    public static String getCustomerFirstNameLastName(){
         return customerRandomFirstName() + " " + customerRandomLastName();
     }
 
-    public Customer getCustomerToRegister_all() {
+    public static Customer getCustomerToRegister_all() {
         String firstName = customerRandomFirstName();
         String lastName = customerRandomLastName();
         String password = customerRandomPassword();
