@@ -8,6 +8,8 @@ import org.openqa.selenium.support.ui.FluentWait;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class BasePage {
     public WebDriver driver;
@@ -71,5 +73,18 @@ public class BasePage {
         System.out.println(searchResultsLists);
         return searchResultsLists; //na końcu ją zwróć. To jest cała lista. lista jest ok dla list, dla tebael lepsza jest mapa
     }
+
+    public List<String> getAllResultsStream(List<WebElement> webElements){
+        List<WebElement> links = new ArrayList<>(webElements);
+        List<String> filterLinks = links
+                .stream()
+                .map(WebElement::getText)
+                .filter(text ->!text.equals(""))
+                .collect(Collectors.toList());
+        System.out.println(filterLinks);
+        return filterLinks;
+    }
+
+
 
 }

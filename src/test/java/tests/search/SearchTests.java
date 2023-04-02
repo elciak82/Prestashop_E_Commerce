@@ -41,6 +41,7 @@ public class SearchTests extends BaseTest {
     public void searchLists() {
         String searchingValue = "mug";
         SearchComponent search = new SearchComponent(driver);
+
         List<String> listsOfElements = search.getAllElementsFromSearchList(searchingValue);
 
         int elementNumber = 1;

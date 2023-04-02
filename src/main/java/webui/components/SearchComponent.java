@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import webui.pages.*;
 
 import java.util.List;
+import java.util.function.Function;
 
 public class SearchComponent extends HeaderComponent {
 
@@ -39,14 +40,16 @@ public class SearchComponent extends HeaderComponent {
         searchBy.sendKeys(value);
         WebElement myDynamicElement = (new WebDriverWait(driver, 2))
                 .until(ExpectedConditions.visibilityOf(searchWidget));
-        return new BasePage(driver).getAllResults(searchListItem);
+        return new BasePage(driver).getAllResultsStream(searchListItem);
     }
 
     @Step("Select element from the Search list")
     public void selectElementFromSearchList(int elementFromTheList){
         searchListItem.get(elementFromTheList).click();
-
     }
+
+
+
 
 
 }
