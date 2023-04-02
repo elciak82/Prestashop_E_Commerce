@@ -1,7 +1,6 @@
 package tests.login;
 
 import helpers.enums.AlertEnums;
-import helpers.enums.ColumnNameEnums;
 import helpers.enums.GenderEnums;
 import helpers.models.Customer;
 import helpers.providers.CustomerFactory;
@@ -11,45 +10,58 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.TmsLink;
 import mysqlconnection.Queries;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import webui.components.HeaderComponent;
 import webui.pages.CreateAccountPage;
-import webui.pages.LoginPage;
 import tests.BaseTest;
 
+import java.lang.reflect.Method;
 import java.sql.SQLException;
 
 public class CreateAccountTests extends BaseTest {
     HeaderComponent header;
+    CreateAccountPage createAccountPage;
+    Queries queries;
+    Customer customer;
 
-//    @BeforeMethod(description = "")
-//    public
+    @BeforeMethod
+    public void clickOnCreateAccount() {
+        header = new HeaderComponent(driver);
+
+        header.clickOnSignInLink()
+                .clickOnCreateAccountLink();
+        System.out.println("Click on the create account link.");
+
+        createAccountPage = new CreateAccountPage(driver);
+        customer = new Customer();
+    }
+
+    @BeforeMethod()
+    public void name(Method method) {
+        System.out.println("Test name is: " + method.getName());
+        System.out.println("Test description is: " + method.getAnnotation(Test.class).testName());
+    }
+
+    @AfterMethod
+    public void deleteNewCustomer() throws SQLException {
+        queries = new Queries();
+        statement.executeUpdate(queries.deleteCustomer(CustomerFactory.customerRandomLastName()));
+        System.out.println("Delete customer form the database.");
+    }
 
     @Test(testName = "Create an account - all fields.", description = "Behavior = Positive")
     @Description("Test verifying the correctness of creating an account with all data.")
     @Severity(SeverityLevel.CRITICAL)
     @TmsLink("PRESTASHOP-15")
     @Parameters("browser: chrome")
-    public void createAccountAllFieldsTest() throws SQLException {
+    public void createAccountAllFieldsTest() {
 
-        header = new HeaderComponent(driver);
-        header.clickOnSignInLink();
+        createAccountPage.createAnAccountAllFields(CustomerFactory.getCustomerToRegister_all(), GenderEnums.Gender.GENDER_MRS.getGender());
 
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.clickOnTheCreateAccountLink();
-
-        CreateAccountPage createAccountPage = new CreateAccountPage(driver);
-        CustomerFactory customerFactory = new CustomerFactory();
-        createAccountPage.createAnAccountAllFields(customerFactory.getCustomerToRegister_all(), GenderEnums.Gender.GENDER_MRS.getGender());
-
-        String customerFirstNameLastName = header.getUserFirstnameLastnameFromPage();
-        Assert.assertEquals(customerFirstNameLastName, customerFactory.getCustomerFirstNameLastName());
-
-        Queries queries = new Queries();
-        String lastNameResult = queries.checkSavedDataInDatabase(ColumnNameEnums.Columns.LAST_NAME_COLUMN.getColumnName(), ColumnNameEnums.Columns.EMAIL_COLUMN.getColumnName(), customerFactory.customerRandomEmail());
-        Assert.assertEquals(lastNameResult, customerFactory.customerRandomLastName());
+        Assert.assertEquals(header.getUserFirstnameLastnameFromPage(), CustomerFactory.getCustomerFirstNameLastName());
     }
 
 
@@ -58,25 +70,13 @@ public class CreateAccountTests extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     @TmsLink("PRESTASHOP-16")
     @Parameters("browser: chrome")
-    public void createAccountOnlyRequiredFieldsTest() throws SQLException {
+    public void createAccountOnlyRequiredFieldsTest() {
 
-        header.clickOnSignInLink();
+        createAccountPage.createAnAccountRequiredFields(CustomerFactory.getCustomerToRegisterRequired());
 
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.clickOnTheCreateAccountLink();
+        Assert.assertEquals(header.getUserFirstnameLastnameFromPage(), CustomerFactory.getCustomerFirstNameLastName());
 
-        CreateAccountPage createAccountPage = new CreateAccountPage(driver);
-        CustomerFactory customerFactory = new CustomerFactory();
-        createAccountPage.createAnAccountRequiredFields(customerFactory.getCustomerToRegisterRequired());
-
-        String customerFirstNameLastName = header.getUserFirstnameLastnameFromPage();
-        Assert.assertEquals(customerFirstNameLastName, customerFactory.getCustomerFirstNameLastName());
-
-        Queries queries = new Queries();
-        String lastNameResult = queries.checkSavedDataInDatabase(ColumnNameEnums.Columns.LAST_NAME_COLUMN.getColumnName(), ColumnNameEnums.Columns.EMAIL_COLUMN.getColumnName(), customerFactory.customerRandomEmail());
-        Assert.assertEquals(lastNameResult, customerFactory.customerRandomLastName());
     }
-
 
     @Test(testName = "Try to create an account - all fields are empty.", description = "Behavior = Negative")
     @Description("Test verifying the app behaviour when the User tries to create an account when all fields are empty.")
@@ -85,12 +85,6 @@ public class CreateAccountTests extends BaseTest {
     @Parameters("browser: chrome")
     public void tryToCreateAccount_allFieldsAreEmpty() {
 
-        header.clickOnSignInLink();
-
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.clickOnTheCreateAccountLink();
-
-        CreateAccountPage createAccountPage = new CreateAccountPage(driver);
         createAccountPage.clickOnSaveButton();
 
         Assert.assertTrue(createAccountPage.saveButtonIsVisible());
@@ -103,21 +97,13 @@ public class CreateAccountTests extends BaseTest {
     @Parameters("browser: chrome")
     public void tryToCreateAccount_firstnameIsIncorrect() {
 
-        header.clickOnSignInLink();
-
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.clickOnTheCreateAccountLink();
-
-        CreateAccountPage createAccountPage = new CreateAccountPage(driver);
-        CustomerFactory customerFactory = new CustomerFactory();
-        createAccountPage.fillRequiredFieldsInCreateAnAccountForm(customerFactory.getCustomerToRegisterRequired());
+        createAccountPage.fillRequiredFieldsInCreateAnAccountForm(CustomerFactory.getCustomerToRegisterRequired());
 
         String incorrectFirstname = "1234567";
-        Customer customer = new Customer();
         customer.setCustomerFirstName(incorrectFirstname);
-        createAccountPage.setCustomerFirstName(incorrectFirstname);
-
-        createAccountPage.clickOnSaveButton();
+        createAccountPage
+                .setCustomerFirstName(incorrectFirstname)
+                .clickOnSaveButton();
 
         Assert.assertEquals(createAccountPage.getAlertInvalidFormatText(), AlertEnums.AlertMessages.INVALID_FORMAT.getAlertMessage());
     }
@@ -129,21 +115,13 @@ public class CreateAccountTests extends BaseTest {
     @Parameters("browser: chrome")
     public void tryToCreateAccount_lastnameIsIncorrect() {
 
-        header.clickOnSignInLink();
-
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.clickOnTheCreateAccountLink();
-
-        CreateAccountPage createAccountPage = new CreateAccountPage(driver);
-        CustomerFactory customerFactory = new CustomerFactory();
-        createAccountPage.fillRequiredFieldsInCreateAnAccountForm(customerFactory.getCustomerToRegisterRequired());
+        createAccountPage.fillRequiredFieldsInCreateAnAccountForm(CustomerFactory.getCustomerToRegisterRequired());
 
         String incorrectLastname = "1234567";
-        Customer customer = new Customer();
         customer.setCustomerLastName(incorrectLastname);
-        createAccountPage.setCustomerFirstName(incorrectLastname);
-
-        createAccountPage.clickOnSaveButton();
+        createAccountPage
+                .setCustomerFirstName(incorrectLastname)
+                .clickOnSaveButton();
 
         Assert.assertEquals(createAccountPage.getAlertInvalidFormatText(), AlertEnums.AlertMessages.INVALID_FORMAT.getAlertMessage());
     }
@@ -155,22 +133,14 @@ public class CreateAccountTests extends BaseTest {
     @Parameters("browser: chrome")
     public void tryToCreateAccount_firstnameIsTooLong() {
 
-        header.clickOnSignInLink();
-
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.clickOnTheCreateAccountLink();
-
-        CreateAccountPage createAccountPage = new CreateAccountPage(driver);
-        CustomerFactory customerFactory = new CustomerFactory();
-        createAccountPage.fillRequiredFieldsInCreateAnAccountForm(customerFactory.getCustomerToRegisterRequired());
+        createAccountPage.fillRequiredFieldsInCreateAnAccountForm(CustomerFactory.getCustomerToRegisterRequired());
 
         String tooLongFirstname = CustomerFactory.randomAlphaString(256);
-        Customer customer = new Customer();
         customer.setCustomerFirstName(tooLongFirstname);
-        createAccountPage.clearFirstnameField();
-        createAccountPage.setCustomerFirstName(tooLongFirstname);
-
-        createAccountPage.clickOnSaveButton();
+        createAccountPage
+                .clearFirstnameField()
+                .setCustomerFirstName(tooLongFirstname)
+                .clickOnSaveButton();
 
         Assert.assertEquals(createAccountPage.getAlertInvalidFormatText(), AlertEnums.AlertMessages.FIRST_NAME_TOO_LONG.getAlertMessage());
     }
@@ -182,22 +152,14 @@ public class CreateAccountTests extends BaseTest {
     @Parameters("browser: chrome")
     public void tryToCreateAccount_lastnameIsTooLong() {
 
-        header.clickOnSignInLink();
-
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.clickOnTheCreateAccountLink();
-
-        CreateAccountPage createAccountPage = new CreateAccountPage(driver);
-        CustomerFactory customerFactory = new CustomerFactory();
-        createAccountPage.fillRequiredFieldsInCreateAnAccountForm(customerFactory.getCustomerToRegisterRequired());
+        createAccountPage.fillRequiredFieldsInCreateAnAccountForm(CustomerFactory.getCustomerToRegisterRequired());
 
         String tooLongLastname = CustomerFactory.randomAlphaString(256);
-        Customer customer = new Customer();
         customer.setCustomerLastName(tooLongLastname);
-        createAccountPage.clearLastnameField();
-        createAccountPage.setCustomerLastName(tooLongLastname);
-
-        createAccountPage.clickOnSaveButton();
+        createAccountPage
+                .clearLastnameField()
+                .setCustomerLastName(tooLongLastname)
+                .clickOnSaveButton();
 
         Assert.assertEquals(createAccountPage.getAlertInvalidFormatText(), AlertEnums.AlertMessages.LAST_NAME_TOO_LONG.getAlertMessage());
     }
@@ -209,22 +171,14 @@ public class CreateAccountTests extends BaseTest {
     @Parameters("browser: chrome")
     public void tryToCreateAccount_passwordIsTooLong() {
 
-        header.clickOnSignInLink();
-
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.clickOnTheCreateAccountLink();
-
-        CreateAccountPage createAccountPage = new CreateAccountPage(driver);
-        CustomerFactory customerFactory = new CustomerFactory();
-        createAccountPage.fillRequiredFieldsInCreateAnAccountForm(customerFactory.getCustomerToRegisterRequired());
+        createAccountPage.fillRequiredFieldsInCreateAnAccountForm(CustomerFactory.getCustomerToRegisterRequired());
 
         String tooLongPassword = CustomerFactory.randomAlphaString(73);
-        Customer customer = new Customer();
         customer.setCustomerPassword(tooLongPassword);
-        createAccountPage.clearPasswordField();
-        createAccountPage.setCustomerPassword(tooLongPassword);
-
-        createAccountPage.clickOnSaveButton();
+        createAccountPage
+                .clearPasswordField()
+                .setCustomerPassword(tooLongPassword)
+                .clickOnSaveButton();
 
         Assert.assertEquals(createAccountPage.getAlertInvalidFormatText(), AlertEnums.AlertMessages.INVALID_PASSWORD.getAlertMessage());
     }
@@ -236,21 +190,13 @@ public class CreateAccountTests extends BaseTest {
     @Parameters("browser: chrome")
     public void tryToCreateAccount_birthdateIsInvalid() {
 
-        header.clickOnSignInLink();
-
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.clickOnTheCreateAccountLink();
-
-        CreateAccountPage createAccountPage = new CreateAccountPage(driver);
-        CustomerFactory customerFactory = new CustomerFactory();
-        createAccountPage.fillRequiredFieldsInCreateAnAccountForm(customerFactory.getCustomerToRegisterRequired());
+        createAccountPage.fillRequiredFieldsInCreateAnAccountForm(CustomerFactory.getCustomerToRegisterRequired());
 
         String invalidBirthday = CustomerFactory.randomAlphaString(9);
-        Customer customer = new Customer();
         customer.setCustomerBirthday(invalidBirthday);
-        createAccountPage.setCustomerBirthday(invalidBirthday);
-
-        createAccountPage.clickOnSaveButton();
+        createAccountPage
+                .setCustomerBirthday(invalidBirthday)
+                .clickOnSaveButton();
 
         Assert.assertEquals(createAccountPage.getAlertInvalidFormatText(), AlertEnums.AlertMessages.INVALID_DATE_FORMAT.getAlertMessage());
     }

@@ -4,6 +4,7 @@ import helpers.enums.*;
 import helpers.models.Address;
 import helpers.providers.AddressFactory;
 import io.qameta.allure.*;
+import mysqlconnection.Queries;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import webui.components.HeaderComponent;
@@ -16,20 +17,14 @@ import java.sql.SQLException;
 
 public class AddressTests extends BaseTest {
 
-    Address newAddress;
     AddressPage addressPage;
     String customerEmail;
     String customerPasswd;
     HeaderComponent header;
+    Queries queries;
+
 
     @BeforeMethod
-//cannot insert a new customer - a password issue in the prestashop
-    public void createNewAddress() {
-        newAddress = AddressFactory.getCustomerAddress(CountryEnums.Country.UNITED_STATES, StateEnums.State.ALABAMA);
-        System.out.println("Create a new address object.");
-    }
-
-    @BeforeMethod(description = "Log In to the account")
     public void logIn() {
         header = new HeaderComponent(driver);
         customerEmail = "noaddress@noaddress.com";
@@ -50,7 +45,8 @@ public class AddressTests extends BaseTest {
 
     @AfterMethod
     public void deleteNewAddress() throws SQLException {
-        statement.executeUpdate("DELETE FROM prestashop.address WHERE address1 = '" + AddressFactory.customerAddress() + "'");
+        queries = new Queries();
+        statement.executeUpdate(queries.deleteAddress(AddressFactory.customerAddress()));
         System.out.println("Delete address form the database.");
     }
 
@@ -68,6 +64,7 @@ public class AddressTests extends BaseTest {
     @Parameters("browser: chrome")
     public void addNewAddressWithRequiredFieldsTest() {
         addressPage.addNewCustomerAddress(AddressFactory.getCustomerAddressRequired(CountryEnums.Country.UNITED_STATES, StateEnums.State.AA));
+        System.out.println(AddressFactory.customerAlias());
 
         Assert.assertEquals(AlertEnums.AlertMessages.ADDRESS_SUCCESSFULLY_ADDED.getAlertMessage(), addressPage.getSuccessAlertText());
     }

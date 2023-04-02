@@ -93,7 +93,7 @@ public class LoginPage extends BasePage {
     }
 
     @Step("Click on the 'No account? Create one here.' link.")
-    public void clickOnTheCreateAccountLink(){
+    public void clickOnCreateAccountLink(){
         createAccount.click();
     }
 

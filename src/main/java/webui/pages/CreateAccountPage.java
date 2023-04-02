@@ -87,9 +87,10 @@ public class CreateAccountPage extends BasePage {
     }
 
     @Step("Create an account Step with all fields: {method}")
-    public void createAnAccountAllFields(Customer customer, String gender) {
+    public LoginPage createAnAccountAllFields(Customer customer, String gender) {
         fillAllFieldsInCreateAnAccountForm(customer, gender);
         saveButton.click();
+        return new LoginPage(driver);
     }
 
     public String getValidationMessageForFirstname() {
@@ -110,20 +111,24 @@ public class CreateAccountPage extends BasePage {
         return false;
     }
 
-    public void setCustomerFirstName(String firstName) {
+    public CreateAccountPage setCustomerFirstName(String firstName) {
         customerFirstName.sendKeys(firstName);
+        return this;
     }
 
-    public void setCustomerLastName(String lastName) {
+    public CreateAccountPage setCustomerLastName(String lastName) {
         customerLastName.sendKeys(lastName);
+        return this;
     }
 
-    public void setCustomerPassword(String password) {
+    public CreateAccountPage setCustomerPassword(String password) {
         customerPassword.sendKeys(password);
+        return this;
     }
 
-    public void setCustomerBirthday(String birthday) {
+    public CreateAccountPage setCustomerBirthday(String birthday) {
         customerBirthDate.sendKeys(birthday);
+        return this;
     }
 
     @Step("Check the alert text")
@@ -136,16 +141,19 @@ public class CreateAccountPage extends BasePage {
         return customerPassword.getText();
     }
 
-    public void clearFirstnameField(){
+    public CreateAccountPage clearFirstnameField(){
         customerFirstName.clear();
+        return this;
     }
 
-    public void clearLastnameField(){
+    public CreateAccountPage clearLastnameField(){
         customerLastName.clear();
+        return this;
     }
 
-    public void clearPasswordField(){
+    public CreateAccountPage clearPasswordField(){
         customerPassword.clear();
+        return this;
     }
 
     public void showPasswordButtonClick(){
