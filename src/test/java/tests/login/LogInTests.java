@@ -31,7 +31,6 @@ public class LogInTests extends BaseTest {
 
         loginPage = new LoginPage(driver);
         forgotYourPasswordPage = new ForgotYourPasswordPage(driver);
-
     }
 
     @BeforeMethod()
@@ -39,7 +38,6 @@ public class LogInTests extends BaseTest {
         System.out.println("Test name is: " + method.getName());
         System.out.println("Test description is: " + method.getAnnotation(Test.class).testName());
     }
-
 
     @Test(testName = "Correct log in to the account.", description = "Behavior = Positive")
     @Description("Test verifying correct log in to the account - the user has an account.")
@@ -69,12 +67,10 @@ public class LogInTests extends BaseTest {
     @TmsLink("PRESTASHOP-12")
     @Parameters("browser: chrome")
     public void correctLogInAndLogOutFromAccountTest() {
-
         loginPage.correctLogInToAccount();
         header.clickOnSignOutLink();
 
         Assert.assertEquals(header.getPageTitle(), PageTitleEnums.Titles.LOGIN_PAGE.getPageTitle());
-
     }
 
     @Test(testName = "Incorrect log in to the account.", description = "Behavior = Negative")
@@ -83,7 +79,6 @@ public class LogInTests extends BaseTest {
     @TmsLink("PRESTASHOP-13")
     @Parameters("browser: chrome")
     public void incorrectLogInToAccountTest() {
-
         String email = "email@email.com";
         String password = "12345";
 
@@ -92,7 +87,6 @@ public class LogInTests extends BaseTest {
                 .clickOnSignInButton();
 
         Assert.assertEquals(loginPage.getAlertText(), AlertEnums.AlertMessages.AUTHENTICATION_FIELD.getAlertMessage());
-
     }
 
     @Test(testName = "User forgot the password.", description = "Behavior = Negative")
@@ -101,7 +95,6 @@ public class LogInTests extends BaseTest {
     @TmsLink("PRESTASHOP-14")
     @Parameters("browser: chrome")
     public void forgotPasswordTest() {
-
         String email = "email@email.com";
 
         loginPage
@@ -110,7 +103,6 @@ public class LogInTests extends BaseTest {
                 .clickOnSendResetLinkButton();
 
         Assert.assertEquals(forgotYourPasswordPage.getResetYourPasswordAlertText(), AlertEnums.AlertMessages.RESET_YOUR_PASSWORD.getAlertMessage() + " " + email + ".");
-
     }
 
 }

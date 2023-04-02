@@ -16,7 +16,6 @@ import java.lang.reflect.Method;
 import java.sql.SQLException;
 
 public class AddressTests extends BaseTest {
-
     AddressPage addressPage;
     String customerEmail;
     String customerPasswd;

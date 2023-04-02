@@ -30,7 +30,6 @@ public class CreateAccountTests extends BaseTest {
     @BeforeMethod
     public void clickOnCreateAccount() {
         header = new HeaderComponent(driver);
-
         header.clickOnSignInLink()
                 .clickOnCreateAccountLink();
         System.out.println("Click on the create account link.");
@@ -58,12 +57,10 @@ public class CreateAccountTests extends BaseTest {
     @TmsLink("PRESTASHOP-15")
     @Parameters("browser: chrome")
     public void createAccountAllFieldsTest() {
-
         createAccountPage.createAnAccountAllFields(CustomerFactory.getCustomerToRegister_all(), GenderEnums.Gender.GENDER_MRS.getGender());
 
         Assert.assertEquals(header.getUserFirstnameLastnameFromPage(), CustomerFactory.getCustomerFirstNameLastName());
     }
-
 
     @Test(testName = "Create an account - only required fields.", description = "Behavior = Positive")
     @Description("Test verifying the correctness of creating an account only with required data.")
@@ -71,11 +68,9 @@ public class CreateAccountTests extends BaseTest {
     @TmsLink("PRESTASHOP-16")
     @Parameters("browser: chrome")
     public void createAccountOnlyRequiredFieldsTest() {
-
         createAccountPage.createAnAccountRequiredFields(CustomerFactory.getCustomerToRegisterRequired());
 
         Assert.assertEquals(header.getUserFirstnameLastnameFromPage(), CustomerFactory.getCustomerFirstNameLastName());
-
     }
 
     @Test(testName = "Try to create an account - all fields are empty.", description = "Behavior = Negative")
@@ -84,7 +79,6 @@ public class CreateAccountTests extends BaseTest {
     @TmsLink("PRESTASHOP-17")
     @Parameters("browser: chrome")
     public void tryToCreateAccount_allFieldsAreEmpty() {
-
         createAccountPage.clickOnSaveButton();
 
         Assert.assertTrue(createAccountPage.saveButtonIsVisible());
@@ -96,7 +90,6 @@ public class CreateAccountTests extends BaseTest {
     @TmsLink("PRESTASHOP-18")
     @Parameters("browser: chrome")
     public void tryToCreateAccount_firstnameIsIncorrect() {
-
         createAccountPage.fillRequiredFieldsInCreateAnAccountForm(CustomerFactory.getCustomerToRegisterRequired());
 
         String incorrectFirstname = "1234567";
@@ -114,7 +107,6 @@ public class CreateAccountTests extends BaseTest {
     @TmsLink("PRESTASHOP-19")
     @Parameters("browser: chrome")
     public void tryToCreateAccount_lastnameIsIncorrect() {
-
         createAccountPage.fillRequiredFieldsInCreateAnAccountForm(CustomerFactory.getCustomerToRegisterRequired());
 
         String incorrectLastname = "1234567";
@@ -132,7 +124,6 @@ public class CreateAccountTests extends BaseTest {
     @TmsLink("PRESTASHOP-20")
     @Parameters("browser: chrome")
     public void tryToCreateAccount_firstnameIsTooLong() {
-
         createAccountPage.fillRequiredFieldsInCreateAnAccountForm(CustomerFactory.getCustomerToRegisterRequired());
 
         String tooLongFirstname = CustomerFactory.randomAlphaString(256);
@@ -151,7 +142,6 @@ public class CreateAccountTests extends BaseTest {
     @TmsLink("PRESTASHOP-21")
     @Parameters("browser: chrome")
     public void tryToCreateAccount_lastnameIsTooLong() {
-
         createAccountPage.fillRequiredFieldsInCreateAnAccountForm(CustomerFactory.getCustomerToRegisterRequired());
 
         String tooLongLastname = CustomerFactory.randomAlphaString(256);
@@ -170,7 +160,6 @@ public class CreateAccountTests extends BaseTest {
     @TmsLink("PRESTASHOP-22")
     @Parameters("browser: chrome")
     public void tryToCreateAccount_passwordIsTooLong() {
-
         createAccountPage.fillRequiredFieldsInCreateAnAccountForm(CustomerFactory.getCustomerToRegisterRequired());
 
         String tooLongPassword = CustomerFactory.randomAlphaString(73);
