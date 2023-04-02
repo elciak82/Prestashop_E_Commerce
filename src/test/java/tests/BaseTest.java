@@ -6,10 +6,8 @@ import mysqlconnection.MySql;
 import org.testng.annotations.*;
 import utils.listeners.TestAllureListener;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
-import webui.components.HeaderComponent;
+
 
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -28,7 +26,6 @@ public class BaseTest {
         driver = Driver.initializeWebDriver();
         driver.get(Configuration.getConfiguration().getSiteURL());
         statement = new MySql().databaseConnection();
-
     }
 
 

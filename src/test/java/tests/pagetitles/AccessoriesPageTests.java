@@ -12,7 +12,7 @@ import tests.BaseTest;
 import webui.components.HeaderComponent;
 
 public class AccessoriesPageTests extends BaseTest {
-    HeaderComponent header = new HeaderComponent(driver);
+    HeaderComponent header;
 
     @Test(testName = "Verify Accessories Page title.")
     @Description("Test verifying Accessories Page title.")
@@ -20,11 +20,10 @@ public class AccessoriesPageTests extends BaseTest {
     @TmsLink("PRESTASHOP-4")
     @Parameters("browser: chrome")
     public void verifyAccessoriesPageTitleTest() {
+        header = new HeaderComponent(driver);
         header.clickOnAccessoriesLink();
 
-        String title = header.getPageTitle();
-//        Assert.assertEquals(title, "test");
-        Assert.assertEquals(title, PageTitleEnums.Titles.ACCESSORIES_PAGE.getPageTitle());
+        Assert.assertEquals(header.getPageTitle(), PageTitleEnums.Titles.ACCESSORIES_PAGE.getPageTitle());
 
     }
 }
