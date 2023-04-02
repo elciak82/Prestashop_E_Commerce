@@ -10,6 +10,8 @@ import webui.components.HeaderComponent;
 import webui.pages.AddressPage;
 import tests.BaseTest;
 
+import java.lang.reflect.Method;
+
 import java.sql.SQLException;
 
 public class AddressTests extends BaseTest {
@@ -20,11 +22,11 @@ public class AddressTests extends BaseTest {
     String customerPasswd;
     HeaderComponent header;
 
-    @BeforeMethod(description = "Creating a new Address")
+    @BeforeMethod
 //cannot insert a new customer - a password issue in the prestashop
     public void createNewAddress() {
         newAddress = AddressFactory.getCustomerAddress(CountryEnums.Country.UNITED_STATES, StateEnums.State.ALABAMA);
-        System.out.println("Create address");
+        System.out.println("Create a new address object.");
     }
 
     @BeforeMethod(description = "Log In to the account")
@@ -35,21 +37,27 @@ public class AddressTests extends BaseTest {
 
         header.clickOnSignInLink()
                 .logInToAccount(customerEmail, customerPasswd).clickOnAddressesLink();
-        System.out.println("Log in");
+        System.out.println("Log in to the account.");
 
         addressPage = new AddressPage(driver);
     }
 
-    @AfterMethod(description = "Deleting customer address")
-    public void deleteNewAddress() throws SQLException {
-        statement.executeUpdate("DELETE FROM prestashop.address WHERE address1 = '" + AddressFactory.customerAddress() + "'");
-        System.out.println("Delete address");
+    @BeforeMethod()
+    public void name(Method method) {
+        System.out.println("Test name is: " + method.getName());
+        System.out.println("Test description is: " + method.getAnnotation(Test.class).testName());
     }
 
-    @AfterMethod(description = "Log Out from the account")
+    @AfterMethod
+    public void deleteNewAddress() throws SQLException {
+        statement.executeUpdate("DELETE FROM prestashop.address WHERE address1 = '" + AddressFactory.customerAddress() + "'");
+        System.out.println("Delete address form the database.");
+    }
+
+    @AfterMethod
     public void logOut() {
         header.clickOnSignOutLink();
-        System.out.println("Log out");
+        System.out.println("Log out from the account.");
     }
 
 

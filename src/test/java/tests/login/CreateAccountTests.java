@@ -11,6 +11,7 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.TmsLink;
 import mysqlconnection.Queries;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import webui.components.HeaderComponent;
@@ -22,6 +23,9 @@ import java.sql.SQLException;
 
 public class CreateAccountTests extends BaseTest {
     HeaderComponent header;
+
+//    @BeforeMethod(description = "")
+//    public
 
     @Test(testName = "Create an account - all fields.", description = "Behavior = Positive")
     @Description("Test verifying the correctness of creating an account with all data.")
