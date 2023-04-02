@@ -7,6 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import webui.components.HeaderComponent;
 
 public class LoginPage extends BasePage {
@@ -40,9 +42,10 @@ public class LoginPage extends BasePage {
 
 
     @Step("Input correct email and password.")
-    public void logIn_fillData(String email, String password) {
+    public LoginPage logIn_fillData(String email, String password) {
         emailField.sendKeys(email);
         passwordField.sendKeys(password);
+        return this;
     }
 
     @Step("Click on the Sign in button")
@@ -76,11 +79,6 @@ public class LoginPage extends BasePage {
         return new AccountPage(driver);
     }
 
-    @Step("Log out from an account.")
-    public void logOutFromAccount() {
-        header.clickOnSignOutButton();
-    }
-
     @Step("Get alert text.")
     public String getAlertText() {
         return authenticationFailedAlert.getText();
@@ -88,6 +86,8 @@ public class LoginPage extends BasePage {
 
     @Step("Click on the Forgot your password? button.")
     public ForgotYourPasswordPage clickOnForgetPasswordButton() {
+        WebDriverWait wait = new WebDriverWait(driver, 2);
+        wait.until(ExpectedConditions.visibilityOf(forgotPasswordButton));
         forgotPasswordButton.click();
         return new ForgotYourPasswordPage(driver);
     }

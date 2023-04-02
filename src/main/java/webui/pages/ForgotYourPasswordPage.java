@@ -24,8 +24,9 @@ public class ForgotYourPasswordPage extends BasePage {
     }
 
     @Step("Insert an email to the email field.")
-    public void insertEmail(String email) {
+    public ForgotYourPasswordPage insertEmail(String email) {
         emailField.sendKeys(email);
+        return this;
     }
 
     @Step("Click on the Send reset link button.")

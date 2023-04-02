@@ -17,8 +17,29 @@ import webui.pages.ForgotYourPasswordPage;
 import webui.pages.LoginPage;
 import tests.BaseTest;
 
+import java.lang.reflect.Method;
+
 public class LogInTests extends BaseTest {
-    HeaderComponent header = new HeaderComponent(driver);
+    HeaderComponent header;
+    LoginPage loginPage;
+    ForgotYourPasswordPage forgotYourPasswordPage;
+
+    @BeforeMethod
+    public void signIn() {
+        header = new HeaderComponent(driver);
+        header.clickOnSignInLink();
+
+        loginPage = new LoginPage(driver);
+        forgotYourPasswordPage = new ForgotYourPasswordPage(driver);
+
+    }
+
+    @BeforeMethod()
+    public void name(Method method) {
+        System.out.println("Test name is: " + method.getName());
+        System.out.println("Test description is: " + method.getAnnotation(Test.class).testName());
+    }
+
 
     @Test(testName = "Correct log in to the account.", description = "Behavior = Positive")
     @Description("Test verifying correct log in to the account - the user has an account.")
@@ -29,16 +50,17 @@ public class LogInTests extends BaseTest {
         String email = Configuration.getConfiguration().getEmail();
         String password = Configuration.getConfiguration().getPassword();
 
-        header.clickOnSignInLink();
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.logIn_fillData(email, password);
-        loginPage.clickOnSignInButton();
+        loginPage
+                .logIn_fillData(email, password)
+                .clickOnSignInButton();
 
         String firstName = Configuration.getConfiguration().getFirstname();
         String lastname = Configuration.getConfiguration().getLastname();
         String loggedUserData = firstName + " " + lastname;
 
         Assert.assertEquals(header.getUserFirstnameLastnameFromPage(), loggedUserData);
+
+        header.clickOnSignOutLink();
     }
 
     @Test(testName = "Correct log out from the account.", description = "Behavior = Positive")
@@ -48,13 +70,10 @@ public class LogInTests extends BaseTest {
     @Parameters("browser: chrome")
     public void correctLogInAndLogOutFromAccountTest() {
 
-        header.clickOnSignInLink();
-        LoginPage loginPage = new LoginPage(driver);
         loginPage.correctLogInToAccount();
-        loginPage.logOutFromAccount();
+        header.clickOnSignOutLink();
 
-        String title = header.getPageTitle();
-        Assert.assertEquals(title, PageTitleEnums.Titles.LOGIN_PAGE.getPageTitle());
+        Assert.assertEquals(header.getPageTitle(), PageTitleEnums.Titles.LOGIN_PAGE.getPageTitle());
 
     }
 
@@ -68,10 +87,9 @@ public class LogInTests extends BaseTest {
         String email = "email@email.com";
         String password = "12345";
 
-        header.clickOnSignInLink();
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.logIn_fillData(email, password);
-        loginPage.clickOnSignInButton();
+        loginPage
+                .logIn_fillData(email, password)
+                .clickOnSignInButton();
 
         Assert.assertEquals(loginPage.getAlertText(), AlertEnums.AlertMessages.AUTHENTICATION_FIELD.getAlertMessage());
 
@@ -86,11 +104,10 @@ public class LogInTests extends BaseTest {
 
         String email = "email@email.com";
 
-        header.clickOnSignInLink();
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.clickOnForgetPasswordButton().insertEmail(email);
-        ForgotYourPasswordPage forgotYourPasswordPage = new ForgotYourPasswordPage(driver);
-        forgotYourPasswordPage.clickOnSendResetLinkButton();
+        loginPage
+                .clickOnForgetPasswordButton()
+                .insertEmail(email)
+                .clickOnSendResetLinkButton();
 
         Assert.assertEquals(forgotYourPasswordPage.getResetYourPasswordAlertText(), AlertEnums.AlertMessages.RESET_YOUR_PASSWORD.getAlertMessage() + " " + email + ".");
 
