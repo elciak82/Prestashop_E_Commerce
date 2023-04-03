@@ -8,10 +8,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import webui.pages.*;
 
 import java.util.List;
-import java.util.function.Function;
 
 public class SearchComponent extends HeaderComponent {
     HeaderComponent header;
@@ -42,7 +40,7 @@ public class SearchComponent extends HeaderComponent {
     public List<String> getAllElementsFromSearchList(String value) {
         searchBy.sendKeys(value);
         new WebDriverWait(driver, 2).until(ExpectedConditions.visibilityOf(searchWidget));
-        return new BasePage(driver).getAllResults(searchListItem);
+        return new WebEntity(driver).getAllResults(searchListItem);
     }
 
     @Step("Select element from the Search list")

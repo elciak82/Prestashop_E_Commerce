@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import webui.pages.*;
 
-public class HeaderComponent extends BasePage {
+public class HeaderComponent extends WebEntity {
 
     @FindBy(id = "contact-link")
     private WebElement contactUsLink;
@@ -79,14 +79,14 @@ public class HeaderComponent extends BasePage {
 
     @Step("Men link click.")
     public MenPage clickOnMenLink() {
-        mouseClickByLocator(clothesLink);
+        hoverOnElement(clothesLink);
         menLink.click();
         return new MenPage(driver);
     }
 
     @Step("Women link click.")
     public WomenPage clickOnWomenLink() {
-        mouseClickByLocator(clothesLink);
+        hoverOnElement(clothesLink);
         womenLink.click();
         return new WomenPage(driver);
     }

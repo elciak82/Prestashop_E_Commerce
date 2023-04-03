@@ -10,8 +10,9 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import webui.components.HeaderComponent;
+import webui.components.WebEntity;
 
-public class LoginPage extends BasePage {
+public class LoginPage extends WebEntity {
 
     @FindBy(id = "field-email")
     private WebElement emailField;

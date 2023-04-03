@@ -5,9 +5,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import webui.components.WebEntity;
 
 
-public class ForgotYourPasswordPage extends BasePage {
+public class ForgotYourPasswordPage extends WebEntity {
 
     @FindBy(id = "email")
     private WebElement emailField;

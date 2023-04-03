@@ -2,8 +2,9 @@ package webui.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
+import webui.components.WebEntity;
 
-public class MenPage extends BasePage {
+public class MenPage extends WebEntity {
     public MenPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);

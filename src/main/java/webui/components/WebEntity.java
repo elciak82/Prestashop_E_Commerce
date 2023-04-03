@@ -1,4 +1,4 @@
-package webui.pages;
+package webui.components;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.*;
@@ -11,11 +11,11 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public class BasePage {
+public class WebEntity {
     public WebDriver driver;
     private static final String ALPHA_STRING = "abcdefghijklmnoprstuvwxyz";
 
-    public BasePage(WebDriver driver) {
+    public WebEntity(WebDriver driver) {
         this.driver = driver;
 //        documentReady();
     }
@@ -44,7 +44,7 @@ public class BasePage {
         return title;
     }
 
-    public void mouseClickByLocator( WebElement cssLocator ) {
+    public void hoverOnElement(WebElement cssLocator ) {
         Actions builder = new Actions(driver);
         builder.moveToElement(cssLocator);
         builder.perform();

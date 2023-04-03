@@ -6,8 +6,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import webui.components.WebEntity;
 
-public class CreateAccountPage extends BasePage {
+public class CreateAccountPage extends WebEntity {
 
     @FindBy(id = "field-id_gender-1")
     private WebElement genderMr;
