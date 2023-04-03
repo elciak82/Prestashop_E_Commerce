@@ -9,6 +9,11 @@ import webui.pages.*;
 
 public class HeaderComponent extends WebEntity {
 
+    private final SearchComponent searchBar;
+
+    @FindBy(className = "logo img-fluid")
+    private WebElement logo;
+
     @FindBy(id = "contact-link")
     private WebElement contactUsLink;
 
@@ -51,48 +56,57 @@ public class HeaderComponent extends WebEntity {
     public HeaderComponent(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
+        searchBar = new SearchComponent(driver);
+    }
+
+    public SearchComponent getSearchBar() {
+        return searchBar;
+    }
+
+    public WebElement getLogo() {
+        return logo;
     }
 
     @Step("Contact Us link click.")
-    public ContactUsPage clickOnContactUsLink() {
+    public ContactUsPage clickOnContactUsPage() {
         contactUsLink.click();
         return new ContactUsPage(driver);
     }
 
     @Step("Clothes link click.")
-    public ClothesPage clickOnClothesLink() {
+    public ClothesPage clickOnClothesPage() {
         clothesLink.click();
         return new ClothesPage(driver);
     }
 
     @Step("Accessories link click.")
-    public AccessoriesPage clickOnAccessoriesLink() {
+    public AccessoriesPage clickOnAccessoriesPage() {
         accessoriesLink.click();
         return new AccessoriesPage(driver);
     }
 
     @Step("Art link click.")
-    public ArtPage clickOnArtLink() {
+    public ArtPage clickOnArtPage() {
         artLink.click();
         return new ArtPage(driver);
     }
 
     @Step("Men link click.")
-    public MenPage clickOnMenLink() {
+    public MenPage clickOnMenPage() {
         hoverOnElement(clothesLink);
         menLink.click();
         return new MenPage(driver);
     }
 
     @Step("Women link click.")
-    public WomenPage clickOnWomenLink() {
+    public WomenPage clickOnWomenPage() {
         hoverOnElement(clothesLink);
         womenLink.click();
         return new WomenPage(driver);
     }
 
     @Step("Sign In link click.")
-    public LoginPage clickOnSignInLink() {
+    public LoginPage clickOnSignInPage() {
 //        WebDriverWait wait = new WebDriverWait(driver, 2);
 //        wait.until(ExpectedConditions.stalenessOf(signIn));
         signIn.click();

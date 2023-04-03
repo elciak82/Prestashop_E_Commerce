@@ -21,7 +21,7 @@ public class ContactUsPageTests extends BaseTest {
     @Parameters("browser: chrome")
     public void verifyContactUsPageTitleTest() {
         header = new HeaderComponent(driver);
-        header.clickOnContactUsLink();
+        header.clickOnContactUsPage();
 
         Assert.assertEquals(header.getPageTitle(), PageTitleEnums.Titles.CONTACT_US_PAGE.getPageTitle());
     }

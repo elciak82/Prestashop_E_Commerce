@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
-public class SearchComponent extends HeaderComponent {
+public class SearchComponent extends WebEntity {
     HeaderComponent header;
 
     @FindBy(className ="ui-menu-item")
