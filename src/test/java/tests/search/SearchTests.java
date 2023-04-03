@@ -6,6 +6,7 @@ import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.TmsLink;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import tests.BaseTest;
@@ -16,41 +17,41 @@ import webui.pages.AccessoriesPage;
 import java.util.List;
 
 public class SearchTests extends BaseTest {
-    HeaderComponent header = new HeaderComponent(driver);
+    HeaderComponent header;
+    SearchComponent search;
+    String searchingValue;
 
-    // TODO: 3/15/2023
-    @Test(testName = "Search.")
-    @Description("Search.")
-    @Severity(SeverityLevel.CRITICAL)
-    @TmsLink("PRESTASHOP-..")
-    @Parameters("browser: chrome")
-    public void search() {
-        new SearchComponent(driver).searchElement_enter("mug");
-        String title = header.getPageTitle();
-//        Assert.assertEquals(title, "test");
-        Assert.assertEquals(title, "Search");
-
+    @BeforeMethod
+    public void setupData(){
+        header = new HeaderComponent(driver);
+        search = new SearchComponent(driver);
+        searchingValue = "mug";
     }
 
-    // TODO: 3/15/2023
-    @Test(testName = "Search.")
-    @Description("Search.")
+    @Test(testName = "Verifying the Search option - selecting element from the list.", description = "Behavior = Positive")
     @Severity(SeverityLevel.CRITICAL)
-    @TmsLink("PRESTASHOP-..")
+    @TmsLink("PRESTASHOP-26")
     @Parameters("browser: chrome")
     public void searchLists() {
-        String searchingValue = "mug";
-        SearchComponent search = new SearchComponent(driver);
-
         List<String> listsOfElements = search.getAllElementsFromSearchList(searchingValue);
 
         int elementNumber = 1;
         search.selectElementFromSearchList(elementNumber);
 
-        Assert.assertEquals(listsOfElements.get(elementNumber), new AccessoriesPage(driver).getAccessoryTitle());
-
-
-
-
+        Assert.assertEquals(listsOfElements.get(elementNumber), header.getPageTitle());
     }
+
+    @Test(testName = "Verifying the Search option by pressing Enter.")
+    @Description("Search.")
+    @Severity(SeverityLevel.CRITICAL)
+    @TmsLink("PRESTASHOP-27")
+    @Parameters("browser: chrome")
+    public void searchValue() {
+        search.searchElementByPressingOnEnter(searchingValue);
+
+        String title = header.getPageTitle();
+        Assert.assertEquals(title, "Search");
+    }
+
+
 }

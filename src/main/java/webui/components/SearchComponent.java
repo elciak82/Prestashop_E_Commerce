@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.function.Function;
 
 public class SearchComponent extends HeaderComponent {
+    HeaderComponent header;
 
     @FindBy(className ="ui-menu-item")
     private List<WebElement> searchListItem;
@@ -27,20 +28,21 @@ public class SearchComponent extends HeaderComponent {
     public SearchComponent(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
+        header = new HeaderComponent(driver);
     }
 
     @Step("Search by clicking on the Enter.")
-    public void searchElement_enter(String value) {
+    public HeaderComponent searchElementByPressingOnEnter(String value) {
         searchBy.sendKeys(value);
         searchBy.sendKeys(Keys.ENTER);
+        return new HeaderComponent(driver);
     }
 
     @Step("Get list of all elements from the Search list.")
     public List<String> getAllElementsFromSearchList(String value) {
         searchBy.sendKeys(value);
-        WebElement myDynamicElement = (new WebDriverWait(driver, 2))
-                .until(ExpectedConditions.visibilityOf(searchWidget));
-        return new BasePage(driver).getAllResultsStream(searchListItem);
+        new WebDriverWait(driver, 2).until(ExpectedConditions.visibilityOf(searchWidget));
+        return new BasePage(driver).getAllResults(searchListItem);
     }
 
     @Step("Select element from the Search list")
