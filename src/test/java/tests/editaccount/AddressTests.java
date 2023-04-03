@@ -1,7 +1,6 @@
 package tests.editaccount;
 
 import helpers.enums.*;
-import helpers.models.Address;
 import helpers.providers.AddressFactory;
 import io.qameta.allure.*;
 import mysqlconnection.Queries;
@@ -17,8 +16,6 @@ import java.sql.SQLException;
 
 public class AddressTests extends BaseTest {
     AddressPage addressPage;
-    String customerEmail;
-    String customerPasswd;
     HeaderComponent header;
     Queries queries;
 
@@ -26,11 +23,9 @@ public class AddressTests extends BaseTest {
     @BeforeMethod
     public void logIn() {
         header = new HeaderComponent(driver);
-        customerEmail = "noaddress@noaddress.com";
-        customerPasswd = "noaddress";
 
         header.clickOnSignInLink()
-                .logInToAccount(customerEmail, customerPasswd).clickOnAddressesLink();
+                .logInToAccountByCustomerWithoutAddress().clickOnAddressesLink();
         System.out.println("Log in to the account.");
 
         addressPage = new AddressPage(driver);

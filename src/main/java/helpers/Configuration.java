@@ -13,6 +13,9 @@ public class Configuration {
     private static final String DB_USER = "dbUser";
     private static final String DB_URL = "dbUrl";
     private static final String DB_PASSWORD = "dbPassword";
+    private static final String NO_ADDRESS_EMAIL = "noAddressEmail";
+    private static final String DEFAULT_PASSWORD = "defaultPassword";
+
     private static Configuration configuration;
     private final Properties properties;
     private final String siteURL;
@@ -24,6 +27,8 @@ public class Configuration {
     public final String dbUser;
     public final String dbUrl;
     public final String dbPassword;
+    public final String noAddressEmail;
+    public final String defaultPassword;
 
     public Configuration() {
         try {
@@ -42,6 +47,8 @@ public class Configuration {
         dbUser = extractProperty(DB_USER);
         dbUrl = extractProperty(DB_URL);
         dbPassword = extractProperty(DB_PASSWORD);
+        noAddressEmail = extractProperty(NO_ADDRESS_EMAIL);
+        defaultPassword = extractProperty(DEFAULT_PASSWORD);
     }
 
     private String extractProperty(String propertyName) {
@@ -94,4 +101,8 @@ public class Configuration {
     public String getDbUrl() {return dbUrl;}
 
     public String getDbPassword() {return dbPassword;}
+
+    public String getNoAddressEmail() {return noAddressEmail;}
+
+    public String getNDefaultPassword() {return defaultPassword;}
 }

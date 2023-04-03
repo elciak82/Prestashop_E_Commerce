@@ -79,6 +79,15 @@ public class LoginPage extends BasePage {
         return new AccountPage(driver);
     }
 
+    @Step("Correct log in to an account - customer without an address.")
+    public AccountPage logInToAccountByCustomerWithoutAddress() {
+        String email = Configuration.getConfiguration().getNoAddressEmail();
+        String password = Configuration.getConfiguration().getNDefaultPassword();
+
+        logInToAccount(email, password);
+        return new AccountPage(driver);
+    }
+
     @Step("Get alert text.")
     public String getAlertText() {
         return authenticationFailedAlert.getText();
