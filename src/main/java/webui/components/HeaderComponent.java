@@ -5,10 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import webui.WebEntity;
 import webui.pages.*;
 
-public class HeaderComponent extends WebEntity {
+public class HeaderComponent extends BasePage {
 
     private final SearchComponent searchBar;
 
@@ -126,7 +125,12 @@ public class HeaderComponent extends WebEntity {
         return getTextFromWebElement(userFirstNameLastname);
     }
 
-    public void clickOnSignOutButton(){
+    public HomePage goToHomePage() {
+        getLogo().click();
+        return new HomePage(driver);
+    }
+
+    public void signOut() {
         signOut.click();
     }
 }
