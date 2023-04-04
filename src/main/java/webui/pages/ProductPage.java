@@ -4,8 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import webui.WebEntity;
 
-public class MenPage extends WebEntity {
-    public MenPage(WebDriver driver) {
+public class ProductPage extends WebEntity {
+    public ProductPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }

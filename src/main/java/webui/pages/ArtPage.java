@@ -2,7 +2,7 @@ package webui.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
-import webui.components.WebEntity;
+import webui.WebEntity;
 
 public class ArtPage extends WebEntity {
     public ArtPage(WebDriver driver) {

@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import webui.WebEntity;
 import webui.pages.*;
 
 public class HeaderComponent extends WebEntity {
@@ -106,7 +107,7 @@ public class HeaderComponent extends WebEntity {
     }
 
     @Step("Sign In link click.")
-    public LoginPage clickOnSignInPage() {
+    public LoginPage clickOnSignIn() {
 //        WebDriverWait wait = new WebDriverWait(driver, 2);
 //        wait.until(ExpectedConditions.stalenessOf(signIn));
         signIn.click();
@@ -114,7 +115,7 @@ public class HeaderComponent extends WebEntity {
     }
 
     @Step("Sign Out link click.")
-    public LoginPage clickOnSignOutLink() {
+    public LoginPage clickOnSignOut() {
         signOut.click();
         return new LoginPage(driver);
     }

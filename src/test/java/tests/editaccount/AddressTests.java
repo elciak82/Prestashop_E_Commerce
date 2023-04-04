@@ -24,7 +24,7 @@ public class AddressTests extends BaseTest {
     public void logIn() {
         header = new HeaderComponent(driver);
 
-        header.clickOnSignInLink()
+        header.clickOnSignIn()
                 .logInToAccountByCustomerWithoutAddress().clickOnAddressesLink();
         System.out.println("Log in to the account.");
 
@@ -46,7 +46,7 @@ public class AddressTests extends BaseTest {
 
     @AfterMethod
     public void logOut() {
-        header.clickOnSignOutLink();
+        header.clickOnSignOut();
         System.out.println("Log out from the account.");
     }
 
@@ -57,7 +57,7 @@ public class AddressTests extends BaseTest {
     @TmsLink("PRESTASHOP-24")
     @Parameters("browser: chrome")
     public void addNewAddressWithRequiredFieldsTest() {
-        addressPage.addNewCustomerAddress(AddressFactory.getCustomerAddressRequired(CountryEnums.Country.UNITED_STATES, StateEnums.State.AA));
+        addressPage.addNewCustomerAddress(AddressFactory.getCustomerAddressWithRequiredFields(CountryEnums.Country.UNITED_STATES, StateEnums.State.AA));
         System.out.println(AddressFactory.customerAlias());
 
         Assert.assertEquals(AlertEnums.AlertMessages.ADDRESS_SUCCESSFULLY_ADDED.getAlertMessage(), addressPage.getSuccessAlertText());
@@ -69,7 +69,7 @@ public class AddressTests extends BaseTest {
     @TmsLink("PRESTASHOP-25")
     @Parameters("browser: chrome")
     public void addNewAddressWithAllFields_UnitedStatesTest() {
-        addressPage.addNewCustomerAddress(AddressFactory.getCustomerAddressAllForUnitedStates(StateEnums.State.ALABAMA));
+        addressPage.addNewCustomerAddress(AddressFactory.getCustomerAddress_allForUnitedStates(StateEnums.State.ALABAMA));
 
         Assert.assertEquals(AlertEnums.AlertMessages.ADDRESS_SUCCESSFULLY_ADDED.getAlertMessage(), addressPage.getSuccessAlertText());
     }

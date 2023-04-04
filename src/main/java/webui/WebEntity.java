@@ -1,4 +1,4 @@
-package webui.components;
+package webui;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.*;

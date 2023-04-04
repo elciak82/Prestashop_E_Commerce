@@ -13,17 +13,25 @@ public class AddressFactory extends DataFactory {
         return randomAlphaString(5);
     }
 
-    public static String customerAlias() { return "Alias" + suffix; }
+    public static String customerAlias() {
+        return "Alias" + suffix;
+    }
 
-    public static String customerCompany() { return "Company" + suffix; }
+    public static String customerCompany() {
+        return "Company" + suffix;
+    }
 
-    public static String customerVatNumber() { return number; }
+    public static String customerVatNumber() {
+        return number;
+    }
 
     public static String customerAddress() {
         return "Address" + suffix;
     }
 
-    public static String customerAddressComplement() { return "AddressComplement" + suffix; }
+    public static String customerAddressComplement() {
+        return "AddressComplement" + suffix;
+    }
 
     public static String customerCity() {
         return "City" + suffix;
@@ -38,12 +46,14 @@ public class AddressFactory extends DataFactory {
     }
 
     public static String customerCountry(CountryEnums.Country country) {
-        return country.getCountry() ;
+        return country.getCountry();
     }
 
-    public static String customerPhone() { return number; }
+    public static String customerPhone() {
+        return number;
+    }
 
-    public static Address getCustomerAddressRequired(CountryEnums.Country country, StateEnums.State state) {
+    public static Address getCustomerAddressWithRequiredFields(CountryEnums.Country country, StateEnums.State state) {
         String customerAddress = customerAddress();
         String customerCity = customerCity();
         String customerState = customerState(state);
@@ -59,7 +69,7 @@ public class AddressFactory extends DataFactory {
                 .build();
     }
 
-    public static Address getCustomerAddressAllForUnitedStates(StateEnums.State state) {
+    public static Address getCustomerAddress_allForUnitedStates(StateEnums.State state) {
         String customerAlias = customerAlias();
         String customerCompany = customerCompany();
         String customerAddress = customerAddress();
@@ -84,7 +94,7 @@ public class AddressFactory extends DataFactory {
                 .build();
     }
 
-    public static Address getCustomerAddress(CountryEnums.Country country,StateEnums.State state) {
+    public static Address getCustomerAddress(CountryEnums.Country country, StateEnums.State state) {
         String customerAlias = customerAlias();
         String customerCompany = customerCompany();
         String customerVatNumber = customerVatNumber();

@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import webui.components.WebEntity;
+import webui.WebEntity;
 
 public class CreateAccountPage extends WebEntity {
 
