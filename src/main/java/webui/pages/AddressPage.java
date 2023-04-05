@@ -9,9 +9,10 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import webui.WebEntity;
+import webui.components.HeaderComponent;
 
 
-public class AddressPage extends WebEntity {
+public class AddressPage extends HeaderComponent {
 
     @FindBy(id = "field-alias")
     private WebElement fieldAlias;

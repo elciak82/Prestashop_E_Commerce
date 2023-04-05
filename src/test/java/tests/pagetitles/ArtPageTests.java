@@ -21,7 +21,7 @@ public class ArtPageTests extends BaseTest {
     @Parameters("browser: chrome")
     public void verifyArtPageTitleTest() {
         header = new HeaderComponent(driver);
-        header.clickOnArtLink();
+        header.clickOnArtPage();
 
         Assert.assertEquals(header.getPageTitle(), PageTitleEnums.Titles.ART_PAGE.getPageTitle());
 

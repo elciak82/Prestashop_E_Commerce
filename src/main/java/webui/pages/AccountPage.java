@@ -5,11 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import webui.WebEntity;
+import webui.components.HeaderComponent;
 
-public class AccountPage extends WebEntity {
+public class AccountPage extends HeaderComponent {
 
     @FindBy(id = "address-link")
     private WebElement addressesLink;
@@ -20,9 +18,7 @@ public class AccountPage extends WebEntity {
     }
 
     @Step("Click on the Addresses link.")
-    public AddressPage clickOnAddressesLink () {
-        WebDriverWait wait = new WebDriverWait(driver, 2);
-        wait.until(ExpectedConditions.visibilityOf(addressesLink));
+    public AddressPage openAddressPage() {
         addressesLink.click();
         return new AddressPage(driver);
     }

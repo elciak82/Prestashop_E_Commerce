@@ -30,7 +30,7 @@ public class CreateAccountTests extends BaseTest {
     @BeforeMethod
     public void clickOnCreateAccount() {
         header = new HeaderComponent(driver);
-        header.clickOnSignInLink()
+        header.clickOnSignIn()
                 .clickOnCreateAccountLink();
         System.out.println("Click on the create account link.");
 

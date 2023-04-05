@@ -27,7 +27,7 @@ public class LogInTests extends BaseTest {
     @BeforeMethod
     public void signIn() {
         header = new HeaderComponent(driver);
-        header.clickOnSignInLink();
+        header.clickOnSignIn();
 
         loginPage = new LoginPage(driver);
         forgotYourPasswordPage = new ForgotYourPasswordPage(driver);

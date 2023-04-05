@@ -6,9 +6,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import webui.WebEntity;
+import webui.components.HeaderComponent;
 
 
-public class ForgotYourPasswordPage extends WebEntity {
+public class ForgotYourPasswordPage extends HeaderComponent {
 
     @FindBy(id = "email")
     private WebElement emailField;

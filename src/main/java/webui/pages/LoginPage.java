@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import webui.components.HeaderComponent;
 import webui.WebEntity;
 
-public class LoginPage extends WebEntity {
+public class LoginPage extends HeaderComponent {
 
     @FindBy(id = "field-email")
     private WebElement emailField;

@@ -1,3 +1,4 @@
+
 package webui.components;
 
 import io.qameta.allure.Step;
@@ -9,14 +10,10 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import webui.WebEntity;
-
-import java.util.List;
+import webui.elements.SearchMenu;
+import webui.pages.SearchResultsPage;
 
 public class SearchComponent extends WebEntity {
-    HeaderComponent header;
-
-    @FindBy(className ="ui-menu-item")
-    private List<WebElement> searchListItem;
 
     @FindBy(id="ui-id-1")
     private WebElement searchWidget;
@@ -27,30 +24,20 @@ public class SearchComponent extends WebEntity {
     public SearchComponent(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
-        header = new HeaderComponent(driver);
     }
 
     @Step("Search by clicking on the Enter.")
-    public HeaderComponent searchElementByPressingOnEnter(String value) {
+    public SearchResultsPage search(String value) {
         searchBy.sendKeys(value);
         searchBy.sendKeys(Keys.ENTER);
-        return new HeaderComponent(driver);
+        return new SearchResultsPage(driver);
     }
 
     @Step("Get list of all elements from the Search list.")
-    public List<String> getAllElementsFromSearchList(String value) {
+    public SearchMenu fillSearchField(String value) {
         searchBy.sendKeys(value);
-        new WebDriverWait(driver, 2).until(ExpectedConditions.visibilityOf(searchWidget));
-        return new WebEntity(driver).getAllResults(searchListItem);
+        new WebDriverWait(driver, 2)
+                .until(ExpectedConditions.visibilityOf(searchWidget));
+        return new SearchMenu(driver, searchWidget);
     }
-
-    @Step("Select element from the Search list")
-    public void selectElementFromSearchList(int elementFromTheList){
-        searchListItem.get(elementFromTheList).click();
-    }
-
-
-
-
-
 }

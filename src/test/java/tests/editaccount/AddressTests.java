@@ -25,7 +25,7 @@ public class AddressTests extends BaseTest {
         header = new HeaderComponent(driver);
 
         header.clickOnSignIn()
-                .logInToAccountByCustomerWithoutAddress().clickOnAddressesLink();
+                .logInToAccountByCustomerWithoutAddress().openAddressPage();
         System.out.println("Log in to the account.");
 
         addressPage = new AddressPage(driver);

@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class BasePage extends WebEntity {
+public abstract class BasePage extends WebEntity {
     public WebDriver driver;
     private static final String ALPHA_STRING = "abcdefghijklmnoprstuvwxyz";
 
@@ -45,12 +45,6 @@ public class BasePage extends WebEntity {
         String title = driver.getTitle();
         System.out.println("The page title is " + title + ".");
         return title;
-    }
-
-    public void hoverOnElement(WebElement cssLocator ) {
-        Actions builder = new Actions(driver);
-        builder.moveToElement(cssLocator);
-        builder.perform();
     }
 
     public String getTextFromWebElement (WebElement webElement) {

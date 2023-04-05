@@ -21,7 +21,7 @@ public class LoginPageTests extends BaseTest {
     @Parameters("browser: chrome")
     public void verifyLoginPageTitleTest() {
         header = new HeaderComponent(driver);
-        header.clickOnSignInLink();
+        header.clickOnSignIn();
 
         Assert.assertEquals(header.getPageTitle(), PageTitleEnums.Titles.LOGIN_PAGE.getPageTitle());
 

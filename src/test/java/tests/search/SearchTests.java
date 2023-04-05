@@ -13,6 +13,8 @@ import tests.BaseTest;
 import webui.components.HeaderComponent;
 import webui.components.SearchComponent;
 import webui.pages.AccessoriesPage;
+import webui.pages.HomePage;
+import webui.pages.ProductPage;
 
 import java.util.List;
 
@@ -33,12 +35,14 @@ public class SearchTests extends BaseTest {
     @TmsLink("PRESTASHOP-26")
     @Parameters("browser: chrome")
     public void searchLists() {
-        List<String> listsOfElements = search.getAllElementsFromSearchList(searchingValue);
+        String searchingValue = "CUSTOMIZABLE MUG";
+        ProductPage productPage = new HomePage(driver)
+                .getSearchBar()
+                .fillSearchField(searchingValue)
+                .selectItemByName(searchingValue);
+        String foundProductTitle = productPage.getProductTitleText();
 
-        int elementNumber = 1;
-        search.selectElementFromSearchList(elementNumber);
-
-        Assert.assertEquals(listsOfElements.get(elementNumber), header.getPageTitle());
+        Assert.assertEquals(searchingValue.toLowerCase(), foundProductTitle.toLowerCase());
     }
 
     @Test(testName = "Verifying the Search option by pressing Enter.")
@@ -47,7 +51,7 @@ public class SearchTests extends BaseTest {
     @TmsLink("PRESTASHOP-27")
     @Parameters("browser: chrome")
     public void searchValue() {
-        search.searchElementByPressingOnEnter(searchingValue);
+        search.search(searchingValue);
 
         String title = header.getPageTitle();
         Assert.assertEquals(title, "Search");
