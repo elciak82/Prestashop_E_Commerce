@@ -24,6 +24,5 @@ public class LoginPageTests extends BaseTest {
                 .getPageTitle();
 
         Assert.assertEquals(title, PageTitleEnums.Titles.LOGIN_PAGE.getPageTitle());
-
     }
 }

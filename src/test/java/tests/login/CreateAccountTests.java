@@ -16,6 +16,7 @@ import org.testng.annotations.Test;
 import webui.pages.CreateAccountPage;
 import webui.pages.LoginPage;
 import tests.BaseTest;
+import webui.pages.TestPage;
 
 import java.sql.SQLException;
 
@@ -43,6 +44,9 @@ public class CreateAccountTests extends BaseTest {
         Queries queries = new Queries();
         String lastNameResult = queries.checkSavedDataInDatabase(ColumnNameEnums.Columns.LAST_NAME_COLUMN.getColumnName(), ColumnNameEnums.Columns.EMAIL_COLUMN.getColumnName(), customerFactory.customerRandomEmail());
         Assert.assertEquals(lastNameResult, customerFactory.customerRandomLastName());
+
+        // EXAMPLE
+        new TestPage(driver).getPassword().putValue("sadasdsa");
     }
 
 
