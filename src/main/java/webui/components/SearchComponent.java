@@ -13,7 +13,7 @@ import webui.WebEntity;
 import webui.elements.SearchMenu;
 import webui.pages.SearchResultsPage;
 
-public class SearchComponent extends WebEntity {
+public class SearchComponent extends WebEntity { //
 
     @FindBy(id="ui-id-1")
     private WebElement searchWidget;

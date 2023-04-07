@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import webui.pages.*;
 
-public class HeaderComponent extends BasePage {
+public class HeaderComponent extends BasePage { //exception
 
     private final SearchComponent searchBar;
 
