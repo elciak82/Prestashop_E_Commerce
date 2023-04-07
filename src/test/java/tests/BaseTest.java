@@ -30,9 +30,9 @@ public class BaseTest {
 
 
     @AfterClass
-    public void tearDown() {
-
+    public void tearDown() throws SQLException {
         driver.quit();
+        statement.close();
     }
 }
 
