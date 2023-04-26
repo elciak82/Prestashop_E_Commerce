@@ -1,3 +1,4 @@
 # Project exclude paths
 /target/
 src/test/resources/configuration.properties
+allure-results/
