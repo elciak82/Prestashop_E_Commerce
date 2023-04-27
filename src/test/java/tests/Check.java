@@ -1,8 +1,11 @@
 package tests;
 
+import helpers.models.UserDto;
+import helpers.providers.UserProvider;
 import mysqlconnection.MySql;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import utils.objectmapper.JsonMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,7 +23,15 @@ public class Check extends BaseTest {
         System.out.println(result.getString("address1"));
     }
 
-
-
-
+//    @Test
+//    public void jsonParserExample() {
+//        JsonMapper mapper = new JsonMapper();
+//        var user = mapper.readAsDtoList("UserPool.json", UserDto.class);
+//        System.out.println(user.get(0).toString());
+//    }
+    @Test
+    public void userProviderExample() {
+        UserDto user = UserProvider.provideUser("user1");
+        System.out.println(user);
+    }
 }
