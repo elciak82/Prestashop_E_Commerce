@@ -8,6 +8,10 @@ public class UserDto {
     private String username;
     @JsonProperty(value = "password", access = JsonProperty.Access.READ_WRITE)
     private String password;
+    @JsonProperty(value = "firstname", access = JsonProperty.Access.READ_WRITE)
+    private String firstname;
+    @JsonProperty(value = "lastname", access = JsonProperty.Access.READ_WRITE)
+    private String lastname;
 
     public String getUsername() {
         return username;
@@ -23,6 +27,22 @@ public class UserDto {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     @Override

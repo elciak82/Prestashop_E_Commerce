@@ -4,6 +4,7 @@ import helpers.Configuration;
 import helpers.enums.AlertEnums;
 import helpers.enums.PageTitleEnums;
 
+import helpers.providers.UserProvider;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
@@ -45,16 +46,17 @@ public class LogInTests extends BaseTest {
     @TmsLink("PRESTASHOP-11")
     @Parameters("browser: chrome")
     public void correctLogInToAccountTest() {
-        String email = Configuration.getConfiguration().getEmail();
-        String password = Configuration.getConfiguration().getPassword();
+        String email = UserProvider.provideUser("ewwa@ewwa.pl").getUsername();
+        String password = UserProvider.provideUser("ewwa@ewwa.pl").getPassword();
 
         loginPage
                 .logIn_fillData(email, password)
                 .clickOnSignInButton();
 
-        String firstName = Configuration.getConfiguration().getFirstname();
-        String lastname = Configuration.getConfiguration().getLastname();
-        String loggedUserData = firstName + " " + lastname;
+        String firstName = UserProvider.provideUser("ewwa@ewwa.pl").getFirstname();
+        String lastName = UserProvider.provideUser("ewwa@ewwa.pl").getLastname();
+
+        String loggedUserData = firstName + " " + lastName;
 
         Assert.assertEquals(header.getUserFirstnameLastnameFromPage(), loggedUserData);
 

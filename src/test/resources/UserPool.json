@@ -1,10 +1,12 @@
 [
   {
-    "mail": "noaddress@noaddress.com",
+    "username": "noaddress@noaddress.com",
     "password": "defaultPass"
   },
   {
-    "mail": "ewwa@ewwa.pl",
-    "password": "ewwa123"
+    "username": "ewwa@ewwa.pl",
+    "password": "ewwa123",
+    "firstname": "ewwaFirstName",
+    "lastname": "ewwaLastName"
   }
 ]

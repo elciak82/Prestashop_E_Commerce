@@ -31,7 +31,7 @@ public class Check extends BaseTest {
 //    }
     @Test
     public void userProviderExample() {
-        UserDto user = UserProvider.provideUser("user1");
+        UserDto user = UserProvider.provideUser("ewwa@ewwa.pl");
         System.out.println(user);
     }
 }
