@@ -8,7 +8,6 @@ import webui.components.HeaderComponent;
 
 public class AccessoriesPage extends HeaderComponent {
 
-    // TODO: 3/16/2023
     @FindBy (xpath = "//*[@id='wrapper']/div/nav/ol/li[4]/span")
     private WebElement accessoryTitle;
 
