@@ -9,6 +9,7 @@ import org.testng.Assert;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import tests.BaseTest;
+import webui.components.FooterComponent;
 import webui.components.HeaderComponent;
 
 public class ContactUsPageTests extends BaseTest {
@@ -22,7 +23,9 @@ public class ContactUsPageTests extends BaseTest {
     public void verifyContactUsPageTitleTest() {
         header = new HeaderComponent(driver);
         header.clickOnContactUsPage();
+        Assert.assertEquals(header.getPageTitle(), PageTitleEnums.Titles.CONTACT_US_PAGE.getPageTitle());
 
+        new FooterComponent(driver).clickOnContactUsLink();
         Assert.assertEquals(header.getPageTitle(), PageTitleEnums.Titles.CONTACT_US_PAGE.getPageTitle());
     }
 }
