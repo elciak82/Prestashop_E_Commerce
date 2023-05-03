@@ -123,7 +123,7 @@ public class FooterComponent extends BasePage {
     }
 
     @Step("Site map link click.")
-    public SitemapPage clickOnSiteMapLink() {
+    public SitemapPage clickOnSitemapLink() {
         sitemapLink.click();
         return new SitemapPage(driver);
     }

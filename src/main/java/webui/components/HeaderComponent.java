@@ -64,6 +64,7 @@ public class HeaderComponent extends BasePage { //exception
     }
 
     public WebElement getLogo() {
+        logo.isDisplayed();
         return logo;
     }
 

@@ -9,6 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import webui.common.Control;
 import webui.components.HeaderComponent;
 import webui.WebEntity;
 
@@ -36,10 +37,12 @@ public class LoginPage extends HeaderComponent {
     public LoginPage(WebDriver driver) {
         super(driver);
         header = new HeaderComponent(driver);
+
         PageFactory.initElements(driver, this);
     }
 
     private final HeaderComponent header;
+    private Control control;
 
 
     @Step("Input correct email and password.")
@@ -54,6 +57,12 @@ public class LoginPage extends HeaderComponent {
         signInButton.click();
         return new AccountPage(driver);
     }
+
+//    @Step("Click on the Sign in button")
+//    public AccountPage clickOnSignInButtonTEST() {
+//        control.getBaseElement().click();
+//        return new AccountPage(driver);
+//    }
 
     @Step("Log in to account.")
     public AccountPage logInToAccount(String email, String password) {
