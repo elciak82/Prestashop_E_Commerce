@@ -13,8 +13,17 @@ public class EditField extends Control {
        return getBaseElement().getText();
     }
 
-    public void clear() {
-        getBaseElement().clear();
+    public String getValue() {
+        return getBaseElement().getAttribute("value");
     }
 
+    public EditField setText(String text) {
+        getBaseElement().sendKeys(text);
+        return this;
+    }
+
+    public EditField clear() {
+        getBaseElement().clear();
+        return this;
+    }
 }

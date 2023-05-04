@@ -1,16 +1,23 @@
 package webui.components;
 
+import io.qameta.allure.Links;
 import io.qameta.allure.Step;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import webui.pageobject.element.controls.EditField;
+import webui.pageobject.element.controls.Link;
 import webui.pages.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class FooterComponent extends BasePage {
 
-    @FindBy(css = "[name = 'email']")
-    private WebElement emailField;
+    private final EditField emailField;
+    private final List<Link> ourCompanyLinks;
 
     @FindBy(className = "input-wrapper")
     private WebElement subscribeButton;
@@ -66,6 +73,21 @@ public class FooterComponent extends BasePage {
     public FooterComponent(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
+        emailField = new EditField(driver.findElement(By.cssSelector("[name = 'email']")));
+
+        ourCompanyLinks = new ArrayList<>();
+        List<WebElement> linkElements = driver.findElements(By.cssSelector("#footer_sub_menu_2 a"));
+        for(WebElement e : linkElements) {
+            ourCompanyLinks.add(new Link(e));
+        }
+    }
+
+    public List<Link> getOurCompanyLinks() {
+        return ourCompanyLinks;
+    }
+
+    public EditField getEmailField() {
+        return emailField;
     }
 
     @Step("Prices drop link click.")
@@ -163,5 +185,4 @@ public class FooterComponent extends BasePage {
         wishListLink.click();
         return new WishlistPage(driver);
     }
-
 }

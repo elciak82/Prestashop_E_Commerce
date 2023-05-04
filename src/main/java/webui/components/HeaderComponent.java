@@ -134,4 +134,8 @@ public class HeaderComponent extends BasePage { //exception
     public void signOut() {
         signOut.click();
     }
+
+    public FooterComponent getFooter() {
+        return new FooterComponent(driver);
+    }
 }
