@@ -135,6 +135,10 @@ public class HeaderComponent extends BasePage { //exception
         return new FooterComponent(driver);
     }
 
+    public ProductMiniatureComponent getProductMiniatures() {
+        return new ProductMiniatureComponent(driver);
+    }
+
     public void signOut() {
         signOut.click();
     }
