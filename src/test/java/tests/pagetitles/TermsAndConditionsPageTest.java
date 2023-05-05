@@ -11,6 +11,7 @@ import org.testng.annotations.Test;
 import tests.BaseTest;
 import webui.components.FooterComponent;
 import webui.components.HeaderComponent;
+import webui.pages.HomePage;
 
 public class TermsAndConditionsPageTest extends BaseTest {
 
@@ -20,7 +21,8 @@ public class TermsAndConditionsPageTest extends BaseTest {
     @TmsLink("PRESTASHOP-33")
     @Parameters("browser: chrome")
     public void verifyTermsAndConditionsPageTitleTest() {
-        new FooterComponent(driver).clickOnTermsAndConditionsLink();
+        var footer = new HomePage(driver).getFooter();
+        footer.getOurCompanyLinks().get(2).click();
 
         Assert.assertEquals(new HeaderComponent(driver).getPageTitle(), PageTitleEnums.Titles.TERMS_AND_CONDITIONS_PAGE.getPageTitle());
 

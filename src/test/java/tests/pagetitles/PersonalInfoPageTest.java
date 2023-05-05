@@ -11,6 +11,7 @@ import org.testng.annotations.Test;
 import tests.BaseTest;
 import webui.components.FooterComponent;
 import webui.components.HeaderComponent;
+import webui.pages.HomePage;
 
 public class PersonalInfoPageTest extends BaseTest {
     HeaderComponent header;
@@ -25,7 +26,8 @@ public class PersonalInfoPageTest extends BaseTest {
         header.clickOnSignIn()
                 .correctLogInToAccount();
 
-        new FooterComponent(driver).clickOnPersonalInfoLink();
+        var footer = new HomePage(driver).getFooter();
+        footer.getYourAccountLinks().get(0).click();
 
         Assert.assertEquals(header.getPageTitle(), PageTitleEnums.Titles.PERSONAL_INFO_PAGE.getPageTitle());
 

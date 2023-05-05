@@ -11,6 +11,7 @@ import org.testng.annotations.Test;
 import tests.BaseTest;
 import webui.components.FooterComponent;
 import webui.components.HeaderComponent;
+import webui.pages.HomePage;
 
 public class WishlistPageTest extends BaseTest {
     HeaderComponent header;
@@ -25,7 +26,8 @@ public class WishlistPageTest extends BaseTest {
         header.clickOnSignIn()
                 .correctLogInToAccount();
 
-        new FooterComponent(driver).clickOnWishlistLink();
+        var footer = new HomePage(driver).getFooter();
+        footer.getYourAccountLinks().get(4).click();
 
         Assert.assertEquals(header.getPageTitle(), PageTitleEnums.Titles.WISHLIST_PAGE.getPageTitle());
 

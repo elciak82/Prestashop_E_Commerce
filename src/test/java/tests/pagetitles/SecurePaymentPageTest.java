@@ -11,6 +11,7 @@ import org.testng.annotations.Test;
 import tests.BaseTest;
 import webui.components.FooterComponent;
 import webui.components.HeaderComponent;
+import webui.pages.HomePage;
 
 public class SecurePaymentPageTest extends BaseTest {
 
@@ -20,7 +21,8 @@ public class SecurePaymentPageTest extends BaseTest {
     @TmsLink("PRESTASHOP-35")
     @Parameters("browser: chrome")
     public void verifySecurePaymentPageTitleTest() {
-        new FooterComponent(driver).clickOnSecurePaymentLink();
+        var footer = new HomePage(driver).getFooter();
+        footer.getOurCompanyLinks().get(4).click();
 
         Assert.assertEquals(new HeaderComponent(driver).getPageTitle(), PageTitleEnums.Titles.SECURE_PAYMENT_PAGE.getPageTitle());
 

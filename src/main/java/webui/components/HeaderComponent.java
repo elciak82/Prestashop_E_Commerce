@@ -131,6 +131,10 @@ public class HeaderComponent extends BasePage { //exception
         return new HomePage(driver);
     }
 
+    public FooterComponent getFooter() {
+        return new FooterComponent(driver);
+    }
+
     public void signOut() {
         signOut.click();
     }

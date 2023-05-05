@@ -11,6 +11,7 @@ import org.testng.annotations.Test;
 import tests.BaseTest;
 import webui.components.FooterComponent;
 import webui.components.HeaderComponent;
+import webui.pages.HomePage;
 
 public class SitemapPageTest extends BaseTest {
 
@@ -20,7 +21,8 @@ public class SitemapPageTest extends BaseTest {
     @TmsLink("PRESTASHOP-36")
     @Parameters("browser: chrome")
     public void verifySitemapPageTitleTest() {
-        new FooterComponent(driver).clickOnSitemapLink();
+        var footer = new HomePage(driver).getFooter();
+        footer.getOurCompanyLinks().get(6).click();
 
         Assert.assertEquals(new HeaderComponent(driver).getPageTitle(), PageTitleEnums.Titles.SITEMAP_PAGE.getPageTitle());
 

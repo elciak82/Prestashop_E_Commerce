@@ -2,6 +2,8 @@ package tests;
 
 import helpers.Configuration;
 import helpers.Driver;
+import helpers.models.UserDto;
+import helpers.providers.UserProvider;
 import mysqlconnection.MySql;
 import org.testng.annotations.*;
 import utils.listeners.TestAllureListener;
@@ -16,6 +18,7 @@ import java.sql.Statement;
 public class BaseTest {
     public static WebDriver driver;
     public static Statement statement;
+    protected UserDto user;
     public static WebDriver getDriver() {
         return driver;
     }
@@ -26,6 +29,7 @@ public class BaseTest {
         driver = Driver.initializeWebDriver();
         driver.get(Configuration.getConfiguration().getSiteURL());
         statement = new MySql().databaseConnection();
+        user = UserProvider.provideUser("ewwa@ewwa.pl"); ///before method for different users
     }
 
 

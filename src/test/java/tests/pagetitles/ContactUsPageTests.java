@@ -11,6 +11,7 @@ import org.testng.annotations.Test;
 import tests.BaseTest;
 import webui.components.FooterComponent;
 import webui.components.HeaderComponent;
+import webui.pages.HomePage;
 
 public class ContactUsPageTests extends BaseTest {
     HeaderComponent header;
@@ -25,7 +26,8 @@ public class ContactUsPageTests extends BaseTest {
         header.clickOnContactUsPage();
         Assert.assertEquals(header.getPageTitle(), PageTitleEnums.Titles.CONTACT_US_PAGE.getPageTitle());
 
-        new FooterComponent(driver).clickOnContactUsLink();
+        var footer = new HomePage(driver).getFooter();
+        footer.getOurCompanyLinks().get(5).click();
         Assert.assertEquals(header.getPageTitle(), PageTitleEnums.Titles.CONTACT_US_PAGE.getPageTitle());
     }
 }

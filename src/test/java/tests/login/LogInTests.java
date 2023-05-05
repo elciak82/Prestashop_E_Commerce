@@ -46,15 +46,15 @@ public class LogInTests extends BaseTest {
     @TmsLink("PRESTASHOP-11")
     @Parameters("browser: chrome")
     public void correctLogInToAccountTest() {
-        String email = UserProvider.provideUser("ewwa@ewwa.pl").getUsername();
-        String password = UserProvider.provideUser("ewwa@ewwa.pl").getPassword();
+        String email = user.getUsername();
+        String password = user.getPassword();
 
         loginPage
                 .logIn_fillData(email, password)
                 .clickOnSignInButton();
 
-        String firstName = UserProvider.provideUser("ewwa@ewwa.pl").getFirstname();
-        String lastName = UserProvider.provideUser("ewwa@ewwa.pl").getLastname();
+        String firstName = user.getFirstname();
+        String lastName = user.getLastname();
 
         String loggedUserData = firstName + " " + lastName;
 

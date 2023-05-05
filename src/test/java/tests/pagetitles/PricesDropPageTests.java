@@ -11,6 +11,7 @@ import org.testng.annotations.Test;
 import tests.BaseTest;
 import webui.components.FooterComponent;
 import webui.components.HeaderComponent;
+import webui.pages.HomePage;
 
 public class PricesDropPageTests extends BaseTest {
 
@@ -20,7 +21,8 @@ public class PricesDropPageTests extends BaseTest {
     @TmsLink("PRESTASHOP-28")
     @Parameters("browser: chrome")
     public void verifyPricesDropPageTitleTest() {
-        new FooterComponent(driver).clickOnPricesDropLink();
+        var footer = new HomePage(driver).getFooter();
+        footer.getProductsLinks().get(0).click();
 
         Assert.assertEquals(new HeaderComponent(driver).getPageTitle(), PageTitleEnums.Titles.PRICES_DROP_PAGE.getPageTitle());
 

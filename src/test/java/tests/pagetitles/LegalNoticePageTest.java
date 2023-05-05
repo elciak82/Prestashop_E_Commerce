@@ -11,6 +11,7 @@ import org.testng.annotations.Test;
 import tests.BaseTest;
 import webui.components.FooterComponent;
 import webui.components.HeaderComponent;
+import webui.pages.HomePage;
 
 public class LegalNoticePageTest extends BaseTest {
 
@@ -20,7 +21,8 @@ public class LegalNoticePageTest extends BaseTest {
     @TmsLink("PRESTASHOP-32")
     @Parameters("browser: chrome")
     public void verifyLegalNoticePageTitleTest() {
-        new FooterComponent(driver).clickOnLegalNoticeLink();
+        var footer = new HomePage(driver).getFooter();
+        footer.getOurCompanyLinks().get(1).click();
 
         Assert.assertEquals(new HeaderComponent(driver).getPageTitle(), PageTitleEnums.Titles.LEGAL_NOTICE_PAGE.getPageTitle());
 

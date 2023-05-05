@@ -11,6 +11,7 @@ import org.testng.annotations.Test;
 import tests.BaseTest;
 import webui.components.FooterComponent;
 import webui.components.HeaderComponent;
+import webui.pages.HomePage;
 
 public class CreditSlipsPageTest extends BaseTest {
     HeaderComponent header;
@@ -25,7 +26,8 @@ public class CreditSlipsPageTest extends BaseTest {
         header.clickOnSignIn()
                 .correctLogInToAccount();
 
-        new FooterComponent(driver).clickOnCreditSlipsLink();
+        var footer = new HomePage(driver).getFooter();
+        footer.getYourAccountLinks().get(2).click();
 
         Assert.assertEquals(header.getPageTitle(), PageTitleEnums.Titles.CREDIT_SLIPS_PAGE.getPageTitle());
 
