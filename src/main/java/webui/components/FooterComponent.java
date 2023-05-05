@@ -18,7 +18,7 @@ public class FooterComponent extends BasePage {
     private final List<Link> ourCompanyLinks;
     private final List<Link> yourAccountLinks;
 
-    @FindBy(css = "[name = 'email']") /// czy moge to zastosowac dla pojedyńczych elementów?
+    @FindBy(css = "[name = 'email']") /// can I save it (as a WebElement) for singe items?
     private WebElement emailField;
 
     @FindBy(className = "input-wrapper")
