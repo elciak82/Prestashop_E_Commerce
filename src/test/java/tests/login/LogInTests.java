@@ -4,12 +4,14 @@ import helpers.Configuration;
 import helpers.enums.AlertEnums;
 import helpers.enums.PageTitleEnums;
 
+import helpers.providers.AddressFactory;
 import helpers.providers.UserProvider;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.TmsLink;
 
+import mysqlconnection.Queries;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
@@ -19,6 +21,7 @@ import webui.pages.LoginPage;
 import tests.BaseTest;
 
 import java.lang.reflect.Method;
+import java.sql.SQLException;
 
 public class LogInTests extends BaseTest {
     HeaderComponent header;
@@ -38,6 +41,13 @@ public class LogInTests extends BaseTest {
     public void name(Method method) {
         System.out.println("Test name is: " + method.getName());
         System.out.println("Test description is: " + method.getAnnotation(Test.class).testName());
+    }
+
+
+    @AfterMethod
+    public void logOut() {
+        header.clickOnSignOut();
+        System.out.println("Log out from the account.");
     }
 
     @Test(testName = "Correct log in to the account.", description = "Behavior = Positive")
@@ -60,7 +70,6 @@ public class LogInTests extends BaseTest {
 
         Assert.assertEquals(header.getUserFirstnameLastnameFromPage(), loggedUserData);
 
-        header.clickOnSignOut();
     }
 
     @Test(testName = "Correct log out from the account.", description = "Behavior = Positive")
