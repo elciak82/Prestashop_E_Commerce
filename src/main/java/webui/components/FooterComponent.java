@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import webui.pageobject.element.controls.Button;
+import webui.pageobject.element.controls.EditField;
 import webui.pageobject.element.controls.Link;
 import webui.pages.*;
 
@@ -17,16 +19,22 @@ public class FooterComponent extends BasePage {
     private final List<Link> productsLinks;
     private final List<Link> ourCompanyLinks;
     private final List<Link> yourAccountLinks;
+    private final EditField emailField;
+    private final Button subscribeButton;
 
-    @FindBy(css = "[name = 'email']") /// can I save it (as a WebElement) for singe items?
-    private WebElement emailField;
+//    @FindBy(css = "[name = 'email']") /// can I save it (as a WebElement) for singe items?
+//    private WebElement emailField;
 
-    @FindBy(className = "input-wrapper")
-    private WebElement subscribeButton;
+//    @FindBy(className = "input-wrapper")
+//    private WebElement subscribeButton;
 
     public FooterComponent(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
+
+//        PageFactory.initElements(driver, this);
+
+        emailField = new EditField(driver.findElement(By.cssSelector("[name = 'email']")));
+        subscribeButton = new Button(driver.findElement(By.className("input-wrapper")));
 
         productsLinks = new ArrayList<>();
         List<WebElement> productsElements = driver.findElements(By.cssSelector("#footer_sub_menu_1 a"));
@@ -45,6 +53,14 @@ public class FooterComponent extends BasePage {
         for (WebElement e : yourAccountElements) {
             yourAccountLinks.add(new Link(e));
         }
+    }
+
+    public EditField getEmailField() {
+        return emailField;
+    }
+
+    public Button getSubscribeButton() {
+        return subscribeButton;
     }
 
     public List<Link> getProductsLinks() {
