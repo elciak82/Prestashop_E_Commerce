@@ -22,16 +22,8 @@ public class FooterComponent extends BasePage {
     private final EditField emailField;
     private final Button subscribeButton;
 
-//    @FindBy(css = "[name = 'email']") /// can I save it (as a WebElement) for singe items?
-//    private WebElement emailField;
-
-//    @FindBy(className = "input-wrapper")
-//    private WebElement subscribeButton;
-
     public FooterComponent(WebDriver driver) {
         super(driver);
-
-//        PageFactory.initElements(driver, this);
 
         emailField = new EditField(driver.findElement(By.cssSelector("[name = 'email']")));
         subscribeButton = new Button(driver.findElement(By.className("input-wrapper")));
