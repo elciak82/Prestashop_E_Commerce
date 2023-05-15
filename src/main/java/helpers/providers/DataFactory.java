@@ -1,8 +1,6 @@
 package helpers.providers;
 
-
-import org.apache.commons.exec.util.StringUtils;
-
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class DataFactory {
@@ -14,12 +12,12 @@ public class DataFactory {
 
         GregorianCalendar gc = new GregorianCalendar();
         int year = randBetween(1900, 2010);
-        gc.set(gc.YEAR, year);
+        gc.set(Calendar.YEAR, year);
 
-        int dayOfYear = randBetween(1, gc.getActualMaximum(gc.DAY_OF_YEAR));
-        gc.set(gc.DAY_OF_YEAR, dayOfYear);
+        int dayOfYear = randBetween(1, gc.getActualMaximum(Calendar.DAY_OF_YEAR));
+        gc.set(Calendar.DAY_OF_YEAR, dayOfYear);
 
-        return ((gc.get(gc.MONTH) + 1) + "/" + (gc.DAY_OF_MONTH) + "/" + gc.get(gc.YEAR));
+        return ((gc.get(Calendar.MONTH) + 1) + "/" + (Calendar.DAY_OF_MONTH) + "/" + gc.get(Calendar.YEAR));
 
     }
 

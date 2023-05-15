@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import webui.pageobject.element.controls.Button;
 import webui.pages.BasePage;
-import webui.pages.ProductPage;
 
 import java.util.ArrayList;
 import java.util.List;

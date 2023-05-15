@@ -1,7 +1,5 @@
 package helpers.models;
 
-import java.security.SecureRandom;
-
 public class Address {
 
     private String customerAlias;
