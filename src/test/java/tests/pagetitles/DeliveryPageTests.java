@@ -13,23 +13,18 @@ import webui.components.FooterComponent;
 import webui.components.HeaderComponent;
 import webui.pages.HomePage;
 
-public class AddressesPageTest extends BaseTest {
-    HeaderComponent header;
+public class DeliveryPageTests extends BaseTest {
 
-    @Test(testName = "Verify Addresses Page title.")
-    @Description("Test verifying Addresses Page title.")
+    @Test(testName = "Verify Delivery Page title.")
+    @Description("Test verifying Delivery Page title.")
     @Severity(SeverityLevel.CRITICAL)
-    @TmsLink("PRESTASHOP-41")
+    @TmsLink("PRESTASHOP-31")
     @Parameters("browser: chrome")
-    public void verifyAddressesPageTitleTest() {
-        header = new HeaderComponent(driver);
-        header.clickOnSignIn()
-                .correctLogInToAccount();
-
+    public void verifyDeliveryPageTitleTest() {
         var footer = new HomePage(driver).getFooter();
-        footer.getYourAccountLinks().get(3).click();
+        footer.getOurCompanyLinks().get(0).click();
 
-        Assert.assertEquals(header.getPageTitle(), PageTitleEnums.Titles.ADDRESSES_PAGE.getPageTitle());
+        Assert.assertEquals(new HeaderComponent(driver).getPageTitle(), PageTitleEnums.Titles.DELIVERY_PAGE.getPageTitle());
 
     }
 }

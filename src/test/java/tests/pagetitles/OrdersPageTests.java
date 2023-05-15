@@ -13,23 +13,23 @@ import webui.components.FooterComponent;
 import webui.components.HeaderComponent;
 import webui.pages.HomePage;
 
-public class PersonalInfoPageTest extends BaseTest {
+public class OrdersPageTests extends BaseTest {
     HeaderComponent header;
 
-    @Test(testName = "Verify Personal Info Page title.")
-    @Description("Test verifying Personal Info Page title.")
+    @Test(testName = "Verify Orders Page title.")
+    @Description("Test verifying Orders Page title.")
     @Severity(SeverityLevel.CRITICAL)
-    @TmsLink("PRESTASHOP-38")
+    @TmsLink("PRESTASHOP-39")
     @Parameters("browser: chrome")
-    public void verifyPersonalInfoPageTitleTest() {
+    public void verifyOrdersPageTitleTest() {
         header = new HeaderComponent(driver);
         header.clickOnSignIn()
                 .correctLogInToAccount();
 
         var footer = new HomePage(driver).getFooter();
-        footer.getYourAccountLinks().get(0).click();
+        footer.getYourAccountLinks().get(1).click();
 
-        Assert.assertEquals(header.getPageTitle(), PageTitleEnums.Titles.PERSONAL_INFO_PAGE.getPageTitle());
+        Assert.assertEquals(header.getPageTitle(), PageTitleEnums.Titles.ORDERS_PAGE.getPageTitle());
 
     }
 }

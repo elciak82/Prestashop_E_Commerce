@@ -13,18 +13,23 @@ import webui.components.FooterComponent;
 import webui.components.HeaderComponent;
 import webui.pages.HomePage;
 
-public class DeliveryPageTest extends BaseTest {
+public class WishlistPageTests extends BaseTest {
+    HeaderComponent header;
 
-    @Test(testName = "Verify Delivery Page title.")
-    @Description("Test verifying Delivery Page title.")
+    @Test(testName = "Verify Wishlist title.")
+    @Description("Test verifying Wishlist title.")
     @Severity(SeverityLevel.CRITICAL)
-    @TmsLink("PRESTASHOP-31")
+    @TmsLink("PRESTASHOP-42")
     @Parameters("browser: chrome")
-    public void verifyDeliveryPageTitleTest() {
-        var footer = new HomePage(driver).getFooter();
-        footer.getOurCompanyLinks().get(0).click();
+    public void verifyWishlistPageTitleTest() {
+        header = new HeaderComponent(driver);
+        header.clickOnSignIn()
+                .correctLogInToAccount();
 
-        Assert.assertEquals(new HeaderComponent(driver).getPageTitle(), PageTitleEnums.Titles.DELIVERY_PAGE.getPageTitle());
+        var footer = new HomePage(driver).getFooter();
+        footer.getYourAccountLinks().get(4).click();
+
+        Assert.assertEquals(header.getPageTitle(), PageTitleEnums.Titles.WISHLIST_PAGE.getPageTitle());
 
     }
 }

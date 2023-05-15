@@ -13,18 +13,18 @@ import webui.components.FooterComponent;
 import webui.components.HeaderComponent;
 import webui.pages.HomePage;
 
-public class TermsAndConditionsPageTest extends BaseTest {
+public class SitemapPageTests extends BaseTest {
 
-    @Test(testName = "Verify Terms and Conditions Page title.")
-    @Description("Test verifying Terms and Conditions Page title.")
+    @Test(testName = "Verify Sitemap Page title.")
+    @Description("Test verifying Sitemap Page title.")
     @Severity(SeverityLevel.CRITICAL)
-    @TmsLink("PRESTASHOP-33")
+    @TmsLink("PRESTASHOP-36")
     @Parameters("browser: chrome")
-    public void verifyTermsAndConditionsPageTitleTest() {
+    public void verifySitemapPageTitleTest() {
         var footer = new HomePage(driver).getFooter();
-        footer.getOurCompanyLinks().get(2).click();
+        footer.getOurCompanyLinks().get(6).click();
 
-        Assert.assertEquals(new HeaderComponent(driver).getPageTitle(), PageTitleEnums.Titles.TERMS_AND_CONDITIONS_PAGE.getPageTitle());
+        Assert.assertEquals(new HeaderComponent(driver).getPageTitle(), PageTitleEnums.Titles.SITEMAP_PAGE.getPageTitle());
 
     }
 }
