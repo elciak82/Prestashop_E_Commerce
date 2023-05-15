@@ -17,4 +17,8 @@ public class EditField extends Control {
         getBaseElement().clear();
     }
 
+    public void setText(String text) {
+        getBaseElement().sendKeys(text);
+    }
+
 }
