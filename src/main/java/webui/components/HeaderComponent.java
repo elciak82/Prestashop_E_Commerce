@@ -108,8 +108,6 @@ public class HeaderComponent extends BasePage { //exception
 
     @Step("Sign In link click.")
     public LoginPage clickOnSignIn() {
-//        WebDriverWait wait = new WebDriverWait(driver, 2);
-//        wait.until(ExpectedConditions.stalenessOf(signIn));
         signIn.click();
         return new LoginPage(driver);
     }
