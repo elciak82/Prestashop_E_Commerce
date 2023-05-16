@@ -11,7 +11,7 @@ public class HeaderComponent extends BasePage { //exception
 
     private final SearchComponent searchBar;
 
-    @FindBy(className = "logo img-fluid")
+    @FindBy(id = "_desktop_logo")
     private WebElement logo;
 
     @FindBy(id = "contact-link")
