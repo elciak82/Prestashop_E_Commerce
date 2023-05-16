@@ -57,7 +57,7 @@ public class ProductMiniatureComponent extends BasePage {
         return variantLinks;
     }
 
-    public WishlistComponent getWishlist() {
+    public WishlistComponent getAddToWishlist() {
         return new WishlistComponent(driver);
     }
 
