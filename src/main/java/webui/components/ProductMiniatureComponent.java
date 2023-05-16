@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductMiniatureComponent extends BasePage {
+    private final Link productLink;
     private final Button addToWishlistButton;
     private final Link quickViewLink;
     private final List<Link> variantLinks;
@@ -19,6 +20,9 @@ public class ProductMiniatureComponent extends BasePage {
         super(driver);
 
         String xpath = "//*[@id=\"content\"]/section/div/div[" + index + "]";
+
+        productLink = new Link(driver.findElement(By.xpath(xpath + "/article/div/div[1]/a")));
+        //*[@id="content"]/section/div/div[1]/article/div/div[1]/a
 
         addToWishlistButton = new Button(driver.findElement(By.xpath(xpath + "/article/div/button")));
         //*[@id="content"]/section/div/div[1]/article/div/button
@@ -33,6 +37,10 @@ public class ProductMiniatureComponent extends BasePage {
             variantLinks.add(new Link(e));
         }
 
+    }
+
+    public Link getProduct(){
+        return productLink;
     }
 
     public Button getAddToWishlistButton() {
