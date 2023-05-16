@@ -18,18 +18,13 @@ public class ProductListComponent extends BasePage {
 
         productMiniaturesList = new ArrayList<>();
         List<WebElement> productMiniatures = driver.findElements(By.cssSelector("[id='content'] article"));
-        for (WebElement e : productMiniatures) {
-            productMiniaturesList.add(new ProductMiniatureComponent(driver));
+        int i = 1;
+        for (WebElement element : productMiniatures) {
+            productMiniaturesList.add(new ProductMiniatureComponent(driver, i++));
         }
     }
 
     public List<ProductMiniatureComponent> getAllProductsMiniatures() {
         return productMiniaturesList;
     }
-
-    public ProductMiniatureComponent getProductMiniature() {
-        return new ProductMiniatureComponent(driver);
-    }
-
-
 }
