@@ -11,21 +11,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductMiniatureComponent extends BasePage {
-
     private final Button addToWishlistButton;
     private final Link quickViewLink;
     private final List<Link> variantLinks;
 
-    public ProductMiniatureComponent(WebDriver driver) {
+    public ProductMiniatureComponent(WebDriver driver, int index) {
         super(driver);
 
-        addToWishlistButton = new Button(driver.findElement(By.className("wishlist-button-add")));
+        String xpath = "//*[@id=\"content\"]/section/div/div[" + index + "]";
 
-        hoverOnElement(addToWishlistButton.getBaseElement());
-        quickViewLink = new Link(driver.findElement(By.xpath("//*[@id='content']/section/div/div[1]/article/div/div[1]/div/a")));
+        addToWishlistButton = new Button(driver.findElement(By.xpath(xpath + "/article/div/button")));
+        //*[@id="content"]/section/div/div[1]/article/div/button
+
+        quickViewLink = new Link(driver.findElement(By.xpath(xpath + "/article/div/div[1]/div/a")));
+        //*[@id="content"]/section/div/div[1]/article/div/div[1]/div/a
 
         variantLinks = new ArrayList<>();
-        List<WebElement> variants = driver.findElements(By.cssSelector("[class = 'variant-links'] a"));
+        List<WebElement> variants = driver.findElements(By.xpath(xpath + "/article/div/div[1]/div/div/a"));
+        //*[@id="content"]/section/div/div[1]/article/div/div[1]/div/div
         for (WebElement e : variants) {
             variantLinks.add(new Link(e));
         }
@@ -37,7 +40,13 @@ public class ProductMiniatureComponent extends BasePage {
     }
 
     public Link getGetQuickViewLink() {
+        hoverOnElement(quickViewLink.getBaseElement());
         return quickViewLink;
+    }
+
+    public List<Link> getVariantLinks(){
+        hoverOnElement(quickViewLink.getBaseElement());
+        return variantLinks;
     }
 
     public WishlistComponent getWishlist() {
