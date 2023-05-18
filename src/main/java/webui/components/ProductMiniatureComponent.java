@@ -65,4 +65,9 @@ public class ProductMiniatureComponent extends BasePage {
         return new ProductQuickViewComponent(driver);
     }
 
+    public CreateWishlistComponent getCreteWishlistComponent() {
+        return new CreateWishlistComponent(driver);
+    }
+
+
 }
