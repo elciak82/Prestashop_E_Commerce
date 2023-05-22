@@ -2,6 +2,7 @@ package webui.components;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import webui.pageobject.element.controls.Button;
 import webui.pageobject.element.controls.EditField;
 import webui.pages.BasePage;
@@ -26,6 +27,9 @@ public class CreateWishlistComponent extends BasePage {
     }
 
     public String getNotificationText(){
-        return getTextFromWebElement(driver.findElement(By.cssSelector("p.wishlist-toast-text")));
+        WebElement element = driver.findElement(By.cssSelector("p.wishlist-toast-text"));
+        element.isDisplayed();
+        System.out.println(getTextFromWebElement(element));
+        return getTextFromWebElement(element);
     }
 }

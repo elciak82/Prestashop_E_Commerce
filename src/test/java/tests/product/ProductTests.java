@@ -2,26 +2,35 @@ package tests.product;
 
 import helpers.enums.NotificationEnums;
 import helpers.enums.ProductDetailsEnums;
-import io.qameta.allure.Description;
+import helpers.providers.CustomerFactory;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.TmsLink;
-import org.openqa.selenium.By;
+import mysqlconnection.Queries;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import tests.BaseTest;
 import webui.components.CreateWishlistComponent;
-import webui.components.HeaderComponent;
-import webui.components.ProductListComponent;
 import webui.components.ProductMiniatureComponent;
 import webui.pages.HomePage;
 import webui.pages.ProductPage;
 
+import java.sql.SQLException;
+
 public class ProductTests extends BaseTest {
+    Queries queries;
+    String newWishlist = "New Wishlist";
+
+    @AfterMethod
+    public void deleteNewCustomer() throws SQLException {
+        queries = new Queries();
+        statement.executeUpdate(queries.deleteWishlist(newWishlist));
+        System.out.println("Delete customer form the database.");
+    }
 
     ProductMiniatureComponent productMiniature;
-    ProductListComponent productList;
 
     @Test(testName = "Selecting the product variant in black")
     @Severity(SeverityLevel.MINOR)
@@ -40,12 +49,12 @@ public class ProductTests extends BaseTest {
     @Severity(SeverityLevel.MINOR)
     @TmsLink("PRESTASHOP-44")
     @Parameters("browser: chrome")
-    public void addProductToNewWishList() {
+    public void addProductToNewWishlist() {
 
         productMiniature = new HomePage(driver).clickOnSignIn().correctLogInToAccount().goToHomePage().getProductList().getAllProductsMiniatures().get(2);
         productMiniature.getAddToWishlistButton().click();
         productMiniature.getAddToWishlist().cetCreateNewWishlistButton().click();
-        productMiniature.getCreteWishlistComponent().getWishlistNameField().setText("New Wishlist");
+        productMiniature.getCreteWishlistComponent().getWishlistNameField().setText(newWishlist);
         productMiniature.getCreteWishlistComponent().getCreateWishListButton().click();
 
         Assert.assertEquals(new CreateWishlistComponent(driver).getNotificationText(), NotificationEnums.Notifications.LIST_HAS_BEEN_PROPERLY_CREATED.getNotification());

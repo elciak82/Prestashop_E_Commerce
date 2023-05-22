@@ -15,4 +15,8 @@ public class Queries extends MySql{
         return "DELETE FROM prestashop.customer WHERE lastname = '" + lastname + "'";
     }
 
+    public String deleteWishlist(String wishlist)  {
+        return "DELETE FROM prestashop.wishlist WHERE name = '" + wishlist + "'";
+    }
+
 }
