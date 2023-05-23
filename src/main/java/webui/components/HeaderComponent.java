@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import webui.pageobject.element.controls.Button;
 import webui.pageobject.element.controls.Dropdown;
+import webui.pageobject.element.controls.Label;
 import webui.pageobject.element.controls.Link;
 import webui.pages.*;
 
@@ -25,9 +26,6 @@ public class HeaderComponent extends BasePage { //exception
     private final Link artLink;
     private final Link menLink;
     private final Link womenLink;
-
-    @FindBy(css = "[class = 'account'] span[class = 'hidden-sm-down']")
-    private WebElement userFirstNameLastname;
 
     public HeaderComponent(WebDriver driver) {
         super(driver);
@@ -151,8 +149,8 @@ public class HeaderComponent extends BasePage { //exception
 
     @Step("Get user data from page header.")
     public String getUserFirstnameLastnameFromPage() {
-        fluentWaitForElementDisplayed(userFirstNameLastname);
-        return getTextFromWebElement(userFirstNameLastname);
+        WebElement userFirstNameLastnameElement =  driver.findElement(By.cssSelector("[class = 'account'] span[class = 'hidden-sm-down']"));
+        return userFirstNameLastnameElement.getText();
     }
 
     public FooterComponent getFooter() {
