@@ -46,7 +46,7 @@ public class AddressTests extends BaseTest {
 
     @AfterMethod
     public void logOut() {
-        header.getSignOut().click();
+        header.getSignOutButton().click();
         System.out.println("Log out from the account.");
     }
 

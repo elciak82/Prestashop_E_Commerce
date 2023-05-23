@@ -58,7 +58,7 @@ public class LogInTests extends BaseTest {
 
         Assert.assertEquals(header.getUserFirstnameLastnameFromPage(), loggedUserData);
 
-        header.getSignOut().click();
+        header.getSignOutButton().click();
 
     }
 
@@ -69,7 +69,7 @@ public class LogInTests extends BaseTest {
     @Parameters("browser: chrome")
     public void correctLogInAndLogOutFromAccountTest() {
         loginPage.correctLogInToAccount();
-        header.getSignOut().click();
+        header.getSignOutButton().click();
 
         Assert.assertEquals(header.getPageTitle(), PageTitleEnums.Titles.LOGIN_PAGE.getPageTitle());
     }

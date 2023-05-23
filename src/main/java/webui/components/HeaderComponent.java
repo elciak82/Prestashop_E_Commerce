@@ -8,11 +8,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import webui.pageobject.element.controls.Button;
 import webui.pageobject.element.controls.Dropdown;
-import webui.pageobject.element.controls.Label;
 import webui.pageobject.element.controls.Link;
 import webui.pages.*;
-
-import java.nio.Buffer;
 
 public class HeaderComponent extends BasePage { //exception
 
@@ -21,13 +18,8 @@ public class HeaderComponent extends BasePage { //exception
     private final Link contactUsLink;
     private final Dropdown languageDropdown;
     private final Dropdown currencyDropdown;
-    private final Button signIn;
-
-    @FindBy(className = "account")
-    private WebElement account;
-
-    @FindBy(id = "_desktop_cart")
-    private WebElement cart;
+    private final Button signInButton;
+    private final Link cartLink;
 
     @FindBy(id = "category-3")
     private WebElement clothesLink;
@@ -55,7 +47,8 @@ public class HeaderComponent extends BasePage { //exception
         contactUsLink = new Link(driver.findElement(By.id("contact-link")));
         languageDropdown = new Dropdown(driver.findElement(By.cssSelector("[class='expand-more']")));
         currencyDropdown = new Dropdown(driver.findElement(By.cssSelector("[class = 'expand-more _gray-darker']")));
-        signIn = new Button(driver.findElement(By.className("user-info")));
+        signInButton = new Button(driver.findElement(By.className("user-info")));
+        cartLink = new Link(driver.findElement(By.id("_desktop_cart")));
     }
 
     public SearchComponent getSearchBar() {
@@ -72,20 +65,36 @@ public class HeaderComponent extends BasePage { //exception
         return contactUsLink;
     }
 
-    @Step("Get Sign Out link click.")
-    public Button getSignOut() {
+    @Step("Get Sign Out button.")
+    public Button getSignOutButton() {
         return new Button(driver.findElement(By.cssSelector("[class = 'logout hidden-sm-down']")));
     }
 
     @Step("Sign In link click.")
     public LoginPage clickOnSignIn() {
-        getSignIn().click();
+        getSignInButton().click();
         return new LoginPage(driver);
     }
 
     @Step("Get Sign In.")
-    public Button getSignIn() {
-        return signIn;
+    public Button getSignInButton() {
+        return signInButton;
+    }
+
+    @Step("Get Account link.")
+    public Link getAccountLink() {
+        return new Link(driver.findElement(By.className("account")));
+    }
+
+    @Step("Get Cart link.")
+    public Link getCartLink() {
+        return cartLink;
+    }
+
+    @Step("Click on the Cart.")
+    public ShoppingCartPage clickOnCartLink() {
+        getCartLink().click();
+        return new ShoppingCartPage(driver);
     }
 
     @Step("Clothes link click.")
