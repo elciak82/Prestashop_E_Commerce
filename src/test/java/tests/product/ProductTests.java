@@ -59,5 +59,9 @@ public class ProductTests extends BaseTest {
 
         Assert.assertEquals(new CreateWishlistComponent(driver).getNotificationText(), NotificationEnums.Notifications.LIST_HAS_BEEN_PROPERLY_CREATED.getNotification());
 
+        productMiniature.getAddToWishlist().closeWishlistComponent();
+
+        new HomePage(driver).getSignOutButton().click();
+
     }
 }
