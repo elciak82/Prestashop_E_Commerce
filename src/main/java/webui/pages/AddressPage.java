@@ -2,6 +2,8 @@ package webui.pages;
 
 import helpers.models.Address;
 import io.qameta.allure.Step;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -66,9 +68,11 @@ public class AddressPage extends HeaderComponent {
     }
 
     @Step("Add the new Customer address - only required fields.")
-    public void addNewCustomerAddress(Address address) {
+    public AddressesPage addNewCustomerAddress(Address address) {
         fillRequiredFieldsAddressForm(address);
         clickOnSaveButton();
+        new AddressesPage(driver).getCreateNewAddressButton().getBaseElement().isDisplayed();
+        return new AddressesPage(driver);
     }
 
     @Step("Click on the Save button.")
