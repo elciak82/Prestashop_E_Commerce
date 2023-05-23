@@ -1,21 +1,20 @@
 package webui.components;
 
 import io.qameta.allure.Step;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import webui.pageobject.element.controls.Label;
+import webui.pageobject.element.controls.Link;
 import webui.pages.*;
 
 public class HeaderComponent extends BasePage { //exception
 
     private final SearchComponent searchBar;
-
-    @FindBy(id = "_desktop_logo")
-    private WebElement logo;
-
-    @FindBy(id = "contact-link")
-    private WebElement contactUsLink;
+    private final Link logo;
+    private final Link contactUsLink;
 
     @FindBy(css = "[class='expand-more']")
     private WebElement languageDropdown;
@@ -57,21 +56,17 @@ public class HeaderComponent extends BasePage { //exception
         super(driver);
         PageFactory.initElements(driver, this);
         searchBar = new SearchComponent(driver);
+        logo = new Link(driver.findElement(By.id("_desktop_logo")));
+        contactUsLink = new Link(driver.findElement(By.id("contact-link")));
     }
 
     public SearchComponent getSearchBar() {
         return searchBar;
     }
 
-    public WebElement getLogo() {
-        logo.isDisplayed();
-        return logo;
-    }
-
     @Step("Contact Us link click.")
-    public ContactUsPage clickOnContactUsPage() {
-        contactUsLink.click();
-        return new ContactUsPage(driver);
+    public Link getContactUsLink() {
+        return contactUsLink;
     }
 
     @Step("Clothes link click.")
@@ -125,17 +120,13 @@ public class HeaderComponent extends BasePage { //exception
     }
 
     public HomePage goToHomePage() {
-        getLogo().click();
+        logo.click();
         return new HomePage(driver);
     }
 
     public FooterComponent getFooter() {
         return new FooterComponent(driver);
     }
-
-//    public ProductMiniatureComponent getProductMiniatures() {
-//        return new ProductMiniatureComponent(driver);
-//    }
 
     public void signOut() {
         signOut.click();
