@@ -10,6 +10,9 @@
         <packages>
             <package name="tests.pagetitles"/>
             <package name="tests.login"/>
+            <package name="tests.product"/>
+            <package name="tests.search"/>
+            <package name="tests.editaccount"/>
         </packages>
 <!--        <classes>-->
 <!--            <class name="tests.pagetitles.HomePageTests"/>-->
