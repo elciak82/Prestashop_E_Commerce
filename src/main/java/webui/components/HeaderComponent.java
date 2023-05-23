@@ -23,12 +23,8 @@ public class HeaderComponent extends BasePage { //exception
     private final Link clothesLink;
     private final Link accessoriesLink;
     private final Link artLink;
-
-    @FindBy(id = "category-4")
-    private WebElement menLink;
-
-    @FindBy(id = "category-5")
-    private WebElement womenLink;
+    private final Link menLink;
+    private final Link womenLink;
 
     @FindBy(css = "[class = 'account'] span[class = 'hidden-sm-down']")
     private WebElement userFirstNameLastname;
@@ -46,6 +42,8 @@ public class HeaderComponent extends BasePage { //exception
         clothesLink = new Link(driver.findElement(By.id("category-3")));
         accessoriesLink = new Link(driver.findElement(By.id("category-6")));
         artLink = new Link(driver.findElement(By.id("category-9")));
+        menLink = new Link(driver.findElement(By.id("category-4")));
+        womenLink = new Link(driver.findElement(By.id("category-5")));
     }
 
     public SearchComponent getSearchBar() {
@@ -127,15 +125,25 @@ public class HeaderComponent extends BasePage { //exception
         return new ArtPage(driver);
     }
 
+    @Step("Get Men link.")
+    public Link getMenLink() {
+        return menLink;
+    }
+
     @Step("Men link click.")
-    public MenPage clickOnMenPage() {
+    public MenPage clickOnMenLink() {
         hoverOnElement(getClothesLink().getBaseElement());
         menLink.click();
         return new MenPage(driver);
     }
 
+    @Step("Get Women link.")
+    public Link getWomenLink() {
+        return womenLink;
+    }
+
     @Step("Women link click.")
-    public WomenPage clickOnWomenPage() {
+    public WomenPage clickOnWomenLink() {
         hoverOnElement(getClothesLink().getBaseElement());
         womenLink.click();
         return new WomenPage(driver);

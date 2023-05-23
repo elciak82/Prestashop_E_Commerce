@@ -21,7 +21,7 @@ public class WomenPageTests extends BaseTest {
     @Parameters("browser: chrome")
     public void verifyWomenPageTitleTest() {
         header = new HeaderComponent(driver);
-        header.clickOnWomenPage();
+        header.clickOnWomenLink();
 
         Assert.assertEquals(header.getPageTitle(), PageTitleEnums.Titles.WOMEN_PAGE.getPageTitle());
 
