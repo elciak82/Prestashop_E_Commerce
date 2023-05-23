@@ -52,6 +52,9 @@ public class AddressPage extends HeaderComponent {
     @FindBy(css = "[class*='alert']")
     private WebElement successAlert;
 
+    @FindBy(css = "[value='1']")
+    private WebElement AAstate;
+
     public AddressPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -62,7 +65,8 @@ public class AddressPage extends HeaderComponent {
         fieldAlias.isDisplayed();
         fieldAddress1.sendKeys(address.getCustomerAddress());
         fieldCity.sendKeys(address.getCustomerCity());
-        fieldState.sendKeys(address.getCustomerState());
+        fieldState.click();
+        AAstate.click();
         fieldZip.sendKeys(address.getCustomerZip());
         fieldCountry.sendKeys(address.getCustomerCountry());
     }
