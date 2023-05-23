@@ -21,7 +21,7 @@ public class AccessoriesPageTests extends BaseTest {
     @Parameters("browser: chrome")
     public void verifyAccessoriesPageTitleTest() {
         header = new HeaderComponent(driver);
-        header.clickOnAccessoriesPage();
+        header.clickOnAccessoriesLink();
 
         Assert.assertEquals(header.getPageTitle(), PageTitleEnums.Titles.ACCESSORIES_PAGE.getPageTitle());
 

@@ -18,7 +18,7 @@ public class ClothesPageTests extends BaseTest {
     @Parameters("browser: chrome")
     public void verifyClothesPageTitleTest() {
         header = new HeaderComponent(driver);
-        header.clickOnClothesPage();
+        header.clickOnClothesLink();
 
         Assert.assertEquals(header.getPageTitle(), PageTitleEnums.Titles.CLOTHES_PAGE.getPageTitle());
 

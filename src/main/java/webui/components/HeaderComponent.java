@@ -20,15 +20,9 @@ public class HeaderComponent extends BasePage { //exception
     private final Dropdown currencyDropdown;
     private final Button signInButton;
     private final Link cartLink;
-
-    @FindBy(id = "category-3")
-    private WebElement clothesLink;
-
-    @FindBy(id = "category-6")
-    private WebElement accessoriesLink;
-
-    @FindBy(id = "category-9")
-    private WebElement artLink;
+    private final Link clothesLink;
+    private final Link accessoriesLink;
+    private final Link artLink;
 
     @FindBy(id = "category-4")
     private WebElement menLink;
@@ -49,6 +43,9 @@ public class HeaderComponent extends BasePage { //exception
         currencyDropdown = new Dropdown(driver.findElement(By.cssSelector("[class = 'expand-more _gray-darker']")));
         signInButton = new Button(driver.findElement(By.className("user-info")));
         cartLink = new Link(driver.findElement(By.id("_desktop_cart")));
+        clothesLink = new Link(driver.findElement(By.id("category-3")));
+        accessoriesLink = new Link(driver.findElement(By.id("category-6")));
+        artLink = new Link(driver.findElement(By.id("category-9")));
     }
 
     public SearchComponent getSearchBar() {
@@ -97,34 +94,49 @@ public class HeaderComponent extends BasePage { //exception
         return new ShoppingCartPage(driver);
     }
 
-    @Step("Clothes link click.")
-    public ClothesPage clickOnClothesPage() {
-        clothesLink.click();
+    @Step("Get Clothes link.")
+    public Link getClothesLink() {
+        return clothesLink;
+    }
+
+    @Step("Click Clothes link.")
+    public ClothesPage clickOnClothesLink() {
+        getClothesLink().click();
         return new ClothesPage(driver);
     }
 
+    @Step("Get Accessories link.")
+    public Link getAccessoriesLink() {
+        return accessoriesLink;
+    }
+
     @Step("Accessories link click.")
-    public AccessoriesPage clickOnAccessoriesPage() {
-        accessoriesLink.click();
+    public AccessoriesPage clickOnAccessoriesLink() {
+        getAccessoriesLink().click();
         return new AccessoriesPage(driver);
     }
 
+    @Step("Get Art link.")
+    public Link getArtLink() {
+        return artLink;
+    }
+
     @Step("Art link click.")
-    public ArtPage clickOnArtPage() {
+    public ArtPage clickOnArtLink() {
         artLink.click();
         return new ArtPage(driver);
     }
 
     @Step("Men link click.")
     public MenPage clickOnMenPage() {
-        hoverOnElement(clothesLink);
+        hoverOnElement(getClothesLink().getBaseElement());
         menLink.click();
         return new MenPage(driver);
     }
 
     @Step("Women link click.")
     public WomenPage clickOnWomenPage() {
-        hoverOnElement(clothesLink);
+        hoverOnElement(getClothesLink().getBaseElement());
         womenLink.click();
         return new WomenPage(driver);
     }
