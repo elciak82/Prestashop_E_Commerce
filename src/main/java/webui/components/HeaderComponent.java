@@ -6,27 +6,22 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import webui.pageobject.element.controls.Button;
+import webui.pageobject.element.controls.Dropdown;
 import webui.pageobject.element.controls.Label;
 import webui.pageobject.element.controls.Link;
 import webui.pages.*;
+
+import java.nio.Buffer;
 
 public class HeaderComponent extends BasePage { //exception
 
     private final SearchComponent searchBar;
     private final Link logo;
     private final Link contactUsLink;
-
-    @FindBy(css = "[class='expand-more']")
-    private WebElement languageDropdown;
-
-    @FindBy(css = "[class = 'expand-more _gray-darker']")
-    private WebElement currencyDropdown;
-
-    @FindBy(css = "[class = 'logout hidden-sm-down']")
-    private WebElement signOut;
-
-    @FindBy(className = "user-info")
-    private WebElement signIn;
+    private final Dropdown languageDropdown;
+    private final Dropdown currencyDropdown;
+    private final Button signIn;
 
     @FindBy(className = "account")
     private WebElement account;
@@ -58,15 +53,39 @@ public class HeaderComponent extends BasePage { //exception
         searchBar = new SearchComponent(driver);
         logo = new Link(driver.findElement(By.id("_desktop_logo")));
         contactUsLink = new Link(driver.findElement(By.id("contact-link")));
+        languageDropdown = new Dropdown(driver.findElement(By.cssSelector("[class='expand-more']")));
+        currencyDropdown = new Dropdown(driver.findElement(By.cssSelector("[class = 'expand-more _gray-darker']")));
+        signIn = new Button(driver.findElement(By.className("user-info")));
     }
 
     public SearchComponent getSearchBar() {
         return searchBar;
     }
 
-    @Step("Contact Us link click.")
+    public HomePage goToHomePage() {
+        logo.click();
+        return new HomePage(driver);
+    }
+
+    @Step("Get Contact Us link.")
     public Link getContactUsLink() {
         return contactUsLink;
+    }
+
+    @Step("Get Sign Out link click.")
+    public Button getSignOut() {
+        return new Button(driver.findElement(By.cssSelector("[class = 'logout hidden-sm-down']")));
+    }
+
+    @Step("Sign In link click.")
+    public LoginPage clickOnSignIn() {
+        getSignIn().click();
+        return new LoginPage(driver);
+    }
+
+    @Step("Get Sign In.")
+    public Button getSignIn() {
+        return signIn;
     }
 
     @Step("Clothes link click.")
@@ -101,34 +120,13 @@ public class HeaderComponent extends BasePage { //exception
         return new WomenPage(driver);
     }
 
-    @Step("Sign In link click.")
-    public LoginPage clickOnSignIn() {
-        signIn.click();
-        return new LoginPage(driver);
-    }
-
-    @Step("Sign Out link click.")
-    public LoginPage clickOnSignOut() {
-        signOut.click();
-        return new LoginPage(driver);
-    }
-
     @Step("Get user data from page header.")
     public String getUserFirstnameLastnameFromPage() {
         fluentWaitForElementDisplayed(userFirstNameLastname);
         return getTextFromWebElement(userFirstNameLastname);
     }
 
-    public HomePage goToHomePage() {
-        logo.click();
-        return new HomePage(driver);
-    }
-
     public FooterComponent getFooter() {
         return new FooterComponent(driver);
-    }
-
-    public void signOut() {
-        signOut.click();
     }
 }
