@@ -1,5 +1,6 @@
 package webui.pageobject.element.controls;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import webui.common.Control;
 
@@ -19,6 +20,10 @@ public class EditField extends Control {
 
     public void setText(String text) {
         getBaseElement().sendKeys(text);
+    }
+
+    public void setKey(Keys key) {
+        getBaseElement().sendKeys(key);
     }
 
 }

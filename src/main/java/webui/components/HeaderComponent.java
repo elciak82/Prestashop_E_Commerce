@@ -12,7 +12,7 @@ import webui.pageobject.element.controls.Label;
 import webui.pageobject.element.controls.Link;
 import webui.pages.*;
 
-public class HeaderComponent extends BasePage { //exception
+public class HeaderComponent extends BasePage {
 
     private final SearchComponent searchBar;
     private final Link logo;

@@ -4,11 +4,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import webui.WebEntity;
-import webui.common.Control;
 import webui.pageobject.element.controls.Button;
 import webui.pageobject.element.controls.Label;
 import webui.pageobject.element.controls.Link;
-import webui.pages.BasePage;
 
 import java.util.ArrayList;
 import java.util.List;
