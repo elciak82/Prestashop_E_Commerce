@@ -52,46 +52,6 @@ public class AddressPage extends HeaderComponent {
         return aliasField;
     }
 
-    @Step("Get the Company field.")
-    public EditField getCompanyFiled() {
-        return companyField;
-    }
-
-    @Step("Get the Address 1 field.")
-    public EditField getAddressComplementFiled() {
-        return address1Field;
-    }
-
-    @Step("Get the Address Complement field.")
-    public EditField getAddressComplementField() {
-        return addressComplementField;
-    }
-
-    @Step("Get the City field.")
-    public EditField getCityField() {
-        return cityField;
-    }
-
-    @Step("Get the State field.")
-    public EditField getStateField() {
-        return stateFiled;
-    }
-
-    @Step("Get the Zip field.")
-    public EditField getZipField() {
-        return zipField;
-    }
-
-    @Step("Get the Country field.")
-    public EditField getCountryField() {
-        return countryField;
-    }
-
-    @Step("Get the Phone field.")
-    public EditField getPhoneField() {
-        return phoneField;
-    }
-
     @Step("Get the Save button.")
     public Button getSaveButton() {
         return saveButton;

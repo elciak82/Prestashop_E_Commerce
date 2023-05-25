@@ -1,83 +1,78 @@
 package webui.pages;
 
+import com.aventstack.extentreports.gherkin.model.But;
 import helpers.models.Customer;
 import io.qameta.allure.Step;
+import org.bouncycastle.math.ec.rfc8032.Ed448;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import webui.WebEntity;
 import webui.components.HeaderComponent;
+import webui.pageobject.element.controls.Button;
+import webui.pageobject.element.controls.Checkbox;
+import webui.pageobject.element.controls.EditField;
+import webui.pageobject.element.controls.RadioButton;
 
 public class CreateAccountPage extends HeaderComponent {
+    RadioButton genderMrRadioButton;
+    RadioButton genderMrsRadioButton;
+    EditField customerFirstNameField;
+    EditField customerLastNameField;
+    EditField customerEmailField;
+    EditField customerPasswordField;
+    EditField customerBirthDateField;
+    Checkbox privacyCheckbox;
+    Checkbox termsAndConditionsCheckbox;
+    Button saveButton;
 
-    @FindBy(id = "field-id_gender-1")
-    private WebElement genderMr;
+//    @FindBy(css = "[class='alert alert-danger']")
+//    private WebElement alertInvalidFormat; !!!!!
 
-    @FindBy(id = "field-id_gender-2")
-    private WebElement genderMrs;
-
-    @FindBy(id = "field-firstname")
-    private WebElement customerFirstName;
-
-    @FindBy(id = "field-lastname")
-    private WebElement customerLastName;
-
-    @FindBy(id = "field-email")
-    private WebElement customerEmail;
-
-    @FindBy(id = "field-password")
-    private WebElement customerPassword;
-
-    @FindBy(id = "field-birthday")
-    private WebElement customerBirthDate;
-
-    @FindBy(css = "[name='customer_privacy']")
-    private WebElement privacyCheckbox;
-
-    @FindBy(css = "[name='psgdpr']")
-    private WebElement termsAndConditionsCheckbox;
-
-    @FindBy(css = "[data-link-action='save-customer']")
-    private WebElement saveButton;
-
-    @FindBy(css = "[class='alert alert-danger']")
-    private WebElement alertInvalidFormat;
-
-    @FindBy(css = "[data-action='show-password']")
-    private WebElement showPasswordButton;
 
     public CreateAccountPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
+        genderMrRadioButton = new RadioButton(driver.findElement(By.id("field-id_gender-1")));
+        genderMrsRadioButton = new RadioButton(driver.findElement(By.id("field-id_gender-2")));
+        customerFirstNameField = new EditField(driver.findElement(By.id("field-firstname")));
+        customerLastNameField = new EditField(driver.findElement(By.id("field-lastname")));
+        customerEmailField = new EditField(driver.findElement(By.id("field-email")));
+        customerPasswordField = new EditField(driver.findElement(By.id("field-password")));
+        customerBirthDateField = new EditField(driver.findElement(By.id("field-birthday")));
+        privacyCheckbox = new Checkbox(driver.findElement(By.cssSelector("[name='customer_privacy']")));
+        termsAndConditionsCheckbox = new Checkbox(driver.findElement(By.cssSelector("[name='psgdpr']")));
+        saveButton = new Button(driver.findElement(By.cssSelector("[data-link-action='save-customer']")));
     }
 
     @Step("Fill required fields: {method}")
     public void fillRequiredFieldsInCreateAnAccountForm(Customer customer) {
-        customerLastName.isDisplayed();
-        customerFirstName.sendKeys(customer.getCustomerFirstName());
-        customerLastName.sendKeys(customer.getCustomerLastName());
-        customerEmail.sendKeys(customer.getCustomerEmail());
-        customerPassword.sendKeys(customer.getCustomerPassword());
+        customerLastNameField.isDisplayed();
+        setCustomerFirstName(customer.getCustomerFirstName());
+        setCustomerLastName(customer.getCustomerLastName());
+        setCustomerEmail(customer.getCustomerEmail());
+        setCustomerPassword(customer.getCustomerPassword());
         privacyCheckbox.click();
         termsAndConditionsCheckbox.click();
     }
 
     @Step("Fill all fields: {method}")
     public void fillAllFieldsInCreateAnAccountForm(Customer customer, String gender) {
-        customerLastName.isDisplayed();
+        customerLastNameField.isDisplayed();
 
         if (gender.equals("Mr")) {
-            genderMr.click();
+            genderMrRadioButton.click();
         } else
-            genderMrs.click();
+            genderMrsRadioButton.click();
         ;
 
-        customerFirstName.sendKeys(customer.getCustomerFirstName());
-        customerLastName.sendKeys(customer.getCustomerLastName());
-        customerEmail.sendKeys(customer.getCustomerEmail());
-        customerPassword.sendKeys(customer.getCustomerPassword());
-        customerBirthDate.sendKeys(customer.getCustomerBirthday().toString());
+        setCustomerFirstName(customer.getCustomerFirstName());
+        setCustomerLastName(customer.getCustomerLastName());
+        setCustomerEmail(customer.getCustomerEmail());
+        setCustomerPassword(customer.getCustomerPassword());
+        setCustomerBirthday(customer.getCustomerBirthday().toString());
         privacyCheckbox.click();
         termsAndConditionsCheckbox.click();
     }
@@ -96,7 +91,7 @@ public class CreateAccountPage extends HeaderComponent {
     }
 
     public String getValidationMessageForFirstname() {
-        return customerFirstName.getAttribute("validationMessage");
+        return customerFirstNameField.getBaseElement().getAttribute("validationMessage");
     }
 
     @Step("Click on the Save button")
@@ -107,59 +102,60 @@ public class CreateAccountPage extends HeaderComponent {
     @Step("Check if the Save button is visible")
     public boolean saveButtonIsVisible() {
         boolean element = false;
-        if (saveButton.isDisplayed()) {
+        if (saveButton.getBaseElement().isDisplayed()) {
             return element = true;
         }
         return false;
     }
 
     public CreateAccountPage setCustomerFirstName(String firstName) {
-        customerFirstName.sendKeys(firstName);
+        customerFirstNameField.setText(firstName);
         return this;
     }
 
     public CreateAccountPage setCustomerLastName(String lastName) {
-        customerLastName.sendKeys(lastName);
+        customerLastNameField.setText(lastName);
         return this;
     }
 
+    public CreateAccountPage setCustomerEmail(String password) {
+        customerEmailField.setText(password);
+        return this;
+    }
     public CreateAccountPage setCustomerPassword(String password) {
-        customerPassword.sendKeys(password);
+        customerPasswordField.setText(password);
         return this;
     }
 
     public CreateAccountPage setCustomerBirthday(String birthday) {
-        customerBirthDate.sendKeys(birthday);
+        customerBirthDateField.setText(birthday);
         return this;
     }
 
     @Step("Check the alert text")
     public String getAlertInvalidFormatText() {
-        return alertInvalidFormat.getText();
+        WebDriverWait wait = new WebDriverWait(driver, 2);
+        WebElement element = driver.findElement(By.cssSelector("[class='alert alert-danger']"));
+        return element.getText();
     }
 
     @Step("Check the password text")
     public String getPasswordText() {
-        return customerPassword.getText();
+        return customerPasswordField.getText();
     }
 
-    public CreateAccountPage clearFirstnameField(){
-        customerFirstName.clear();
+    public CreateAccountPage clearFirstnameField() {
+        customerFirstNameField.clear();
         return this;
     }
 
-    public CreateAccountPage clearLastnameField(){
-        customerLastName.clear();
+    public CreateAccountPage clearLastnameField() {
+        customerLastNameField.clear();
         return this;
     }
 
-    public CreateAccountPage clearPasswordField(){
-        customerPassword.clear();
+    public CreateAccountPage clearPasswordField() {
+        customerPasswordField.clear();
         return this;
     }
-
-    public void showPasswordButtonClick(){
-        showPasswordButton.click();
-    }
-
 }
