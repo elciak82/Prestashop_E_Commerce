@@ -26,4 +26,8 @@ public class EditField extends Control {
         getBaseElement().sendKeys(key);
     }
 
+    public void isDisplayed() {
+        getBaseElement().isDisplayed();
+    }
+
 }

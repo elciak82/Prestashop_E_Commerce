@@ -29,7 +29,7 @@ public class CreateWishlistComponent extends BasePage {
     public String getNotificationText(){
         WebElement element = driver.findElement(By.cssSelector("p.wishlist-toast-text"));
         element.isDisplayed();
-        System.out.println(getTextFromWebElement(element));
+        //System.out.println(getTextFromWebElement(element));
         return getTextFromWebElement(element);
     }
 }
