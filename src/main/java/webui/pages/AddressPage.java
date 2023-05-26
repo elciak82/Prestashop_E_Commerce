@@ -57,14 +57,39 @@ public class AddressPage extends HeaderComponent {
         return saveButton;
     }
 
+    public AddressPage setAddress1(String address1) {
+        address1Field.setText(address1);
+        return this;
+    }
+
+    public AddressPage setCity(String city) {
+        cityField.setText(city);
+        return this;
+    }
+
+    public AddressPage setZip(String zip) {
+        zipField.setText(zip);
+        return this;
+    }
+
+    public AddressPage setState(String state) {
+        stateFiled.setText(state);
+        return this;
+    }
+
+    public AddressPage setCountry(String country) {
+        countryField.setText(country);
+        return this;
+    }
+
     @Step("Fill required fields: {method}")
     public void fillRequiredFieldsAddressForm(Address address) {
         getAliasFiled().isDisplayed();
-        address1Field.setText(address.getCustomerAddress());
-        cityField.setText(address.getCustomerCity());
-        zipField.setText(address.getCustomerZip());
-        stateFiled.setText(StateEnums.State.AA.getState());
-        countryField.setText(CountryEnums.Country.UNITED_STATES.getCountry());
+        setAddress1(address.getCustomerAddress());
+        setCity(address.getCustomerCity());
+        setZip(address.getCustomerZip());
+        setState(StateEnums.State.AA.getState());
+        setCountry(CountryEnums.Country.UNITED_STATES.getCountry());
 
     }
 
