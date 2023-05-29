@@ -31,5 +31,7 @@ public class AddressesPageTests extends BaseTest {
 
         Assert.assertEquals(header.getPageTitle(), PageTitleEnums.Titles.ADDRESSES_PAGE.getPageTitle());
 
+        header.getSignOutButton();
+
     }
 }

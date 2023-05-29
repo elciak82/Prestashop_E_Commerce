@@ -31,5 +31,7 @@ public class OrdersPageTests extends BaseTest {
 
         Assert.assertEquals(header.getPageTitle(), PageTitleEnums.Titles.ORDERS_PAGE.getPageTitle());
 
+        header.getSignOutButton();
+
     }
 }

@@ -31,5 +31,7 @@ public class PersonalInfoPageTests extends BaseTest {
 
         Assert.assertEquals(header.getPageTitle(), PageTitleEnums.Titles.PERSONAL_INFO_PAGE.getPageTitle());
 
+        header.getSignOutButton();
+
     }
 }

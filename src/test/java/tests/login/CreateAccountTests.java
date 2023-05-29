@@ -60,6 +60,8 @@ public class CreateAccountTests extends BaseTest {
         createAccountPage.createAnAccountAllFields(CustomerFactory.getCustomerToRegister_all(), GenderEnums.Gender.GENDER_MRS.getGender());
 
         Assert.assertEquals(header.getUserFirstnameLastnameFromPage(), CustomerFactory.getCustomerFirstNameLastName());
+
+        header.getSignOutButton();
     }
 
     @Test(testName = "Create an account - only required fields.", description = "Behavior = Positive")
@@ -71,6 +73,8 @@ public class CreateAccountTests extends BaseTest {
         createAccountPage.createAnAccountRequiredFields(CustomerFactory.getCustomerToRegisterRequired());
 
         Assert.assertEquals(header.getUserFirstnameLastnameFromPage(), CustomerFactory.getCustomerFirstNameLastName());
+
+        header.getSignOutButton();
     }
 
     @Test(testName = "Try to create an account - all fields are empty.", description = "Behavior = Negative")

@@ -26,5 +26,7 @@ public class MyAccountPageTests extends BaseTest {
 
         Assert.assertEquals(header.getPageTitle(), PageTitleEnums.Titles.MY_ACCOUNT_PAGE.getPageTitle());
 
+        header.getSignOutButton();
+
     }
 }

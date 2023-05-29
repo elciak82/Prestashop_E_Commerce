@@ -31,5 +31,7 @@ public class CreditSlipsPageTests extends BaseTest {
 
         Assert.assertEquals(header.getPageTitle(), PageTitleEnums.Titles.CREDIT_SLIPS_PAGE.getPageTitle());
 
+        header.getSignOutButton();
+
     }
 }

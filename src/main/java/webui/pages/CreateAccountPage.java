@@ -74,10 +74,10 @@ public class CreateAccountPage extends HeaderComponent {
     }
 
     @Step("Create an account Step with all fields: {method}")
-    public LoginPage createAnAccountAllFields(Customer customer, String gender) {
+    public AccountPage createAnAccountAllFields(Customer customer, String gender) {
         fillAllFieldsInCreateAnAccountForm(customer, gender);
         saveButton.click();
-        return new LoginPage(driver);
+        return new AccountPage(driver);
     }
 
     public String getValidationMessageForFirstname() {
