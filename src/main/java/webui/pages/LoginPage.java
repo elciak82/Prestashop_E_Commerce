@@ -3,71 +3,85 @@ package webui.pages;
 import helpers.Configuration;
 import helpers.models.Customer;
 import io.qameta.allure.Step;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import webui.common.Control;
 import webui.components.HeaderComponent;
-import webui.WebEntity;
+import webui.pageobject.element.controls.Button;
+import webui.pageobject.element.controls.EditField;
+import webui.pageobject.element.controls.Link;
 
 public class LoginPage extends HeaderComponent {
-
-    @FindBy(id = "field-email")
-    private WebElement emailField;
-
-    @FindBy(id = "field-password")
-    private WebElement passwordField;
-
-    @FindBy(id = "submit-login")
-    private WebElement signInButton;
-
-    @FindBy(css = "[class*='alert']")
-    private WebElement authenticationFailedAlert;
-
-    @FindBy(className = "forgot-password")
-    private WebElement forgotPasswordButton;
-
-    @FindBy(className = "no-account")
-    private WebElement createAccount;
-
+    private final EditField emailField;
+    private final EditField passwordField;
+    private final Button signInButton;
+    private final Link forgotPasswordLink;
+    private final Link createAccountLink;
 
     public LoginPage(WebDriver driver) {
         super(driver);
-        header = new HeaderComponent(driver);
+        emailField = new EditField(driver.findElement(By.id("field-email")));
+        passwordField = new EditField(driver.findElement(By.id("field-password")));
+        signInButton = new Button(driver.findElement(By.id("submit-login")));
+        forgotPasswordLink = new Link(driver.findElement(By.className("forgot-password")));
+        createAccountLink = new Link(driver.findElement(By.className("no-account")));
 
-        PageFactory.initElements(driver, this);
     }
 
-    private final HeaderComponent header;
-    private Control control;
+    @Step("Input an email.")
+    public LoginPage setEmail(String email) {
+        emailField.setText(email);
+        return this;
+    }
 
+    @Step("Input a password.")
+    public LoginPage setPassword(String password) {
+        passwordField.setText(password);
+        return this;
+    }
+
+    @Step("Get the sign in button.")
+    public Button getSignButton() {
+        return signInButton;
+    }
+
+    @Step("Get the forgot password link.")
+    public Link getForgotPasswordLink() {
+        return forgotPasswordLink;
+    }
+
+    @Step("Get the create account link.")
+    public Link getCreateAccountLink() {
+        return createAccountLink;
+    }
 
     @Step("Input correct email and password.")
     public LoginPage logIn_fillData(String email, String password) {
-        emailField.sendKeys(email);
-        passwordField.sendKeys(password);
+        setEmail(email);
+        setPassword(password);
         return this;
+    }
+
+    @Step("Get alert text.")
+    public String getAuthenticationFailedAlertText() {
+        WebDriverWait wait = new WebDriverWait(driver, 2);
+        WebElement authenticationFailedAlert = driver.findElement(By.cssSelector("[class*='alert']"));
+        wait.until(ExpectedConditions.visibilityOf(authenticationFailedAlert));
+        return authenticationFailedAlert.getText();
     }
 
     @Step("Click on the Sign in button")
     public AccountPage clickOnSignInButton() {
-        signInButton.click();
+        getSignButton().click();
         return new AccountPage(driver);
     }
-
-//    @Step("Click on the Sign in button")
-//    public AccountPage clickOnSignInButtonTEST() {
-//        control.getBaseElement().click();
-//        return new AccountPage(driver);
-//    }
 
     @Step("Log in to account.")
     public AccountPage logInToAccount(String email, String password) {
         logIn_fillData(email, password);
-        signInButton.click();
+        clickOnSignInButton();
         return new AccountPage(driver);
     }
 
@@ -98,22 +112,17 @@ public class LoginPage extends HeaderComponent {
         return new AccountPage(driver);
     }
 
-    @Step("Get alert text.")
-    public String getAlertText() {
-        return authenticationFailedAlert.getText();
-    }
-
     @Step("Click on the Forgot your password? button.")
     public ForgotYourPasswordPage clickOnForgetPasswordButton() {
         WebDriverWait wait = new WebDriverWait(driver, 2);
-        wait.until(ExpectedConditions.visibilityOf(forgotPasswordButton));
-        forgotPasswordButton.click();
+        wait.until(ExpectedConditions.visibilityOf(getForgotPasswordLink().getBaseElement()));
+        getForgotPasswordLink().click();
         return new ForgotYourPasswordPage(driver);
     }
 
     @Step("Click on the 'No account? Create one here.' link.")
-    public void clickOnCreateAccountLink(){
-        createAccount.click();
+    public void clickOnCreateAccountLink() {
+        getCreateAccountLink().click();
     }
 
 }

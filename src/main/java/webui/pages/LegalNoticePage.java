@@ -7,6 +7,5 @@ import webui.components.HeaderComponent;
 public class LegalNoticePage extends HeaderComponent {
     public LegalNoticePage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
     }
 }

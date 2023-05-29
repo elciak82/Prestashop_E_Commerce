@@ -85,7 +85,7 @@ public class LogInTests extends BaseTest {
                 .logIn_fillData(email, password)
                 .clickOnSignInButton();
 
-        Assert.assertEquals(loginPage.getAlertText(), AlertEnums.AlertMessages.AUTHENTICATION_FIELD.getAlertMessage());
+        Assert.assertEquals(loginPage.getAuthenticationFailedAlertText(), AlertEnums.AlertMessages.AUTHENTICATION_FIELD.getAlertMessage());
     }
 
     @Test(testName = "User forgot the password.", description = "Behavior = Negative")

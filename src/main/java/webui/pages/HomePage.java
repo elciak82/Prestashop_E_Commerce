@@ -11,7 +11,6 @@ public class HomePage extends HeaderComponent {
 
     public HomePage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
     }
 
     @Step("Get the list of products.")
