@@ -1,5 +1,6 @@
 package webui.components;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -43,6 +44,7 @@ public class ProductMiniatureComponent extends WebEntity {
         return productLink;
     }
 
+    @Step("Get the AddToWishlist Button")
     public Button getAddToWishlistButton() {
         return addToWishlistButton;
     }

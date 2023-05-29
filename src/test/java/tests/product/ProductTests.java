@@ -2,7 +2,6 @@ package tests.product;
 
 import helpers.enums.NotificationEnums;
 import helpers.enums.ProductDetailsEnums;
-import helpers.providers.CustomerFactory;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.TmsLink;
@@ -37,11 +36,6 @@ public class ProductTests extends BaseTest {
     }
 
     @AfterMethod
-    public void LogOut(){
-        new HomePage(driver).getSignOutButton().click();
-    }
-
-    @AfterMethod
     public void deleteNewWishlist() throws SQLException {
         queries = new Queries();
         statement.executeUpdate(queries.deleteWishlist(newWishlist));
@@ -71,7 +65,7 @@ public class ProductTests extends BaseTest {
 
         productMiniature = new HomePage(driver).getProductList().getAllProductsMiniatures().get(2);
         productMiniature.getAddToWishlistButton().click();
-        productMiniature.getAddToWishlist().cetCreateNewWishlistButton().click();
+        productMiniature.getAddToWishlist().getCreateNewWishlistButton().click();
         productMiniature.getCreteWishlistComponent().getWishlistNameField().setText(newWishlist);
         productMiniature.getCreteWishlistComponent().getCreateWishListButton().click();
 
@@ -79,5 +73,6 @@ public class ProductTests extends BaseTest {
 
         productMiniature.getAddToWishlist().closeWishlistComponent();
 
+        new HomePage(driver).getSignOutButton().click();
     }
 }

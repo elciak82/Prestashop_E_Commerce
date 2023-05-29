@@ -6,12 +6,28 @@
         <listener class-name="utils.listeners.TestAllureListener"/>
     </listeners>
 
-    <test name="Test" >
+    <test name="Smoke tests" >
         <packages>
             <package name="tests.pagetitles"/>
+        </packages>
+    </test>
+    <test name="Login tests" >
+        <packages>
             <package name="tests.login"/>
+        </packages>
+    </test>
+    <test name="Products tests" >
+        <packages>
             <package name="tests.product"/>
+        </packages>
+    </test>
+    <test name="Search tests" >
+        <packages>
             <package name="tests.search"/>
+        </packages>
+    </test>
+    <test name="Edit account tests" >
+        <packages>
             <package name="tests.editaccount"/>
         </packages>
 <!--        <classes>-->
@@ -20,3 +36,4 @@
 <!--        </classes>-->
     </test>
 </suite>
+

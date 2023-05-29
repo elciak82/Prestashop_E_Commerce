@@ -38,6 +38,7 @@ public class SearchComponent extends WebEntity {
 
     @Step("Get the Search by dropdown.")
     public Dropdown getSearchDropdown() {
+        searchDropdown.getBaseElement().isDisplayed();
         return searchDropdown;
     }
 

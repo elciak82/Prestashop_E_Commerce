@@ -1,5 +1,6 @@
 package webui.components;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import webui.pageobject.element.controls.Button;
@@ -23,7 +24,8 @@ public class WishlistComponent extends BasePage {
         return myWishlistButton;
     }
 
-    public Button cetCreateNewWishlistButton() {
+    @Step("Get the CreateNewWishlist Button")
+    public Button getCreateNewWishlistButton() {
         return createNewWishlistButton;
     }
 

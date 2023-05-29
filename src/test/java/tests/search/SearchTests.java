@@ -1,6 +1,5 @@
 package tests.search;
 
-import helpers.enums.PageTitleEnums;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
@@ -12,11 +11,8 @@ import org.testng.annotations.Test;
 import tests.BaseTest;
 import webui.components.HeaderComponent;
 import webui.components.SearchComponent;
-import webui.pages.AccessoriesPage;
 import webui.pages.HomePage;
 import webui.pages.ProductPage;
-
-import java.util.List;
 
 public class SearchTests extends BaseTest {
     HeaderComponent header;

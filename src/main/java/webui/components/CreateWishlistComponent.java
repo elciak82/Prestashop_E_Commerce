@@ -1,5 +1,6 @@
 package webui.components;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,18 +19,20 @@ public class CreateWishlistComponent extends BasePage {
         createWishListButton = new Button(driver.findElement(By.xpath("//*[@id=\"index\"]/div[2]/div[1]/div/div/div[3]/button[2]")));
     }
 
+    @Step ("Get the WishlistName Field")
     public EditField getWishlistNameField() {
         return wishlistNameField;
     }
 
+    @Step("Get CreateWishList Button")
     public Button getCreateWishListButton(){
         return createWishListButton;
     }
 
     public String getNotificationText(){
         WebElement element = driver.findElement(By.cssSelector("p.wishlist-toast-text"));
-        element.isDisplayed();
-        //System.out.println(getTextFromWebElement(element));
+        fluentWaitForElementDisplayed(element);
+        System.out.println(getTextFromWebElement(element));
         return getTextFromWebElement(element);
     }
 }
