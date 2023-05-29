@@ -7,6 +7,5 @@ import webui.components.HeaderComponent;
 public class CreditSlipsPage extends HeaderComponent {
     public CreditSlipsPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
     }
 }

@@ -7,6 +7,5 @@ import webui.components.HeaderComponent;
 public class BestSellersPage extends HeaderComponent {
     public BestSellersPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
     }
 }

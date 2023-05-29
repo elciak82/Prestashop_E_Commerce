@@ -7,6 +7,5 @@ import webui.components.HeaderComponent;
 public class DeliveryPage extends HeaderComponent {
     public DeliveryPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
     }
 }

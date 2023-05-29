@@ -7,6 +7,5 @@ import webui.components.HeaderComponent;
 public class AboutUsPage extends HeaderComponent {
     public AboutUsPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
     }
 }

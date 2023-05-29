@@ -17,7 +17,6 @@ public abstract class BasePage extends WebEntity {
 
     public BasePage(WebDriver driver) {
         super(driver);
-//        documentReady();
     }
 
     public void fluentWaitForElementDisplayed(WebElement elementToBeDisplayed) {

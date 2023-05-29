@@ -1,16 +1,11 @@
 package webui.pages;
 
-import com.aventstack.extentreports.gherkin.model.But;
 import helpers.models.Customer;
 import io.qameta.allure.Step;
-import org.bouncycastle.math.ec.rfc8032.Ed448;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import webui.WebEntity;
 import webui.components.HeaderComponent;
 import webui.pageobject.element.controls.Button;
 import webui.pageobject.element.controls.Checkbox;
@@ -18,16 +13,16 @@ import webui.pageobject.element.controls.EditField;
 import webui.pageobject.element.controls.RadioButton;
 
 public class CreateAccountPage extends HeaderComponent {
-    RadioButton genderMrRadioButton;
-    RadioButton genderMrsRadioButton;
-    EditField customerFirstNameField;
-    EditField customerLastNameField;
-    EditField customerEmailField;
-    EditField customerPasswordField;
-    EditField customerBirthDateField;
-    Checkbox privacyCheckbox;
-    Checkbox termsAndConditionsCheckbox;
-    Button saveButton;
+    private final RadioButton genderMrRadioButton;
+    private final RadioButton genderMrsRadioButton;
+    private final EditField customerFirstNameField;
+    private final EditField customerLastNameField;
+    private final EditField customerEmailField;
+    private final EditField customerPasswordField;
+    private final EditField customerBirthDateField;
+    private final Checkbox privacyCheckbox;
+    private final Checkbox termsAndConditionsCheckbox;
+    private final Button saveButton;
 
     public CreateAccountPage(WebDriver driver) {
         super(driver);

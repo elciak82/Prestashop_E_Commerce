@@ -12,25 +12,18 @@ import webui.components.HeaderComponent;
 import webui.pageobject.element.controls.Button;
 import webui.pageobject.element.controls.EditField;
 
-
 public class AddressPage extends HeaderComponent {
 
-    EditField aliasField;
-    EditField companyField;
-    EditField address1Field;
-    EditField addressComplementField;
-    EditField cityField;
-    EditField stateFiled;
-    EditField zipField;
-    EditField countryField;
-    EditField phoneField;
-    Button saveButton;
-
-//    @FindBy(css = "[class*='alert']")
-//    private WebElement successAlert; !!!!!
-//
-//    @FindBy(css = "[value='1']")
-//    private WebElement AAstate;!!!
+    private final EditField aliasField;
+    private final EditField companyField;
+    private final EditField address1Field;
+    private final EditField addressComplementField;
+    private final EditField cityField;
+    private final EditField stateFiled;
+    private final EditField zipField;
+    private final EditField countryField;
+    private final EditField phoneField;
+    private final Button saveButton;
 
     public AddressPage(WebDriver driver) {
         super(driver);

@@ -8,6 +8,5 @@ import webui.components.HeaderComponent;
 public class ArtPage extends HeaderComponent {
     public ArtPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
     }
 }

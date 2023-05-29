@@ -14,8 +14,8 @@ import webui.pageobject.element.controls.EditField;
 import webui.pages.SearchResultsPage;
 
 public class SearchComponent extends WebEntity {
-    Dropdown searchDropdown;
-    EditField searchBy;
+    private final Dropdown searchDropdown;
+    private final EditField searchBy;
 
     public SearchComponent(WebDriver driver) {
         super(driver);

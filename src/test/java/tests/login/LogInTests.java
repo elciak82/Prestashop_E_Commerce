@@ -27,9 +27,6 @@ public class LogInTests extends BaseTest {
     public void signIn() {
         header = new HeaderComponent(driver);
         header.clickOnSignIn();
-
-        loginPage = new LoginPage(driver);
-        forgotYourPasswordPage = new ForgotYourPasswordPage(driver);
     }
 
     @BeforeMethod()
@@ -47,7 +44,7 @@ public class LogInTests extends BaseTest {
         String email = user.getUsername();
         String password = user.getPassword();
 
-        loginPage
+        new LoginPage(driver)
                 .logIn_fillData(email, password)
                 .clickOnSignInButton();
 
@@ -68,7 +65,7 @@ public class LogInTests extends BaseTest {
     @TmsLink("PRESTASHOP-12")
     @Parameters("browser: chrome")
     public void correctLogInAndLogOutFromAccountTest() {
-        loginPage.correctLogInToAccount();
+        new LoginPage(driver).correctLogInToAccount();
         header.getSignOutButton().click();
 
         Assert.assertEquals(header.getPageTitle(), PageTitleEnums.Titles.LOGIN_PAGE.getPageTitle());
@@ -83,6 +80,7 @@ public class LogInTests extends BaseTest {
         String email = "email@email.com";
         String password = "12345";
 
+        loginPage = new LoginPage(driver);
         loginPage
                 .logIn_fillData(email, password)
                 .clickOnSignInButton();
@@ -98,9 +96,9 @@ public class LogInTests extends BaseTest {
     public void forgotPasswordTest() {
         String email = "email@email.com";
 
-        loginPage
+        forgotYourPasswordPage = new LoginPage(driver)
                 .clickOnForgetPasswordButton()
-                .insertEmail(email)
+                .setEmailAddress(email)
                 .clickOnSendResetLinkButton();
 
         Assert.assertEquals(forgotYourPasswordPage.getResetYourPasswordAlertText(), AlertEnums.AlertMessages.RESET_YOUR_PASSWORD.getAlertMessage() + " " + email + ".");
