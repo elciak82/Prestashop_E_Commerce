@@ -9,14 +9,12 @@ import webui.components.HeaderComponent;
 import webui.pageobject.element.controls.Label;
 
 public class AccessoriesPage extends HeaderComponent {
-    Label accessoryTitle;
 
     public AccessoriesPage(WebDriver driver) {
         super(driver);
-        accessoryTitle = new Label(driver.findElement(By.xpath("//*[@id='wrapper']/div/nav/ol/li[4]/span")));
     }
 
     public String getAccessoryTitle(){
-        return accessoryTitle.getText();
+        return new Label(driver.findElement(By.xpath("//*[@id='wrapper']/div/nav/ol/li[4]/span"))).getText();
     }
 }

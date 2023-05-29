@@ -4,11 +4,9 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import webui.pageobject.element.controls.Button;
 import webui.pageobject.element.controls.Dropdown;
-import webui.pageobject.element.controls.Label;
 import webui.pageobject.element.controls.Link;
 import webui.pages.*;
 
@@ -48,6 +46,7 @@ public class HeaderComponent extends BasePage {
         return searchBar;
     }
 
+    @Step("Go to the Home Page.")
     public HomePage goToHomePage() {
         logo.click();
         return new HomePage(driver);

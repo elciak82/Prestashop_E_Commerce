@@ -10,16 +10,18 @@ import webui.components.HeaderComponent;
 import webui.pageobject.element.controls.Link;
 
 public class AccountPage extends HeaderComponent {
-    Link addressesLink;
 
     public AccountPage(WebDriver driver) {
         super(driver);
-        addressesLink = new Link(driver.findElement(By.id("address-link")));
+    }
+
+    private Link getAddressLink (){
+        return new Link(driver.findElement(By.id("address-link")));
     }
 
     @Step("Click on the Addresses link.")
     public AddressPage openAddressPage() {
-        addressesLink.click();
+        getAddressLink().click();
         return new AddressPage(driver);
     }
 }

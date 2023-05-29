@@ -29,10 +29,6 @@ public class CreateAccountPage extends HeaderComponent {
     Checkbox termsAndConditionsCheckbox;
     Button saveButton;
 
-//    @FindBy(css = "[class='alert alert-danger']")
-//    private WebElement alertInvalidFormat; !!!!!
-
-
     public CreateAccountPage(WebDriver driver) {
         super(driver);
         genderMrRadioButton = new RadioButton(driver.findElement(By.id("field-id_gender-1")));
@@ -66,7 +62,6 @@ public class CreateAccountPage extends HeaderComponent {
             genderMrRadioButton.click();
         } else
             genderMrsRadioButton.click();
-        ;
 
         setCustomerFirstName(customer.getCustomerFirstName());
         setCustomerLastName(customer.getCustomerLastName());
@@ -101,11 +96,7 @@ public class CreateAccountPage extends HeaderComponent {
 
     @Step("Check if the Save button is visible")
     public boolean saveButtonIsVisible() {
-        boolean element = false;
-        if (saveButton.getBaseElement().isDisplayed()) {
-            return element = true;
-        }
-        return false;
+        return saveButton.getBaseElement().isDisplayed();
     }
 
     public CreateAccountPage setCustomerFirstName(String firstName) {

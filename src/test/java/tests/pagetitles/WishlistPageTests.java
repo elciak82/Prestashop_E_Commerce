@@ -31,5 +31,7 @@ public class WishlistPageTests extends BaseTest {
 
         Assert.assertEquals(header.getPageTitle(), PageTitleEnums.Titles.WISHLIST_PAGE.getPageTitle());
 
+        header.getSignOutButton();
+
     }
 }

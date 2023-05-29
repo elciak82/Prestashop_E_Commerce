@@ -18,6 +18,7 @@ public abstract class WebEntity {
     }
 
     public String getTextFromWebElement(WebElement webElement) {
+        System.out.println(webElement.getText());
         return webElement.getText();
     }
 }
