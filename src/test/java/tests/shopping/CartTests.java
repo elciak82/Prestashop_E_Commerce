@@ -18,7 +18,7 @@ public class CartTests extends BaseTest {
     @Test(testName = "Add a product to the cart.", description = "Behavior = Positive")
     @Description("Test verifying the correctness of adding a product to the cart.")
     @Severity(SeverityLevel.CRITICAL)
-    @TmsLink("PRESTASHOP-..")
+    @TmsLink("PRESTASHOP-46")
     @Parameters("browser: chrome")
     public void addProductToCartWithoutSigningInTest()  {
         productMiniature = new HomePage(driver)
