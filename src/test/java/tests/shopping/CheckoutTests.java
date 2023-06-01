@@ -65,7 +65,7 @@ public class CheckoutTests extends BaseTest {
             } else {
                 System.out.println("Customer is not logged in.");
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
     }
@@ -82,7 +82,6 @@ public class CheckoutTests extends BaseTest {
         Assert.assertTrue(checkoutAddressesPage.getCompanyField().getBaseElement().isDisplayed());
 
         Assert.assertTrue(new HomePage(driver).goToHomePage().getSignInButton().getBaseElement().isDisplayed());
-
     }
 
     @Test(testName = "Proceed checkout - add a personal information with creating an account.", description = "Behavior = Positive")
@@ -95,10 +94,7 @@ public class CheckoutTests extends BaseTest {
         CheckoutAddressesPage checkoutAddressesPage = cartPage.proceedToCheckout().fillRequiredPersonalInformation(customer).continueCheckout();
         Assert.assertTrue(checkoutAddressesPage.getCompanyField().getBaseElement().isDisplayed());
 
-
         Assert.assertEquals(new HomePage(driver).goToHomePage().getUserFirstnameLastnameFromPage(), customer.getCustomerFirstName() + " " + customer.getCustomerLastName());
-
-
     }
 
 }
