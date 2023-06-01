@@ -22,6 +22,7 @@ import java.sql.SQLException;
 public class ProductTests extends BaseTest {
     Queries queries;
     String newWishlist = "New_Wishlist";
+    ProductMiniatureComponent productMiniature;
 
     @BeforeMethod
     public void deleteWishlist() throws SQLException {
@@ -31,7 +32,7 @@ public class ProductTests extends BaseTest {
     }
 
     @BeforeMethod
-    public void LogIn(){
+    public void logIn(){
         new HomePage(driver).clickOnSignIn().correctLogInToAccount().goToHomePage();
     }
 
@@ -41,8 +42,6 @@ public class ProductTests extends BaseTest {
         statement.executeUpdate(queries.deleteWishlist(newWishlist));
         System.out.println("Delete the Whishlist form the database.");
     }
-
-    ProductMiniatureComponent productMiniature;
 
     @Test(testName = "Selecting the product variant in black")
     @Severity(SeverityLevel.MINOR)

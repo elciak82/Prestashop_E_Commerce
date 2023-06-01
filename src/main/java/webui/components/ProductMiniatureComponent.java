@@ -8,6 +8,7 @@ import webui.WebEntity;
 import webui.pageobject.element.controls.Button;
 import webui.pageobject.element.controls.Label;
 import webui.pageobject.element.controls.Link;
+import webui.pages.ProductPage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +43,12 @@ public class ProductMiniatureComponent extends WebEntity {
 
     public Link getProduct(){
         return productLink;
+    }
+
+    @Step("Select a product")
+    public ProductPage selectProduct(){
+        getProduct().click();
+        return new ProductPage(driver);
     }
 
     @Step("Get the AddToWishlist Button")

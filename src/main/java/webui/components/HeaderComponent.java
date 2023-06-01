@@ -5,6 +5,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import webui.pageobject.element.controls.Button;
 import webui.pageobject.element.controls.Dropdown;
 import webui.pageobject.element.controls.Link;
@@ -48,6 +50,8 @@ public class HeaderComponent extends BasePage {
 
     @Step("Go to the Home Page.")
     public HomePage goToHomePage() {
+        WebDriverWait wait = new WebDriverWait(driver,10);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("_desktop_logo")));
         logo.click();
         return new HomePage(driver);
     }
