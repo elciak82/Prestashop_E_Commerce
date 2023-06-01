@@ -94,7 +94,7 @@ public class CreateAccountTests extends BaseTest {
     @TmsLink("PRESTASHOP-18")
     @Parameters("browser: chrome")
     public void tryToCreateAccount_firstnameIsIncorrect() {
-        createAccountPage.fillRequiredFieldsInCreateAnAccountForm(CustomerFactory.getCustomerToRegisterRequired());
+        createAccountPage.fillRequiredPersonalData(CustomerFactory.getCustomerToRegisterRequired());
 
         String incorrectFirstname = "1234567";
         customer.setCustomerFirstName(incorrectFirstname);
@@ -111,7 +111,7 @@ public class CreateAccountTests extends BaseTest {
     @TmsLink("PRESTASHOP-19")
     @Parameters("browser: chrome")
     public void tryToCreateAccount_lastnameIsIncorrect() {
-        createAccountPage.fillRequiredFieldsInCreateAnAccountForm(CustomerFactory.getCustomerToRegisterRequired());
+        createAccountPage.fillRequiredPersonalData(CustomerFactory.getCustomerToRegisterRequired());
 
         String incorrectLastname = "1234567";
         customer.setCustomerLastName(incorrectLastname);
@@ -128,7 +128,7 @@ public class CreateAccountTests extends BaseTest {
     @TmsLink("PRESTASHOP-20")
     @Parameters("browser: chrome")
     public void tryToCreateAccount_firstnameIsTooLong() {
-        createAccountPage.fillRequiredFieldsInCreateAnAccountForm(CustomerFactory.getCustomerToRegisterRequired());
+        createAccountPage.fillRequiredPersonalData(CustomerFactory.getCustomerToRegisterRequired());
 
         String tooLongFirstname = CustomerFactory.randomAlphaString(256);
         customer.setCustomerFirstName(tooLongFirstname);
@@ -146,7 +146,7 @@ public class CreateAccountTests extends BaseTest {
     @TmsLink("PRESTASHOP-21")
     @Parameters("browser: chrome")
     public void tryToCreateAccount_lastnameIsTooLong() {
-        createAccountPage.fillRequiredFieldsInCreateAnAccountForm(CustomerFactory.getCustomerToRegisterRequired());
+        createAccountPage.fillRequiredPersonalData(CustomerFactory.getCustomerToRegisterRequired());
 
         String tooLongLastname = CustomerFactory.randomAlphaString(256);
         customer.setCustomerLastName(tooLongLastname);
@@ -164,7 +164,7 @@ public class CreateAccountTests extends BaseTest {
     @TmsLink("PRESTASHOP-22")
     @Parameters("browser: chrome")
     public void tryToCreateAccount_passwordIsTooLong() {
-        createAccountPage.fillRequiredFieldsInCreateAnAccountForm(CustomerFactory.getCustomerToRegisterRequired());
+        createAccountPage.fillRequiredPersonalData(CustomerFactory.getCustomerToRegisterRequired());
 
         String tooLongPassword = CustomerFactory.randomAlphaString(73);
         customer.setCustomerPassword(tooLongPassword);
@@ -183,7 +183,7 @@ public class CreateAccountTests extends BaseTest {
     @Parameters("browser: chrome")
     public void tryToCreateAccount_birthdateIsInvalid() {
 
-        createAccountPage.fillRequiredFieldsInCreateAnAccountForm(CustomerFactory.getCustomerToRegisterRequired());
+        createAccountPage.fillRequiredPersonalData(CustomerFactory.getCustomerToRegisterRequired());
 
         String invalidBirthday = CustomerFactory.randomAlphaString(9);
         customer.setCustomerBirthday(invalidBirthday);
