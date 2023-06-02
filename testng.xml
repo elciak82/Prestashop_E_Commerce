@@ -26,9 +26,14 @@
             <package name="tests.search"/>
         </packages>
     </test>
-    <test name="Shopping tests" >
+    <test name="Cart tests" >
         <packages>
             <package name="tests.shopping"/>
+        </packages>
+    </test>
+    <test name="Checkout tests" >
+        <packages>
+            <package name="tests.checkout"/>
         </packages>
     </test>
     <test name="Edit account tests" >

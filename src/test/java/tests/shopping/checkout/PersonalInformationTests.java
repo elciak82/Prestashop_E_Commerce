@@ -78,7 +78,11 @@ public class PersonalInformationTests extends BaseTest {
     @Parameters("browser: chrome")
     public void addPersonalInformationWithoutCreatingAccount() {
 
-        CheckoutAddressesPage checkoutAddressesPage = cartPage.proceedToCheckoutOnCartPage().fillRequiredPersonalInformationWithoutPassword(customer).continueCheckoutOnPersonalInfoPage();
+        CheckoutAddressesPage checkoutAddressesPage = cartPage
+                .proceedToCheckoutOnCartPage()
+                .fillRequiredPersonalInformationWithoutPassword(customer)
+                .continueCheckoutOnPersonalInfoPage();
+
         Assert.assertTrue(checkoutAddressesPage.getCompanyField().getBaseElement().isDisplayed());
 
         Assert.assertTrue(new HomePage(driver).goToHomePage().getSignInButton().getBaseElement().isDisplayed());

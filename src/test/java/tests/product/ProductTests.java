@@ -33,7 +33,11 @@ public class ProductTests extends BaseTest {
 
     @BeforeMethod
     public void logIn(){
-        new HomePage(driver).clickOnSignIn().correctLogInToAccount().goToHomePage();
+
+        new HomePage(driver)
+                .clickOnSignIn()
+                .correctLogInToAccount()
+                .goToHomePage();
     }
 
     @AfterMethod
@@ -49,8 +53,15 @@ public class ProductTests extends BaseTest {
     @Parameters("browser: chrome")
     public void selectProductVariantInBlack() {
 
-        productMiniature = new HomePage(driver).getProductList().getAllProductsMiniatures().get(0);
-        productMiniature.getVariantLinks().get(1).click();
+        productMiniature = new HomePage(driver)
+                .getProductList()
+                .getAllProductsMiniatures()
+                .get(0);
+
+        productMiniature
+                .getVariantLinks()
+                .get(1)
+                .click();
 
         Assert.assertEquals(new ProductPage(driver).getProductColour(), ProductDetailsEnums.ProductDetails.BLACK.getProductDetail());
 

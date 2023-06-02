@@ -18,20 +18,17 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import tests.BaseTest;
 import webui.components.ProductMiniatureComponent;
-import webui.pages.CartPage;
-import webui.pages.CheckoutAddressesPage;
-import webui.pages.CheckoutShippingMethodPage;
-import webui.pages.HomePage;
+import webui.pages.*;
 
 import java.sql.SQLException;
 
-public class AddressesTests extends BaseTest {
+public class DeliveryAddressesTests extends BaseTest {
     ProductMiniatureComponent productMiniature;
     Customer customer;
     HomePage homePage;
     Queries queries;
     Address address;
-    CheckoutAddressesPage checkoutAddressesPage;
+    CheckoutPersonalInfoPage checkoutPersonalInfoPage;
 
     @BeforeMethod
     public void addProductToCart() {
@@ -44,13 +41,12 @@ public class AddressesTests extends BaseTest {
                 .getAllProductsMiniatures()
                 .get(2);
 
-        checkoutAddressesPage = productMiniature
+        checkoutPersonalInfoPage = productMiniature
                 .selectProduct()
                 .addProductToCart()
                 .proceedToCheckout()
                 .proceedToCheckoutOnCartPage()
-                .fillRequiredPersonalInformationWithoutPassword(customer)
-                .continueCheckoutOnPersonalInfoPage();
+                .fillRequiredPersonalInformationWithoutPassword(customer);
 
     }
 
@@ -67,14 +63,15 @@ public class AddressesTests extends BaseTest {
         System.out.println("Delete customer form the database.");
     }
 
-    @Test(testName = "Proceed checkout - add a personal information with creating an account.", description = "Behavior = Positive")
+    @Test(testName = "Proceed checkout - add a an address for delivery without creating an account.", description = "Behavior = Positive")
     @Description("Test verifying the checkout process - adding an address for delivery.")
-    @Severity(SeverityLevel.NORMAL)
-    @TmsLink("PRESTASHOP-47")
+    @Severity(SeverityLevel.CRITICAL)
+    @TmsLink("PRESTASHOP-48")
     @Parameters("browser: chrome")
     public void addPersonalAddress() {
 
-        CheckoutShippingMethodPage checkoutShippingMethodPage = checkoutAddressesPage
+        CheckoutShippingMethodPage checkoutShippingMethodPage = checkoutPersonalInfoPage
+                .continueCheckoutOnPersonalInfoPage()
                 .fillRequiredFieldsAddressForm(address)
                 .continueCheckout();
 
