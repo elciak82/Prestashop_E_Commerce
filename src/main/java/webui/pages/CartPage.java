@@ -40,7 +40,7 @@ public class CartPage extends HeaderComponent {
         return proceedToCheckoutButton;
     }
 
-    public CheckoutPersonalInfoPage proceedToCheckout(){
+    public CheckoutPersonalInfoPage proceedToCheckoutOnCartPage(){
         proceedToCheckoutButton.click();
         return new CheckoutPersonalInfoPage(driver);
     }

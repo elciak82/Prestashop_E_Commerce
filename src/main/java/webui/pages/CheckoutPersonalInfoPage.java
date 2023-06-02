@@ -89,7 +89,7 @@ public class CheckoutPersonalInfoPage extends HeaderComponent {
         return continueButton;
     }
 
-    public CheckoutAddressesPage continueCheckout(){
+    public CheckoutAddressesPage continueCheckoutOnPersonalInfoPage(){
         getContinueButton().click();
         return new CheckoutAddressesPage(driver);
     }

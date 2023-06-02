@@ -1,6 +1,6 @@
-package tests.shopping;
+package tests.shopping.checkout;
 
-import com.sun.source.tree.AssertTree;
+import helpers.models.Address;
 import helpers.models.Customer;
 import helpers.providers.CustomerFactory;
 import io.qameta.allure.Description;
@@ -19,7 +19,7 @@ import webui.pages.*;
 
 import java.sql.SQLException;
 
-public class CheckoutTests extends BaseTest {
+public class PersonalInformationTests extends BaseTest {
     ProductMiniatureComponent productMiniature;
     CartPage cartPage;
     Customer customer;
@@ -78,7 +78,7 @@ public class CheckoutTests extends BaseTest {
     @Parameters("browser: chrome")
     public void addPersonalInformationWithoutCreatingAccount() {
 
-        CheckoutAddressesPage checkoutAddressesPage = cartPage.proceedToCheckout().fillRequiredPersonalInformationWithoutPassword(customer).continueCheckout();
+        CheckoutAddressesPage checkoutAddressesPage = cartPage.proceedToCheckoutOnCartPage().fillRequiredPersonalInformationWithoutPassword(customer).continueCheckoutOnPersonalInfoPage();
         Assert.assertTrue(checkoutAddressesPage.getCompanyField().getBaseElement().isDisplayed());
 
         Assert.assertTrue(new HomePage(driver).goToHomePage().getSignInButton().getBaseElement().isDisplayed());
@@ -91,10 +91,13 @@ public class CheckoutTests extends BaseTest {
     @Parameters("browser: chrome")
     public void addPersonalInformationWithCreatingAccount() {
 
-        CheckoutAddressesPage checkoutAddressesPage = cartPage.proceedToCheckout().fillRequiredPersonalInformation(customer).continueCheckout();
+        CheckoutAddressesPage checkoutAddressesPage = cartPage
+                .proceedToCheckoutOnCartPage()
+                .fillRequiredPersonalInformation(customer)
+                .continueCheckoutOnPersonalInfoPage();
+
         Assert.assertTrue(checkoutAddressesPage.getCompanyField().getBaseElement().isDisplayed());
 
         Assert.assertEquals(new HomePage(driver).goToHomePage().getUserFirstnameLastnameFromPage(), customer.getCustomerFirstName() + " " + customer.getCustomerLastName());
     }
-
 }

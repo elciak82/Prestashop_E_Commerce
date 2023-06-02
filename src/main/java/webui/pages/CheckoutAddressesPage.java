@@ -1,5 +1,9 @@
 package webui.pages;
 
+import helpers.enums.CountryEnums;
+import helpers.enums.StateEnums;
+import helpers.models.Address;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -43,6 +47,52 @@ public class CheckoutAddressesPage extends HeaderComponent {
     public EditField getCompanyField(){
         return companyField;
     }
+
+    public CheckoutAddressesPage setAddress1(String address1) {
+        address1Field.setText(address1);
+        return this;
+    }
+
+    public CheckoutAddressesPage setCity(String city) {
+        cityField.setText(city);
+        return this;
+    }
+
+    public CheckoutAddressesPage setZip(String zip) {
+        zipField.setText(zip);
+        return this;
+    }
+
+    public CheckoutAddressesPage setState(String state) {
+        stateFiled.setText(state);
+        return this;
+    }
+
+    public CheckoutAddressesPage setCountry(String country) {
+        countryField.setText(country);
+        return this;
+    }
+
+    @Step("Fill required fields: {method}")
+    public CheckoutAddressesPage fillRequiredFieldsAddressForm(Address address) {
+        setAddress1(address.getCustomerAddress());
+        setCity(address.getCustomerCity());
+        setZip(address.getCustomerZip());
+        setState(StateEnums.State.AA.getState());
+        setCountry(CountryEnums.Country.UNITED_STATES.getCountry());
+        return this;
+    }
+
+    public Button getContinueButton(){
+        return continueButton;
+    }
+
+    public CheckoutShippingMethodPage continueCheckout(){
+        getContinueButton().click();
+        return new CheckoutShippingMethodPage(driver);
+    }
+
+
 
 
 }
