@@ -14,6 +14,10 @@ public class EditField extends Control {
        return getBaseElement().getText();
     }
 
+    public void click() {
+        getBaseElement().click();
+    }
+
     public void clear() {
         getBaseElement().clear();
     }

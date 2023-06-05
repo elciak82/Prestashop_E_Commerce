@@ -10,6 +10,7 @@ public class Address {
     private String customerCity;
     private String customerState;
     private String customerZip;
+    private String customerZipForPoland;
     private String customerCountry;
     private String customerPhone;
 
@@ -75,6 +76,9 @@ public class Address {
     public String getCustomerZip() {
         return customerZip;
     }
+    public String getCustomerZipForPoland() {
+        return customerZipForPoland;
+    }
 
     public void setCustomerZip(String customerZip) {
         this.customerZip = customerZip;
@@ -105,6 +109,7 @@ public class Address {
         private String customerCity;
         private String customerState;
         private String customerZip;
+        private String getCustomerZipForPoland;
         private String customerCountry;
         private String customerPhone;
 
@@ -148,6 +153,11 @@ public class Address {
             return this;
         }
 
+        public Builder customerZipForPoland(String customerZipForPoland) {
+            this.getCustomerZipForPoland = customerZipForPoland;
+            return this;
+        }
+
         public Builder customerCountry(String customerCountry) {
             this.customerCountry = customerCountry;
             return this;
@@ -168,6 +178,7 @@ public class Address {
             address.customerCity = this.customerCity;
             address.customerState = this.customerState;
             address.customerZip = this.customerZip;
+            address.customerZipForPoland = this.getCustomerZipForPoland;
             address.customerCountry = this.customerCountry;
             address.customerPhone = this.customerPhone;
             return address;

@@ -24,7 +24,6 @@ public class CheckoutAddressesPage extends HeaderComponent {
     private final EditField zipField;
     private final EditField countryField;
     private final EditField phoneField;
-    private final Button continueButton;
 
     public CheckoutAddressesPage(WebDriver driver) {
 
@@ -40,7 +39,6 @@ public class CheckoutAddressesPage extends HeaderComponent {
         zipField = new EditField(driver.findElement(By.id("field-postcode")));
         countryField = new EditField(driver.findElement(By.id("field-id_country")));
         phoneField = new EditField(driver.findElement(By.id("field-phone")));
-        continueButton = new Button(driver.findElement(By.cssSelector("[name='confirm-addresses']")));
 
     }
 
@@ -64,6 +62,7 @@ public class CheckoutAddressesPage extends HeaderComponent {
     }
 
     public CheckoutAddressesPage setState(String state) {
+        stateFiled.click();
         stateFiled.setText(state);
         return this;
     }
@@ -74,20 +73,21 @@ public class CheckoutAddressesPage extends HeaderComponent {
     }
 
     @Step("Fill required fields: {method}")
-    public CheckoutAddressesPage fillRequiredFieldsAddressForm(Address address) {
+    public CheckoutAddressesPage fillRequiredFieldsAddressFormForPoland(Address address) {
         setAddress1(address.getCustomerAddress());
         setCity(address.getCustomerCity());
-        setZip(address.getCustomerZip());
-        setState(StateEnums.State.AA.getState());
-        setCountry(CountryEnums.Country.UNITED_STATES.getCountry());
+        setZip(address.getCustomerZipForPoland());
+        setCountry(CountryEnums.Country.POLAND.getCountry());
         return this;
     }
 
     public Button getContinueButton(){
-        return continueButton;
+        WebDriverWait wait = new WebDriverWait(driver,10);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"checkout-addresses-step\"]/div/div/form/footer/button")));
+        return new Button(driver.findElement(By.xpath("//*[@id=\"checkout-addresses-step\"]/div/div/form/footer/button")));
     }
 
-    public CheckoutShippingMethodPage continueCheckout(){
+    public CheckoutShippingMethodPage continueCheckoutOnDeliveryAddressPage(){
         getContinueButton().click();
         return new CheckoutShippingMethodPage(driver);
     }

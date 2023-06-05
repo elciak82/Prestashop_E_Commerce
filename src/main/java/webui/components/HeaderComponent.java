@@ -155,4 +155,14 @@ public class HeaderComponent extends BasePage {
     public FooterComponent getFooter() {
         return new FooterComponent(driver);
     }
+
+    public void logOut() {
+            boolean displayed = !driver.findElements(By.cssSelector("[class = 'logout hidden-sm-down']")).isEmpty(); //logout button element(s) - list of elements or empty list . ! notEmpty
+            if (displayed) {
+                getSignOutButton().click();
+                System.out.println("Log out from the account.");
+            } else {
+                System.out.println("Customer is not logged in.");
+            }
+    }
 }

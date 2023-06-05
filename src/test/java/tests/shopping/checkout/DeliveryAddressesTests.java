@@ -52,7 +52,7 @@ public class DeliveryAddressesTests extends BaseTest {
 
     @BeforeMethod
     public void generatePersonalData() {
-        address = AddressFactory.getCustomerAddressWithRequiredFields(CountryEnums.Country.UNITED_STATES, StateEnums.State.ALABAMA);
+        address = AddressFactory.getCustomerAddressWithRequiredFieldsForPoland(CountryEnums.Country.POLAND);
 
     }
 
@@ -68,12 +68,12 @@ public class DeliveryAddressesTests extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     @TmsLink("PRESTASHOP-48")
     @Parameters("browser: chrome")
-    public void addPersonalAddress() {
+    public void addPersonalAddressForPoland() {
 
         CheckoutShippingMethodPage checkoutShippingMethodPage = checkoutPersonalInfoPage
                 .continueCheckoutOnPersonalInfoPage()
-                .fillRequiredFieldsAddressForm(address)
-                .continueCheckout();
+                .fillRequiredFieldsAddressFormForPoland(address)
+                .continueCheckoutOnDeliveryAddressPage();
 
         Assert.assertTrue(checkoutShippingMethodPage.getDeliveryOptions().isDisplayed());
     }

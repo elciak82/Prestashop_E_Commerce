@@ -2,8 +2,6 @@ package webui.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import webui.components.HeaderComponent;
 import webui.pageobject.element.controls.Button;
 import webui.pageobject.element.controls.Label;
@@ -17,7 +15,7 @@ public class CartPage extends HeaderComponent {
         super(driver);
         cartProductCountsLabel = new Label(driver.findElement(By.className("cart-products-count")));
         productTitleLabel = new Label(driver.findElement(By.cssSelector("[data-id_customization='0']")));
-        proceedToCheckoutButton = new Button(driver.findElement(By.xpath("//*[@id=\"main\"]/div/div[2]/div[1]/div[2]/div/a"))); //class does not work
+        proceedToCheckoutButton = new Button(driver.findElement(By.xpath("//a[contains(string(), 'Proceed to checkout')]"))); //class does not work
 
     }
 

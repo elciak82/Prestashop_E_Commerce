@@ -1,6 +1,5 @@
 package tests.shopping.checkout;
 
-import helpers.models.Address;
 import helpers.models.Customer;
 import helpers.providers.CustomerFactory;
 import io.qameta.allure.Description;
@@ -56,18 +55,8 @@ public class PersonalInformationTests extends BaseTest {
     }
 
     @AfterMethod
-    public void logOut() {
-        try {
-            boolean displayed = homePage.getSignOutButton().getBaseElement().isDisplayed();
-            if (displayed) {
-                homePage.getSignOutButton().click();
-                System.out.println("Log out from the account.");
-            } else {
-                System.out.println("Customer is not logged in.");
-            }
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+    public void logOutMethod() {
+       homePage.logOut();
     }
 
 

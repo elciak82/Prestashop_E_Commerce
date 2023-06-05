@@ -12,6 +12,10 @@ public class Button extends Control {
 
     public void click() {
         getBaseElement().click();
+    }
+
+        public void submit() {
+            getBaseElement().submit();
 
     }
 
