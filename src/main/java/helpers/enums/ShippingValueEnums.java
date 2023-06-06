@@ -4,6 +4,7 @@ public class ShippingValueEnums {
 
     public enum ShippingValue {
         MY_CHEAP_CARRIER("Free"),
+        MY_PRESTASHOP("Free"),
         MY_LIGHT_CARRIER_US("$2.00"),
         MY_LIGHT_CARRIER_PL("$2.46"),
         MY_CARRIER("$7.00");

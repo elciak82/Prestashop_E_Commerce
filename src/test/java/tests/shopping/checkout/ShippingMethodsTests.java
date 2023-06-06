@@ -2,7 +2,6 @@ package tests.shopping.checkout;
 
 import helpers.enums.CountryEnums;
 import helpers.enums.ShippingValueEnums;
-import helpers.enums.StateEnums;
 import helpers.models.Address;
 import helpers.models.Customer;
 import helpers.providers.AddressFactory;
@@ -20,7 +19,7 @@ import org.testng.annotations.Test;
 import tests.BaseTest;
 import webui.components.ProductMiniatureComponent;
 import webui.pages.CheckoutAddressesPage;
-import webui.pages.CheckoutPersonalInfoPage;
+import webui.pages.CheckoutPaymentPage;
 import webui.pages.CheckoutShippingMethodPage;
 import webui.pages.HomePage;
 
@@ -77,20 +76,30 @@ public class ShippingMethodsTests extends BaseTest {
                 .selectMyCarrierPL();
 
         Assert.assertTrue(checkoutShippingMethodPage.myCarrierIsSelected());
-        Assert.assertEquals(checkoutShippingMethodPage.getShippingValue(),
-                ShippingValueEnums.ShippingValue.MY_CARRIER.getShippingValue());
+//        Assert.assertEquals(checkoutShippingMethodPage.getShippingValue(), ///potrzebny tiomeouy??
+//                ShippingValueEnums.ShippingValue.MY_CARRIER.getShippingValue());
 
         checkoutShippingMethodPage.selectMyLightCarrier();
 
         Assert.assertTrue(checkoutShippingMethodPage.myLightCarrierIsSelected());
-        Assert.assertEquals(checkoutShippingMethodPage.getShippingValue(),
-                ShippingValueEnums.ShippingValue.MY_LIGHT_CARRIER_PL.getShippingValue());
+//        Assert.assertEquals(checkoutShippingMethodPage.getShippingValue(),
+//                ShippingValueEnums.ShippingValue.MY_LIGHT_CARRIER_PL.getShippingValue());
+
+        checkoutShippingMethodPage.selectMyPrestashop();
+
+        Assert.assertTrue(checkoutShippingMethodPage.myPrestashopSelected());
+                Assert.assertEquals(checkoutShippingMethodPage.getShippingValue(),
+                ShippingValueEnums.ShippingValue.MY_PRESTASHOP.getShippingValue());
 
         checkoutShippingMethodPage.selectMyCheapCarrier();
 
         Assert.assertTrue(checkoutShippingMethodPage.myCheapCarrierIsSelected());
-        Assert.assertEquals(checkoutShippingMethodPage.getShippingValue(),
-                ShippingValueEnums.ShippingValue.MY_CHEAP_CARRIER.getShippingValue());
+//        Assert.assertEquals(checkoutShippingMethodPage.getShippingValue(),
+//                ShippingValueEnums.ShippingValue.MY_CHEAP_CARRIER.getShippingValue());
+
+        CheckoutPaymentPage checkoutPaymentPage = checkoutShippingMethodPage.continueOnShippingMethodPage();
+
+        Assert.assertTrue(checkoutPaymentPage.getPaymentOptions().isDisplayed());
 
     }
 

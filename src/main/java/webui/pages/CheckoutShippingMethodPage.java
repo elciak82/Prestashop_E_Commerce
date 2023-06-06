@@ -6,8 +6,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import webui.components.HeaderComponent;
+import webui.pageobject.element.controls.Button;
 import webui.pageobject.element.controls.Label;
 import webui.pageobject.element.controls.RadioButton;
+
+import java.time.Duration;
 
 public class CheckoutShippingMethodPage extends HeaderComponent {
     private final WebElement deliveryOptions;
@@ -15,7 +18,7 @@ public class CheckoutShippingMethodPage extends HeaderComponent {
     private final RadioButton myCheapCarrier;
     private final RadioButton myLightCarrier;
     private final RadioButton myCarrierPL;
-    private final Label shippingValue;
+    private final Button continueOnPaymentPage;
 
     public CheckoutShippingMethodPage(WebDriver driver) {
 
@@ -27,7 +30,7 @@ public class CheckoutShippingMethodPage extends HeaderComponent {
         myCheapCarrier = new RadioButton(driver.findElement(By.id("delivery_option_3")));
         myLightCarrier = new RadioButton(driver.findElement(By.id("delivery_option_4")));
         myCarrierPL = new RadioButton(driver.findElement(By.id("delivery_option_6")));
-        shippingValue = new Label(driver.findElement(By.cssSelector("[id='cart-subtotal-shipping'] [class='value']")));
+        continueOnPaymentPage = new Button(driver.findElement(By.xpath("//*[@id='js-delivery']/button")));
 
     }
 
@@ -41,7 +44,7 @@ public class CheckoutShippingMethodPage extends HeaderComponent {
         return myCheapCarrier.getBaseElement().isSelected();
     }
 
-    public Boolean myPrestaShopSelected(){
+    public Boolean myPrestashopSelected(){
         WebDriverWait wait = new WebDriverWait(driver,10);
         wait.until(ExpectedConditions.elementToBeSelected(myPrestaShop.getBaseElement()));
         return myPrestaShop.getBaseElement().isSelected();
@@ -80,10 +83,15 @@ public class CheckoutShippingMethodPage extends HeaderComponent {
     }
 
     public String getShippingValue(){
-        WebDriverWait wait = new WebDriverWait(driver,10);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[id='cart-subtotal-shipping'] [class='value']")));
+        Label shippingValue = new Label(driver.findElement(By.cssSelector("[id='cart-subtotal-shipping'] [class='value']")));
         System.out.println(shippingValue.getBaseElement().getText());
         return shippingValue.getBaseElement().getText();
+    }
+
+    public CheckoutPaymentPage continueOnShippingMethodPage(){
+        continueOnPaymentPage.click();
+        return new CheckoutPaymentPage(driver);
+
     }
 
 }
