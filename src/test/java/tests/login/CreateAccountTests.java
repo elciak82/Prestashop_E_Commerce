@@ -1,6 +1,6 @@
 package tests.login;
 
-import helpers.enums.AlertEnums;
+import helpers.enums.MessagesEnums;
 import helpers.enums.GenderEnums;
 import helpers.models.Customer;
 import helpers.providers.CustomerFactory;
@@ -102,7 +102,7 @@ public class CreateAccountTests extends BaseTest {
                 .setCustomerFirstName(incorrectFirstname)
                 .clickOnSaveButton();
 
-        Assert.assertEquals(createAccountPage.getAlertInvalidFormatText(), AlertEnums.AlertMessages.INVALID_FORMAT.getAlertMessage());
+        Assert.assertEquals(createAccountPage.getAlertInvalidFormatText(), MessagesEnums.Messages.INVALID_FORMAT.getMessage());
     }
 
     @Test(testName = "Try to create an account - Lastname is incorrect.", description = "Behavior = Negative")
@@ -119,7 +119,7 @@ public class CreateAccountTests extends BaseTest {
                 .setCustomerFirstName(incorrectLastname)
                 .clickOnSaveButton();
 
-        Assert.assertEquals(createAccountPage.getAlertInvalidFormatText(), AlertEnums.AlertMessages.INVALID_FORMAT.getAlertMessage());
+        Assert.assertEquals(createAccountPage.getAlertInvalidFormatText(), MessagesEnums.Messages.INVALID_FORMAT.getMessage());
     }
 
     @Test(testName = "Try to create an account - Firstname is too long.", description = "Behavior = Negative")
@@ -137,7 +137,7 @@ public class CreateAccountTests extends BaseTest {
                 .setCustomerFirstName(tooLongFirstname)
                 .clickOnSaveButton();
 
-        Assert.assertEquals(createAccountPage.getAlertInvalidFormatText(), AlertEnums.AlertMessages.FIRST_NAME_TOO_LONG.getAlertMessage());
+        Assert.assertEquals(createAccountPage.getAlertInvalidFormatText(), MessagesEnums.Messages.FIRST_NAME_TOO_LONG.getMessage());
     }
 
     @Test(testName = "Try to create an account - Lastname is too long.", description = "Behavior = Negative")
@@ -155,7 +155,7 @@ public class CreateAccountTests extends BaseTest {
                 .setCustomerLastName(tooLongLastname)
                 .clickOnSaveButton();
 
-        Assert.assertEquals(createAccountPage.getAlertInvalidFormatText(), AlertEnums.AlertMessages.LAST_NAME_TOO_LONG.getAlertMessage());
+        Assert.assertEquals(createAccountPage.getAlertInvalidFormatText(), MessagesEnums.Messages.LAST_NAME_TOO_LONG.getMessage());
     }
 
     @Test(testName = "Try to create an account - Password is too long.", description = "Behavior = Negative")
@@ -173,7 +173,7 @@ public class CreateAccountTests extends BaseTest {
                 .setCustomerPassword(tooLongPassword)
                 .clickOnSaveButton();
 
-        Assert.assertEquals(createAccountPage.getAlertInvalidFormatText(), AlertEnums.AlertMessages.INVALID_PASSWORD.getAlertMessage());
+        Assert.assertEquals(createAccountPage.getAlertInvalidFormatText(), MessagesEnums.Messages.INVALID_PASSWORD.getMessage());
     }
 
     @Test(testName = "Try to create an account - Birthdate is incorrect.", description = "Behavior = Negative")
@@ -191,7 +191,7 @@ public class CreateAccountTests extends BaseTest {
                 .setCustomerBirthday(invalidBirthday)
                 .clickOnSaveButton();
 
-        Assert.assertEquals(createAccountPage.getAlertInvalidFormatText(), AlertEnums.AlertMessages.INVALID_DATE_FORMAT.getAlertMessage());
+        Assert.assertEquals(createAccountPage.getAlertInvalidFormatText(), MessagesEnums.Messages.INVALID_DATE_FORMAT.getMessage());
     }
 
 }

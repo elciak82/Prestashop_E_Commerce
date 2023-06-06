@@ -14,7 +14,7 @@ import java.time.Duration;
 
 public class CheckoutShippingMethodPage extends HeaderComponent {
     private final WebElement deliveryOptions;
-    private final RadioButton myPrestaShop;
+    private final RadioButton myPrestashop;
     private final RadioButton myCheapCarrier;
     private final RadioButton myLightCarrier;
     private final RadioButton myCarrierPL;
@@ -26,7 +26,7 @@ public class CheckoutShippingMethodPage extends HeaderComponent {
         WebDriverWait wait = new WebDriverWait(driver,10);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[class='delivery-options-list']")));
         deliveryOptions = driver.findElement(By.cssSelector("[class='delivery-options-list']"));
-        myPrestaShop = new RadioButton(driver.findElement(By.id("delivery_option_1")));
+        myPrestashop = new RadioButton(driver.findElement(By.id("delivery_option_1")));
         myCheapCarrier = new RadioButton(driver.findElement(By.id("delivery_option_3")));
         myLightCarrier = new RadioButton(driver.findElement(By.id("delivery_option_4")));
         myCarrierPL = new RadioButton(driver.findElement(By.id("delivery_option_6")));
@@ -46,8 +46,8 @@ public class CheckoutShippingMethodPage extends HeaderComponent {
 
     public Boolean myPrestashopSelected(){
         WebDriverWait wait = new WebDriverWait(driver,10);
-        wait.until(ExpectedConditions.elementToBeSelected(myPrestaShop.getBaseElement()));
-        return myPrestaShop.getBaseElement().isSelected();
+        wait.until(ExpectedConditions.elementToBeSelected(myPrestashop.getBaseElement()));
+        return myPrestashop.getBaseElement().isSelected();
     }
 
     public Boolean myLightCarrierIsSelected(){
@@ -68,7 +68,7 @@ public class CheckoutShippingMethodPage extends HeaderComponent {
     }
 
     public CheckoutShippingMethodPage selectMyPrestashop(){
-        myPrestaShop.click();
+        myPrestashop.click();
         return this;
     }
 

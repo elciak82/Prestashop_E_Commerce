@@ -32,7 +32,6 @@ public class ShippingMethodsTests extends BaseTest {
     Queries queries;
     Address address;
     CheckoutAddressesPage checkoutDeliveryAddressPage;
-    CheckoutShippingMethodPage checkoutShippingMethodPage;
 
     @BeforeMethod
     public void addProductToCart() {
@@ -64,7 +63,7 @@ public class ShippingMethodsTests extends BaseTest {
         System.out.println("Delete customer form the database.");
     }
 
-    @Test(testName = "Proceed checkout - select a shipping method without creating an account.", description = "Behavior = Positive")
+    @Test(testName = "Proceed checkout - select a shipping method for Poland without creating an account.", description = "Behavior = Positive")
     @Description("Test verifying the checkout process - select a shipping method for delivery.")
     @Severity(SeverityLevel.CRITICAL)
     @TmsLink("PRESTASHOP-..")
@@ -76,13 +75,13 @@ public class ShippingMethodsTests extends BaseTest {
                 .selectMyCarrierPL();
 
         Assert.assertTrue(checkoutShippingMethodPage.myCarrierIsSelected());
-//        Assert.assertEquals(checkoutShippingMethodPage.getShippingValue(), ///potrzebny tiomeouy??
+//        Assert.assertEquals(checkoutShippingMethodPage.getShippingValue(), ///potrzebny timeout??
 //                ShippingValueEnums.ShippingValue.MY_CARRIER.getShippingValue());
 
         checkoutShippingMethodPage.selectMyLightCarrier();
 
         Assert.assertTrue(checkoutShippingMethodPage.myLightCarrierIsSelected());
-//        Assert.assertEquals(checkoutShippingMethodPage.getShippingValue(),
+//        Assert.assertEquals(checkoutShippingMethodPage.getShippingValue(), ///potrzebny timeout??
 //                ShippingValueEnums.ShippingValue.MY_LIGHT_CARRIER_PL.getShippingValue());
 
         checkoutShippingMethodPage.selectMyPrestashop();
@@ -94,7 +93,7 @@ public class ShippingMethodsTests extends BaseTest {
         checkoutShippingMethodPage.selectMyCheapCarrier();
 
         Assert.assertTrue(checkoutShippingMethodPage.myCheapCarrierIsSelected());
-//        Assert.assertEquals(checkoutShippingMethodPage.getShippingValue(),
+//        Assert.assertEquals(checkoutShippingMethodPage.getShippingValue(), ///potrzebny timeout??
 //                ShippingValueEnums.ShippingValue.MY_CHEAP_CARRIER.getShippingValue());
 
         CheckoutPaymentPage checkoutPaymentPage = checkoutShippingMethodPage.continueOnShippingMethodPage();
