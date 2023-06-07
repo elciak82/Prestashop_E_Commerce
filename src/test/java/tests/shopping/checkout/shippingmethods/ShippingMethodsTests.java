@@ -1,4 +1,4 @@
-package tests.shopping.checkout;
+package tests.shopping.checkout.shippingmethods;
 
 import helpers.enums.CountryEnums;
 import helpers.enums.ShippingValueEnums;

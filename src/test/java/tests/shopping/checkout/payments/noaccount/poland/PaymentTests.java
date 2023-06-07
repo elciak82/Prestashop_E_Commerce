@@ -1,4 +1,4 @@
-package tests.shopping.checkout.payments;
+package tests.shopping.checkout.payments.noaccount.poland;
 
 import helpers.enums.CountryEnums;
 import helpers.enums.ShippingValueEnums;
@@ -22,7 +22,7 @@ import webui.pages.*;
 
 import java.sql.SQLException;
 
-public class PaymentInPolandTests extends BaseTest {
+public class PaymentTests extends BaseTest {
     ProductMiniatureComponent productMiniature;
     Customer customer;
     HomePage homePage;
@@ -67,7 +67,7 @@ public class PaymentInPolandTests extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     @TmsLink("PRESTASHOP-..")
     @Parameters("browser: chrome")
-    public void selectPaymentMethodForPoland() {
+    public void selectPaymentMethodForPolandWithoutCreatingAccount() {
 
         CheckoutPaymentPage paymentPage = checkoutShippingMethodPage
                 .continueOnShippingMethodPage();

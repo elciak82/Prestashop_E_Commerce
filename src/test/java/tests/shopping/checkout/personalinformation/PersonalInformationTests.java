@@ -1,4 +1,4 @@
-package tests.shopping.checkout;
+package tests.shopping.checkout.personalinformation;
 
 import helpers.models.Customer;
 import helpers.providers.CustomerFactory;
