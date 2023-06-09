@@ -21,7 +21,7 @@ import java.sql.SQLException;
 
 public class ProductTests extends BaseTest {
     Queries queries;
-    String newWishlist = "New_Wishlist";
+    String newWishlist = "New_Wishlist_1";
     ProductMiniatureComponent productMiniature;
 
     @BeforeMethod

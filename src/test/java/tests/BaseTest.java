@@ -4,6 +4,7 @@ import helpers.Configuration;
 import helpers.Driver;
 import helpers.models.UserDto;
 import helpers.providers.UserProvider;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import mysqlconnection.MySql;
 import org.testng.annotations.*;
 import utils.listeners.TestAllureListener;
@@ -22,6 +23,7 @@ public class BaseTest {
     public static WebDriver getDriver() {
         return driver;
     }
+
 
 
     @BeforeClass

@@ -1,5 +1,6 @@
 package helpers;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -15,7 +16,7 @@ public class Driver {
         options.addArguments("--start-maximized");
         options.addArguments("autofill.profile_enabled");
         options.addArguments("--no-sandbox");
-        options.addArguments("--disable-dev-shm-usage");
+//        options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--headless");
         System.setProperty("webdriver.chrome.driver", getConfiguration().getDriverLocation());
         return new ChromeDriver(options);

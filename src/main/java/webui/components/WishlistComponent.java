@@ -16,7 +16,7 @@ public class WishlistComponent extends BasePage {
 
         myWishlistButton = new Button(driver.findElement(By.cssSelector("[class='modal-content'] ul")));
         createNewWishlistButton = new Button(driver.findElement(By.className("wishlist-add-to-new")));
-        closeButton = new Button(driver.findElement(By.xpath("//*[@id=\"index\"]/div[1]/div[1]/div/div/div[1]/button")));
+        closeButton = new Button(driver.findElement(By.cssSelector("[class='wishlist-modal modal fade show'] [class='close']")));
 
     }
 

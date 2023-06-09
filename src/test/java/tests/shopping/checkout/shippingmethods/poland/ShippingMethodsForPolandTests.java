@@ -24,7 +24,6 @@ import webui.pages.CheckoutShippingMethodPage;
 import webui.pages.HomePage;
 
 import java.sql.SQLException;
-import java.util.concurrent.Delayed;
 
 public class ShippingMethodsForPolandTests extends BaseTest {
     ProductMiniatureComponent productMiniature;
