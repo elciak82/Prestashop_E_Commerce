@@ -1,4 +1,4 @@
-package tests.shopping.checkout.shippingmethods;
+package tests.shopping.checkout.shippingmethods.poland;
 
 import helpers.enums.CountryEnums;
 import helpers.enums.ShippingValueEnums;
@@ -24,8 +24,9 @@ import webui.pages.CheckoutShippingMethodPage;
 import webui.pages.HomePage;
 
 import java.sql.SQLException;
+import java.util.concurrent.Delayed;
 
-public class ShippingMethodsTests extends BaseTest {
+public class ShippingMethodsForPolandTests extends BaseTest {
     ProductMiniatureComponent productMiniature;
     Customer customer;
     HomePage homePage;
@@ -66,7 +67,7 @@ public class ShippingMethodsTests extends BaseTest {
     @Test(testName = "Proceed checkout - select a shipping method for Poland without creating an account.", description = "Behavior = Positive")
     @Description("Test verifying the checkout process - select a shipping method for delivery.")
     @Severity(SeverityLevel.CRITICAL)
-    @TmsLink("PRESTASHOP-..")
+    @TmsLink("PRESTASHOP-49")
     @Parameters("browser: chrome")
     public void selectShippingMethodForPoland() {
 
@@ -74,27 +75,32 @@ public class ShippingMethodsTests extends BaseTest {
                 .continueCheckoutOnDeliveryAddressPage()
                 .selectMyCarrierPL();
 
+        Double myCarrierPriceValue = checkoutShippingMethodPage.getPriceFromShippingOption();
+        Double myCarrierPriceInSummary = checkoutShippingMethodPage.getPriceFromSummary();
+
         Assert.assertTrue(checkoutShippingMethodPage.myCarrierIsSelected());
-//        Assert.assertEquals(checkoutShippingMethodPage.getShippingValue(), ///potrzebny timeout??
-//                ShippingValueEnums.ShippingValue.MY_CARRIER.getShippingValue());
+        Assert.assertEquals(myCarrierPriceValue, myCarrierPriceInSummary);
 
         checkoutShippingMethodPage.selectMyLightCarrier();
+        Double myLightPriceValue = checkoutShippingMethodPage.getPriceFromShippingOption();
+        Double myLightPriceInSummary = checkoutShippingMethodPage.getPriceFromSummary();
 
         Assert.assertTrue(checkoutShippingMethodPage.myLightCarrierIsSelected());
-//        Assert.assertEquals(checkoutShippingMethodPage.getShippingValue(), ///potrzebny timeout??
-//                ShippingValueEnums.ShippingValue.MY_LIGHT_CARRIER_PL.getShippingValue());
+        Assert.assertEquals(myLightPriceValue, myLightPriceInSummary);
 
         checkoutShippingMethodPage.selectMyPrestashop();
+        Double myPrestashopValue = checkoutShippingMethodPage.getPriceFromShippingOption();
+        Double myPrestashopInSummary = checkoutShippingMethodPage.getPriceFromSummary();
 
         Assert.assertTrue(checkoutShippingMethodPage.myPrestashopSelected());
-                Assert.assertEquals(checkoutShippingMethodPage.getShippingValue(),
-                ShippingValueEnums.ShippingValue.MY_PRESTASHOP.getShippingValue());
+        Assert.assertEquals(myPrestashopValue, myPrestashopInSummary);
 
         checkoutShippingMethodPage.selectMyCheapCarrier();
+        Double myCheapCarrierValue = checkoutShippingMethodPage.getPriceFromShippingOption();
+        Double myCheapCarrierInSummary = checkoutShippingMethodPage.getPriceFromSummary();
 
         Assert.assertTrue(checkoutShippingMethodPage.myCheapCarrierIsSelected());
-//        Assert.assertEquals(checkoutShippingMethodPage.getShippingValue(), ///potrzebny timeout??
-//                ShippingValueEnums.ShippingValue.MY_CHEAP_CARRIER.getShippingValue());
+        Assert.assertEquals(myCheapCarrierValue, myCheapCarrierInSummary);
 
         CheckoutPaymentPage checkoutPaymentPage = checkoutShippingMethodPage.continueOnShippingMethodPage();
 

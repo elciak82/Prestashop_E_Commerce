@@ -1,4 +1,4 @@
-package tests.shopping.checkout.deliveryaddress;
+package tests.shopping.checkout.deliveryaddress.poland;
 
 import helpers.enums.CountryEnums;
 import helpers.enums.StateEnums;
@@ -63,7 +63,7 @@ public class DeliveryAddressesInPolandTests extends BaseTest {
         System.out.println("Delete customer form the database.");
     }
 
-    @Test(testName = "Proceed checkout - add a poland address for delivery without creating an account.", description = "Behavior = Positive")
+    @Test(testName = "Proceed checkout - add a polish address for delivery without creating an account.", description = "Behavior = Positive")
     @Description("Test verifying the checkout process - adding an address for delivery.")
     @Severity(SeverityLevel.CRITICAL)
     @TmsLink("PRESTASHOP-48")

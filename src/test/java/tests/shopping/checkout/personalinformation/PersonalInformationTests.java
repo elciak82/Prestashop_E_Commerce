@@ -91,6 +91,9 @@ public class PersonalInformationTests extends BaseTest {
 
         Assert.assertTrue(checkoutAddressesPage.getCompanyField().getBaseElement().isDisplayed());
 
-        Assert.assertEquals(new HomePage(driver).goToHomePage().getUserFirstnameLastnameFromPage(), customer.getCustomerFirstName() + " " + customer.getCustomerLastName());
+        String actualCustomerData = new HomePage(driver).goToHomePage().getUserFirstnameLastnameFromPage();
+        String expectedCustomerData = customer.getCustomerFirstName() + " " + customer.getCustomerLastName();
+
+        Assert.assertEquals(actualCustomerData, expectedCustomerData);
     }
 }

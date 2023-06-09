@@ -1,6 +1,7 @@
-package tests.shopping.checkout.payments.account.poland;
+package tests.shopping.checkout.payments.poland;
 
 import helpers.enums.CountryEnums;
+import helpers.enums.ShippingValueEnums;
 import helpers.models.Address;
 import helpers.models.Customer;
 import helpers.providers.AddressFactory;
@@ -17,14 +18,11 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import tests.BaseTest;
 import webui.components.ProductMiniatureComponent;
-import webui.pages.CheckoutPaymentPage;
-import webui.pages.CheckoutShippingMethodPage;
-import webui.pages.HomePage;
-import webui.pages.OrderConfirmationPage;
+import webui.pages.*;
 
 import java.sql.SQLException;
 
-public class PaymentTests extends BaseTest {
+public class PaymentWithoutAccountTests extends BaseTest {
     ProductMiniatureComponent productMiniature;
     Customer customer;
     HomePage homePage;
@@ -49,17 +47,12 @@ public class PaymentTests extends BaseTest {
                 .addProductToCart()
                 .proceedToCheckout()
                 .proceedToCheckoutOnCartPage()
-                .fillRequiredPersonalInformation(customer)
+                .fillRequiredPersonalInformationWithoutPassword(customer)
                 .continueCheckoutOnPersonalInfoPage()
                 .fillRequiredFieldsAddressFormForPoland(address)
                 .continueCheckoutOnDeliveryAddressPage()
                 .selectMyCheapCarrier();
 
-    }
-
-    @AfterMethod
-    public void logOutMethod() {
-        homePage.logOut();
     }
 
     @AfterMethod
@@ -69,10 +62,10 @@ public class PaymentTests extends BaseTest {
         System.out.println("Delete customer form the database.");
     }
 
-    @Test(testName = "Proceed checkout - select a payment option for Poland, new account has been created.", description = "Behavior = Positive")
+    @Test(testName = "Proceed checkout - select a payment option for Poland without creating an account.", description = "Behavior = Positive")
     @Description("Test verifying the checkout process - select a payment method for Poland.")
     @Severity(SeverityLevel.CRITICAL)
-    @TmsLink("PRESTASHOP-..")
+    @TmsLink("PRESTASHOP-51")
     @Parameters("browser: chrome")
     public void selectPaymentMethodForPolandWithoutCreatingAccount() {
 
@@ -92,7 +85,6 @@ public class PaymentTests extends BaseTest {
         OrderConfirmationPage orderConfirmationPage = paymentPage.confirmPlaceOrder();
         Assert.assertTrue(orderConfirmationPage.getOrderConfirmation().isDisplayed());
 
-        Assert.assertEquals(orderConfirmationPage.getUserFirstnameLastnameFromPage(), customer.getCustomerFirstName() + " " + customer.getCustomerLastName());
 
     }
 
