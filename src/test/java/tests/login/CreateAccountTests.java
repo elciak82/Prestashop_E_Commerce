@@ -1,6 +1,6 @@
 package tests.login;
 
-import helpers.enums.AlertEnums;
+import helpers.enums.MessagesEnums;
 import helpers.enums.GenderEnums;
 import helpers.models.Customer;
 import helpers.providers.CustomerFactory;
@@ -94,7 +94,7 @@ public class CreateAccountTests extends BaseTest {
     @TmsLink("PRESTASHOP-18")
     @Parameters("browser: chrome")
     public void tryToCreateAccount_firstnameIsIncorrect() {
-        createAccountPage.fillRequiredFieldsInCreateAnAccountForm(CustomerFactory.getCustomerToRegisterRequired());
+        createAccountPage.fillRequiredPersonalData(CustomerFactory.getCustomerToRegisterRequired());
 
         String incorrectFirstname = "1234567";
         customer.setCustomerFirstName(incorrectFirstname);
@@ -102,7 +102,7 @@ public class CreateAccountTests extends BaseTest {
                 .setCustomerFirstName(incorrectFirstname)
                 .clickOnSaveButton();
 
-        Assert.assertEquals(createAccountPage.getAlertInvalidFormatText(), AlertEnums.AlertMessages.INVALID_FORMAT.getAlertMessage());
+        Assert.assertEquals(createAccountPage.getAlertInvalidFormatText(), MessagesEnums.Messages.INVALID_FORMAT.getMessage());
     }
 
     @Test(testName = "Try to create an account - Lastname is incorrect.", description = "Behavior = Negative")
@@ -111,7 +111,7 @@ public class CreateAccountTests extends BaseTest {
     @TmsLink("PRESTASHOP-19")
     @Parameters("browser: chrome")
     public void tryToCreateAccount_lastnameIsIncorrect() {
-        createAccountPage.fillRequiredFieldsInCreateAnAccountForm(CustomerFactory.getCustomerToRegisterRequired());
+        createAccountPage.fillRequiredPersonalData(CustomerFactory.getCustomerToRegisterRequired());
 
         String incorrectLastname = "1234567";
         customer.setCustomerLastName(incorrectLastname);
@@ -119,7 +119,7 @@ public class CreateAccountTests extends BaseTest {
                 .setCustomerFirstName(incorrectLastname)
                 .clickOnSaveButton();
 
-        Assert.assertEquals(createAccountPage.getAlertInvalidFormatText(), AlertEnums.AlertMessages.INVALID_FORMAT.getAlertMessage());
+        Assert.assertEquals(createAccountPage.getAlertInvalidFormatText(), MessagesEnums.Messages.INVALID_FORMAT.getMessage());
     }
 
     @Test(testName = "Try to create an account - Firstname is too long.", description = "Behavior = Negative")
@@ -128,7 +128,7 @@ public class CreateAccountTests extends BaseTest {
     @TmsLink("PRESTASHOP-20")
     @Parameters("browser: chrome")
     public void tryToCreateAccount_firstnameIsTooLong() {
-        createAccountPage.fillRequiredFieldsInCreateAnAccountForm(CustomerFactory.getCustomerToRegisterRequired());
+        createAccountPage.fillRequiredPersonalData(CustomerFactory.getCustomerToRegisterRequired());
 
         String tooLongFirstname = CustomerFactory.randomAlphaString(256);
         customer.setCustomerFirstName(tooLongFirstname);
@@ -137,7 +137,7 @@ public class CreateAccountTests extends BaseTest {
                 .setCustomerFirstName(tooLongFirstname)
                 .clickOnSaveButton();
 
-        Assert.assertEquals(createAccountPage.getAlertInvalidFormatText(), AlertEnums.AlertMessages.FIRST_NAME_TOO_LONG.getAlertMessage());
+        Assert.assertEquals(createAccountPage.getAlertInvalidFormatText(), MessagesEnums.Messages.FIRST_NAME_TOO_LONG.getMessage());
     }
 
     @Test(testName = "Try to create an account - Lastname is too long.", description = "Behavior = Negative")
@@ -146,7 +146,7 @@ public class CreateAccountTests extends BaseTest {
     @TmsLink("PRESTASHOP-21")
     @Parameters("browser: chrome")
     public void tryToCreateAccount_lastnameIsTooLong() {
-        createAccountPage.fillRequiredFieldsInCreateAnAccountForm(CustomerFactory.getCustomerToRegisterRequired());
+        createAccountPage.fillRequiredPersonalData(CustomerFactory.getCustomerToRegisterRequired());
 
         String tooLongLastname = CustomerFactory.randomAlphaString(256);
         customer.setCustomerLastName(tooLongLastname);
@@ -155,7 +155,7 @@ public class CreateAccountTests extends BaseTest {
                 .setCustomerLastName(tooLongLastname)
                 .clickOnSaveButton();
 
-        Assert.assertEquals(createAccountPage.getAlertInvalidFormatText(), AlertEnums.AlertMessages.LAST_NAME_TOO_LONG.getAlertMessage());
+        Assert.assertEquals(createAccountPage.getAlertInvalidFormatText(), MessagesEnums.Messages.LAST_NAME_TOO_LONG.getMessage());
     }
 
     @Test(testName = "Try to create an account - Password is too long.", description = "Behavior = Negative")
@@ -164,7 +164,7 @@ public class CreateAccountTests extends BaseTest {
     @TmsLink("PRESTASHOP-22")
     @Parameters("browser: chrome")
     public void tryToCreateAccount_passwordIsTooLong() {
-        createAccountPage.fillRequiredFieldsInCreateAnAccountForm(CustomerFactory.getCustomerToRegisterRequired());
+        createAccountPage.fillRequiredPersonalData(CustomerFactory.getCustomerToRegisterRequired());
 
         String tooLongPassword = CustomerFactory.randomAlphaString(73);
         customer.setCustomerPassword(tooLongPassword);
@@ -173,7 +173,7 @@ public class CreateAccountTests extends BaseTest {
                 .setCustomerPassword(tooLongPassword)
                 .clickOnSaveButton();
 
-        Assert.assertEquals(createAccountPage.getAlertInvalidFormatText(), AlertEnums.AlertMessages.INVALID_PASSWORD.getAlertMessage());
+        Assert.assertEquals(createAccountPage.getAlertInvalidFormatText(), MessagesEnums.Messages.INVALID_PASSWORD.getMessage());
     }
 
     @Test(testName = "Try to create an account - Birthdate is incorrect.", description = "Behavior = Negative")
@@ -183,7 +183,7 @@ public class CreateAccountTests extends BaseTest {
     @Parameters("browser: chrome")
     public void tryToCreateAccount_birthdateIsInvalid() {
 
-        createAccountPage.fillRequiredFieldsInCreateAnAccountForm(CustomerFactory.getCustomerToRegisterRequired());
+        createAccountPage.fillRequiredPersonalData(CustomerFactory.getCustomerToRegisterRequired());
 
         String invalidBirthday = CustomerFactory.randomAlphaString(9);
         customer.setCustomerBirthday(invalidBirthday);
@@ -191,7 +191,7 @@ public class CreateAccountTests extends BaseTest {
                 .setCustomerBirthday(invalidBirthday)
                 .clickOnSaveButton();
 
-        Assert.assertEquals(createAccountPage.getAlertInvalidFormatText(), AlertEnums.AlertMessages.INVALID_DATE_FORMAT.getAlertMessage());
+        Assert.assertEquals(createAccountPage.getAlertInvalidFormatText(), MessagesEnums.Messages.INVALID_DATE_FORMAT.getMessage());
     }
 
 }

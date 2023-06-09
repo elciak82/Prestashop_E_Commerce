@@ -29,7 +29,7 @@ public class HeaderComponent extends BasePage {
         super(driver);
         PageFactory.initElements(driver, this);
         searchBar = new SearchComponent(driver);
-        logo = new Link(driver.findElement(By.id("_desktop_logo")));
+        logo = new Link(driver.findElement(By.cssSelector("[id = '_desktop_logo'] a")));
         contactUsLink = new Link(driver.findElement(By.id("contact-link")));
         languageDropdown = new Dropdown(driver.findElement(By.cssSelector("[class='expand-more']")));
         currencyDropdown = new Dropdown(driver.findElement(By.cssSelector("[class = 'expand-more _gray-darker']")));
@@ -154,5 +154,15 @@ public class HeaderComponent extends BasePage {
 
     public FooterComponent getFooter() {
         return new FooterComponent(driver);
+    }
+
+    public void logOut() {
+            boolean displayed = !driver.findElements(By.cssSelector("[class = 'logout hidden-sm-down']")).isEmpty(); //logout button element(s) - list of elements or empty list . ! notEmpty
+            if (displayed) {
+                getSignOutButton().click();
+                System.out.println("Log out from the account.");
+            } else {
+                System.out.println("Customer is not logged in.");
+            }
     }
 }

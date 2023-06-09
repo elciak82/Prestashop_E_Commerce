@@ -14,4 +14,9 @@ public class RadioButton extends Control {
 
     }
 
+    public void isSelected() {
+        getBaseElement().isSelected();
+
+    }
+
 }

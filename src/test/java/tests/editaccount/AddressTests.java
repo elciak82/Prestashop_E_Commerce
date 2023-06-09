@@ -60,7 +60,7 @@ public class AddressTests extends BaseTest {
         addressPage.addNewCustomerAddress(AddressFactory.getCustomerAddressWithRequiredFields(CountryEnums.Country.UNITED_STATES, StateEnums.State.AA));
         System.out.println(AddressFactory.customerAlias());
 
-        Assert.assertEquals(AlertEnums.AlertMessages.ADDRESS_SUCCESSFULLY_ADDED.getAlertMessage(), addressPage.getSuccessAlertText());
+        Assert.assertEquals(MessagesEnums.Messages.ADDRESS_SUCCESSFULLY_ADDED.getMessage(), addressPage.getSuccessAlertText());
     }
 
     @Test(testName = "Add a new Customer address - all fields for United States.", description = "Behavior = Positive")
@@ -71,7 +71,7 @@ public class AddressTests extends BaseTest {
     public void addNewAddressWithAllFields_UnitedStatesTest() {
         addressPage.addNewCustomerAddress(AddressFactory.getCustomerAddress_allForUnitedStates(StateEnums.State.ALABAMA));
 
-        Assert.assertEquals(AlertEnums.AlertMessages.ADDRESS_SUCCESSFULLY_ADDED.getAlertMessage(), addressPage.getSuccessAlertText());
+        Assert.assertEquals(MessagesEnums.Messages.ADDRESS_SUCCESSFULLY_ADDED.getMessage(), addressPage.getSuccessAlertText());
     }
 
 }

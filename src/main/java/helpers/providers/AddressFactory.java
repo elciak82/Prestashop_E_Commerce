@@ -8,6 +8,7 @@ public class AddressFactory extends DataFactory {
 
     private static String suffix = generateSuffix();
     private static String number = randomNumericString(5);
+    private static String numberPL = randomNumericString(2) + "-" + randomNumericString(3);
 
     public static String generateSuffix() {
         return randomAlphaString(5);
@@ -45,6 +46,10 @@ public class AddressFactory extends DataFactory {
         return number;
     }
 
+    public static String customerZipForPoland() {
+        return numberPL;
+    }
+
     public static String customerCountry(CountryEnums.Country country) {
         return country.getCountry();
     }
@@ -58,6 +63,7 @@ public class AddressFactory extends DataFactory {
         String customerCity = customerCity();
         String customerState = customerState(state);
         String customerZip = customerZip();
+        String customerZipForPoland = customerZipForPoland();
         String customerCountry = customerCountry(country);
 
         return Address.builder()
@@ -65,6 +71,20 @@ public class AddressFactory extends DataFactory {
                 .customerCity(customerCity)
                 .customerState(customerState)
                 .customerZip(customerZip)
+                .customerCountry(customerCountry)
+                .build();
+    }
+
+    public static Address getCustomerAddressWithRequiredFieldsForPoland(CountryEnums.Country country) {
+        String customerAddress = customerAddress();
+        String customerCity = customerCity();
+        String customerZipForPoland = customerZipForPoland();
+        String customerCountry = customerCountry(country);
+
+        return Address.builder()
+                .customerAddress(customerAddress)
+                .customerCity(customerCity)
+                .customerZipForPoland(customerZipForPoland)
                 .customerCountry(customerCountry)
                 .build();
     }

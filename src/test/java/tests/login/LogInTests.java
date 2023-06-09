@@ -1,6 +1,6 @@
 package tests.login;
 
-import helpers.enums.AlertEnums;
+import helpers.enums.MessagesEnums;
 import helpers.enums.PageTitleEnums;
 
 import io.qameta.allure.Description;
@@ -85,7 +85,7 @@ public class LogInTests extends BaseTest {
                 .logIn_fillData(email, password)
                 .clickOnSignInButton();
 
-        Assert.assertEquals(loginPage.getAuthenticationFailedAlertText(), AlertEnums.AlertMessages.AUTHENTICATION_FIELD.getAlertMessage());
+        Assert.assertEquals(loginPage.getAuthenticationFailedAlertText(), MessagesEnums.Messages.AUTHENTICATION_FIELD.getMessage());
     }
 
     @Test(testName = "User forgot the password.", description = "Behavior = Negative")
@@ -101,7 +101,7 @@ public class LogInTests extends BaseTest {
                 .setEmailAddress(email)
                 .clickOnSendResetLinkButton();
 
-        Assert.assertEquals(forgotYourPasswordPage.getResetYourPasswordAlertText(), AlertEnums.AlertMessages.RESET_YOUR_PASSWORD.getAlertMessage() + " " + email + ".");
+        Assert.assertEquals(forgotYourPasswordPage.getResetYourPasswordAlertText(), MessagesEnums.Messages.RESET_YOUR_PASSWORD.getMessage() + " " + email + ".");
     }
 
 }

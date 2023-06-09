@@ -39,7 +39,7 @@ public class CreateAccountPage extends HeaderComponent {
     }
 
     @Step("Fill required fields: {method}")
-    public void fillRequiredFieldsInCreateAnAccountForm(Customer customer) {
+    public void fillRequiredPersonalData(Customer customer) {
         customerLastNameField.isDisplayed();
         setCustomerFirstName(customer.getCustomerFirstName());
         setCustomerLastName(customer.getCustomerLastName());
@@ -50,7 +50,7 @@ public class CreateAccountPage extends HeaderComponent {
     }
 
     @Step("Fill all fields: {method}")
-    public void fillAllFieldsInCreateAnAccountForm(Customer customer, String gender) {
+    public void fillAllPersonalData(Customer customer, String gender) {
         customerLastNameField.isDisplayed();
 
         if (gender.equals("Mr")) {
@@ -69,13 +69,13 @@ public class CreateAccountPage extends HeaderComponent {
 
     @Step("Create an account Step with required fields: {method}")
     public void createAnAccountRequiredFields(Customer customer) {
-        fillRequiredFieldsInCreateAnAccountForm(customer);
+        fillRequiredPersonalData(customer);
         saveButton.click();
     }
 
     @Step("Create an account Step with all fields: {method}")
     public AccountPage createAnAccountAllFields(Customer customer, String gender) {
-        fillAllFieldsInCreateAnAccountForm(customer, gender);
+        fillAllPersonalData(customer, gender);
         saveButton.click();
         return new AccountPage(driver);
     }
@@ -104,8 +104,8 @@ public class CreateAccountPage extends HeaderComponent {
         return this;
     }
 
-    public CreateAccountPage setCustomerEmail(String password) {
-        customerEmailField.setText(password);
+    public CreateAccountPage setCustomerEmail(String email) {
+        customerEmailField.setText(email);
         return this;
     }
     public CreateAccountPage setCustomerPassword(String password) {

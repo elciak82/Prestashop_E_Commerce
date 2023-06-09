@@ -22,6 +22,7 @@ import java.sql.SQLException;
 public class ProductTests extends BaseTest {
     Queries queries;
     String newWishlist = "New_Wishlist";
+    ProductMiniatureComponent productMiniature;
 
     @BeforeMethod
     public void deleteWishlist() throws SQLException {
@@ -31,8 +32,12 @@ public class ProductTests extends BaseTest {
     }
 
     @BeforeMethod
-    public void LogIn(){
-        new HomePage(driver).clickOnSignIn().correctLogInToAccount().goToHomePage();
+    public void logIn(){
+
+        new HomePage(driver)
+                .clickOnSignIn()
+                .correctLogInToAccount()
+                .goToHomePage();
     }
 
     @AfterMethod
@@ -42,16 +47,21 @@ public class ProductTests extends BaseTest {
         System.out.println("Delete the Whishlist form the database.");
     }
 
-    ProductMiniatureComponent productMiniature;
-
     @Test(testName = "Selecting the product variant in black")
     @Severity(SeverityLevel.MINOR)
     @TmsLink("PRESTASHOP-43")
     @Parameters("browser: chrome")
     public void selectProductVariantInBlack() {
 
-        productMiniature = new HomePage(driver).getProductList().getAllProductsMiniatures().get(0);
-        productMiniature.getVariantLinks().get(1).click();
+        productMiniature = new HomePage(driver)
+                .getProductList()
+                .getAllProductsMiniatures()
+                .get(0);
+
+        productMiniature
+                .getVariantLinks()
+                .get(1)
+                .click();
 
         Assert.assertEquals(new ProductPage(driver).getProductColour(), ProductDetailsEnums.ProductDetails.BLACK.getProductDetail());
 
