@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class Configuration {
-    private static final String SITE_ADDRESS = "test.site.url";
-    private static final String DRIVER_LOCATION = "driver.location";
+    private static final String SITE_ADDRESS = "url";
+    private static final String DRIVER_LOCATION = "driverLocation";
     private static final String EMAIL = "email";
     private static final String PASSWORD = "password";
     private static final String FIRSTNAME = "firstName";
