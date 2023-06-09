@@ -15,7 +15,7 @@ public class CartPage extends HeaderComponent {
         super(driver);
         cartProductCountsLabel = new Label(driver.findElement(By.className("cart-products-count")));
         productTitleLabel = new Label(driver.findElement(By.cssSelector("[data-id_customization='0']")));
-        proceedToCheckoutButton = new Button(driver.findElement(By.xpath("//a[contains(string(), 'Proceed to checkout')]"))); //class does not work
+        proceedToCheckoutButton = new Button(driver.findElement(By.xpath("//a[contains(string(), 'Proceed to checkout')]")));
 
     }
 

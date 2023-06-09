@@ -24,12 +24,12 @@ public class BaseTest {
     }
 
 
-    @BeforeClass //each class will have own WebDriver
+    @BeforeClass
     public void setUp() throws SQLException {
         driver = Driver.initializeWebDriver();
         driver.get(Configuration.getConfiguration().getSiteURL());
         statement = new MySql().databaseConnection();
-        user = UserProvider.provideUser("ewwa@ewwa.pl"); ///before method for different users
+        user = UserProvider.provideUser("ewwa@ewwa.pl");
     }
 
 

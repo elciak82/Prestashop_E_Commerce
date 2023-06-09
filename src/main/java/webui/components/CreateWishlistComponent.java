@@ -15,8 +15,8 @@ public class CreateWishlistComponent extends BasePage {
     public CreateWishlistComponent(WebDriver driver) {
         super(driver);
 
-        wishlistNameField = new EditField(driver.findElement(By.xpath("//*[@id=\"input2\"]"))); //homework
-        createWishListButton = new Button(driver.findElement(By.xpath("//button[contains(string(), 'Create wishlist')]"))); //"//button[contains(string(), 'Create wishlist')]"
+        wishlistNameField = new EditField(driver.findElement(By.xpath("//*[@id='input2']")));
+        createWishListButton = new Button(driver.findElement(By.xpath("//button[contains(string(), 'Create wishlist')]")));
     }
 
     @Step ("Get the WishlistName Field")

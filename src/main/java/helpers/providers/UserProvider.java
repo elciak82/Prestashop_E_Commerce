@@ -11,7 +11,7 @@ public class UserProvider {
         return new JsonMapper().readAsDtoList("UserPool.json", UserDto.class);
     }
 
-    public static UserDto provideUser(String username) { //static no
+    public static UserDto provideUser(String username) {
         return provideUsers()
                 .stream()
                 .filter(user -> user.getUsername().equals(username))

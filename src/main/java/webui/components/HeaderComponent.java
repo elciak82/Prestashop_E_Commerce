@@ -15,8 +15,6 @@ public class HeaderComponent extends BasePage {
     private final SearchComponent searchBar;
     private final Link logo;
     private final Link contactUsLink;
-    private final Dropdown languageDropdown;
-    private final Dropdown currencyDropdown;
     private final Button signInButton;
     private final Link cartLink;
     private final Link clothesLink;
@@ -31,8 +29,6 @@ public class HeaderComponent extends BasePage {
         searchBar = new SearchComponent(driver);
         logo = new Link(driver.findElement(By.cssSelector("[id = '_desktop_logo'] a")));
         contactUsLink = new Link(driver.findElement(By.id("contact-link")));
-        languageDropdown = new Dropdown(driver.findElement(By.cssSelector("[class='expand-more']")));
-        currencyDropdown = new Dropdown(driver.findElement(By.cssSelector("[class = 'expand-more _gray-darker']")));
         signInButton = new Button(driver.findElement(By.className("user-info")));
         cartLink = new Link(driver.findElement(By.id("_desktop_cart")));
         clothesLink = new Link(driver.findElement(By.id("category-3")));
@@ -157,7 +153,7 @@ public class HeaderComponent extends BasePage {
     }
 
     public void logOut() {
-            boolean displayed = !driver.findElements(By.cssSelector("[class = 'logout hidden-sm-down']")).isEmpty(); //logout button element(s) - list of elements or empty list . ! notEmpty
+            boolean displayed = !driver.findElements(By.cssSelector("[class = 'logout hidden-sm-down']")).isEmpty();
             if (displayed) {
                 getSignOutButton().click();
                 System.out.println("Log out from the account.");

@@ -14,7 +14,6 @@ public class Driver {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--start-maximized");
         options.addArguments("autofill.profile_enabled");
-//        options.addArguments("--headless");
         System.setProperty("webdriver.chrome.driver", getConfiguration().getDriverLocation());
         return new ChromeDriver(options);
     }
