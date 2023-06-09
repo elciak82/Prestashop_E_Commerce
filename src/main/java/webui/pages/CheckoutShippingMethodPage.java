@@ -43,8 +43,6 @@ public class CheckoutShippingMethodPage extends HeaderComponent {
     }
 
     public Boolean myCheapCarrierIsSelected(){
-//        WebDriverWait wait = new WebDriverWait(driver,10);
-//        wait.until(ExpectedConditions.elementToBeSelected(myCheapCarrier.getBaseElement()));
         return myCheapCarrier.getBaseElement().isSelected();
     }
 
@@ -84,21 +82,18 @@ public class CheckoutShippingMethodPage extends HeaderComponent {
         WebElement oldShippingPrice = driver.findElement(By.cssSelector("[id='cart-subtotal-shipping'] [class='value']"));
         System.out.println("Before change:" + oldShippingPrice.getText());
         WebDriverWait wait = new WebDriverWait(driver, 10);
-// wait for the original oldShippingPrice to go stale... change
         wait.until(ExpectedConditions.stalenessOf(oldShippingPrice));
-// grab the new element by whatever the new cssSelector is
         WebElement newShippingPrice = driver.findElement(By.cssSelector("[id='cart-subtotal-shipping'] [class='value']"));
         System.out.println("After change:" + newShippingPrice.getText());
         return newShippingPrice.getText().substring(1);
     }
 
-    public String getShippingValueFromShippingOption(){///method HOMEWORK
+    public String getShippingValueFromShippingOption(){
         List<WebElement> radioButtons = driver.findElements(By.cssSelector("[class='custom-radio float-xs-left'] input"));
         int i = 0;
         for (WebElement element : radioButtons) {
             if (element.isSelected()) {
                 List<WebElement> carrierPrice = driver.findElements(By.className("carrier-price"));
-//                System.out.println(carrierPrice.get(i).getText());
                 return carrierPrice.get(i).getText();
             }
             i++;
@@ -113,14 +108,12 @@ public class CheckoutShippingMethodPage extends HeaderComponent {
     }
 
     private double getShippingPrice(String priceText){
-//        String priceText = getShippingValueFromShippingOption();
         if(priceText.equalsIgnoreCase("Free")){
             return 0;
         }else{
-            Pattern p = Pattern.compile("[0-9.]+[0-9.]"); //I have to change it
+            Pattern p = Pattern.compile("[0-9.]+[0-9.]");
             Matcher m = p.matcher(priceText);
             while(m.find()) {
-//                System.out.println(Double.parseDouble(m.group()));
                 return Double.parseDouble(m.group());
             }
 
