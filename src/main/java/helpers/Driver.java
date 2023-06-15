@@ -17,8 +17,9 @@ public class Driver {
         options.addArguments("autofill.profile_enabled");
         options.addArguments("--no-sandbox");
 //        options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--headless");
+//        options.addArguments("--headless");
         System.setProperty("webdriver.chrome.driver", getConfiguration().getDriverLocation());
         return new ChromeDriver(options);
     }
+
 }

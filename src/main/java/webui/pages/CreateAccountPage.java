@@ -12,6 +12,8 @@ import webui.pageobject.element.controls.Checkbox;
 import webui.pageobject.element.controls.EditField;
 import webui.pageobject.element.controls.RadioButton;
 
+import java.time.Duration;
+
 public class CreateAccountPage extends HeaderComponent {
     private final RadioButton genderMrRadioButton;
     private final RadioButton genderMrsRadioButton;

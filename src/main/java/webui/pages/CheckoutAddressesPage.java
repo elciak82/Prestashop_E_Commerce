@@ -14,6 +14,8 @@ import webui.pageobject.element.controls.Button;
 import webui.pageobject.element.controls.EditField;
 import webui.pageobject.element.controls.Label;
 
+import java.time.Duration;
+
 public class CheckoutAddressesPage extends HeaderComponent {
     WebElement element;
     private final EditField companyField;
@@ -28,7 +30,7 @@ public class CheckoutAddressesPage extends HeaderComponent {
     public CheckoutAddressesPage(WebDriver driver) {
 
         super(driver);
-        WebDriverWait wait = new WebDriverWait(driver,10);
+        WebDriverWait wait = new WebDriverWait(driver, 2);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("checkout-personal-information-step")));
         element = driver.findElement(By.id("checkout-personal-information-step"));
         companyField = new EditField(driver.findElement(By.id("field-company")));
@@ -82,7 +84,7 @@ public class CheckoutAddressesPage extends HeaderComponent {
     }
 
     public Button getContinueButton(){
-        WebDriverWait wait = new WebDriverWait(driver,10);
+        WebDriverWait wait = new WebDriverWait(driver, 2);
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"checkout-addresses-step\"]/div/div/form/footer/button")));
         return new Button(driver.findElement(By.xpath("//*[@id=\"checkout-addresses-step\"]/div/div/form/footer/button")));
     }

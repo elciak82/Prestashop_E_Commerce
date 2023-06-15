@@ -13,6 +13,8 @@ import webui.pageobject.element.controls.Dropdown;
 import webui.pageobject.element.controls.EditField;
 import webui.pages.SearchResultsPage;
 
+import java.time.Duration;
+
 public class SearchComponent extends WebEntity {
     private final Dropdown searchDropdown;
     private final EditField searchBy;

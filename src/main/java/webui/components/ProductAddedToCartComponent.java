@@ -8,12 +8,14 @@ import webui.pageobject.element.controls.Button;
 import webui.pages.BasePage;
 import webui.pages.CartPage;
 
+import java.time.Duration;
+
 public class ProductAddedToCartComponent extends BasePage {
     Button proceedToCheckoutButton;
 
     public ProductAddedToCartComponent(WebDriver driver) {
         super(driver);
-        WebDriverWait wait = new WebDriverWait(driver,10);
+        WebDriverWait wait = new WebDriverWait(driver, 2);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div[aria-labelledby='myModalLabel'] .modal-content")));
         proceedToCheckoutButton = new Button(driver.findElement(By.cssSelector("div.cart-content-btn > a.btn")));
     }

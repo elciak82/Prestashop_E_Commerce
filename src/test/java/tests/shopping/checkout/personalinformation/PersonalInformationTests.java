@@ -56,7 +56,7 @@ public class PersonalInformationTests extends BaseTest {
 
     @AfterMethod
     public void logOutMethod() {
-       homePage.logOut();
+        homePage.logOut();
     }
 
 

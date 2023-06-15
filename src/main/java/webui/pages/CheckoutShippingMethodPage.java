@@ -27,7 +27,7 @@ public class CheckoutShippingMethodPage extends HeaderComponent {
     public CheckoutShippingMethodPage(WebDriver driver) {
 
         super(driver);
-        WebDriverWait wait = new WebDriverWait(driver,10);
+        WebDriverWait wait = new WebDriverWait(driver, 2);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[class='delivery-options-list']")));
         deliveryOptions = driver.findElement(By.cssSelector("[class='delivery-options-list']"));
         myPrestashop = new RadioButton(driver.findElement(By.id("delivery_option_1")));
@@ -81,10 +81,13 @@ public class CheckoutShippingMethodPage extends HeaderComponent {
     public String getShippingPriceFromSummary(){
         WebElement oldShippingPrice = driver.findElement(By.cssSelector("[id='cart-subtotal-shipping'] [class='value']"));
         System.out.println("Before change:" + oldShippingPrice.getText());
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+
+        WebDriverWait wait = new WebDriverWait(driver, 2);
         wait.until(ExpectedConditions.stalenessOf(oldShippingPrice));
+
         WebElement newShippingPrice = driver.findElement(By.cssSelector("[id='cart-subtotal-shipping'] [class='value']"));
         System.out.println("After change:" + newShippingPrice.getText());
+
         return newShippingPrice.getText().substring(1);
     }
 

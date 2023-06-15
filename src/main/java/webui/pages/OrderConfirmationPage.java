@@ -10,6 +10,8 @@ import webui.pageobject.element.controls.Button;
 import webui.pageobject.element.controls.Checkbox;
 import webui.pageobject.element.controls.RadioButton;
 
+import java.time.Duration;
+
 public class OrderConfirmationPage extends HeaderComponent {
     private final WebElement orderConfirmation;
 
@@ -17,7 +19,7 @@ public class OrderConfirmationPage extends HeaderComponent {
     public OrderConfirmationPage(WebDriver driver) {
 
         super(driver);
-        WebDriverWait wait = new WebDriverWait(driver,10);
+        WebDriverWait wait = new WebDriverWait(driver, 2);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("h3[class='h1 card-title']")));
         orderConfirmation = driver.findElement(By.cssSelector("h3[class='h1 card-title']"));
 

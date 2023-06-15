@@ -11,6 +11,8 @@ import webui.pageobject.element.controls.Checkbox;
 import webui.pageobject.element.controls.Label;
 import webui.pageobject.element.controls.RadioButton;
 
+import java.time.Duration;
+
 public class CheckoutPaymentPage extends HeaderComponent {
     private final WebElement paymentOptions;
     private final RadioButton payByCheck;
@@ -22,7 +24,7 @@ public class CheckoutPaymentPage extends HeaderComponent {
     public CheckoutPaymentPage(WebDriver driver) {
 
         super(driver);
-        WebDriverWait wait = new WebDriverWait(driver,10);
+        WebDriverWait wait = new WebDriverWait(driver, 2);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("payment-options")));
         paymentOptions = driver.findElement(By.className("payment-options"));
         payByCheck = new RadioButton(driver.findElement(By.cssSelector("input[id='payment-option-1']")));
@@ -46,7 +48,7 @@ public class CheckoutPaymentPage extends HeaderComponent {
     }
 
     public Boolean payByCheckIsSelected(){
-        WebDriverWait wait = new WebDriverWait(driver,10);
+        WebDriverWait wait = new WebDriverWait(driver, 2);
         wait.until(ExpectedConditions.elementToBeSelected(payByCheck.getBaseElement()));
         return payByCheck.getBaseElement().isSelected();
     }
@@ -57,7 +59,7 @@ public class CheckoutPaymentPage extends HeaderComponent {
     }
 
     public Boolean payByBankWireIsSelected(){
-        WebDriverWait wait = new WebDriverWait(driver,10);
+        WebDriverWait wait = new WebDriverWait(driver, 2);
         wait.until(ExpectedConditions.elementToBeSelected(payByBankWire.getBaseElement()));
         return payByBankWire.getBaseElement().isSelected();
     }

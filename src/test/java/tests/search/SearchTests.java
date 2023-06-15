@@ -20,7 +20,7 @@ public class SearchTests extends BaseTest {
     String searchingValue;
 
     @BeforeMethod
-    public void setupData(){
+    public void setupData() {
         header = new HeaderComponent(driver);
         search = new SearchComponent(driver);
         searchingValue = "mug";
@@ -37,7 +37,6 @@ public class SearchTests extends BaseTest {
                 .fillSearchField(searchingValue)
                 .selectItemByName(searchingValue);
         String foundProductTitle = productPage.getProductTitleText();
-
         Assert.assertEquals(searchingValue.toLowerCase(), foundProductTitle.toLowerCase());
     }
 

@@ -12,6 +12,8 @@ import webui.components.HeaderComponent;
 import webui.pageobject.element.controls.Button;
 import webui.pageobject.element.controls.EditField;
 
+import java.time.Duration;
+
 public class AddressPage extends HeaderComponent {
 
     private final EditField aliasField;

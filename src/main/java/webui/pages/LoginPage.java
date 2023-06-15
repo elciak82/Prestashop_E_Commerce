@@ -13,6 +13,8 @@ import webui.pageobject.element.controls.Button;
 import webui.pageobject.element.controls.EditField;
 import webui.pageobject.element.controls.Link;
 
+import java.time.Duration;
+
 public class LoginPage extends HeaderComponent {
     private final EditField emailField;
     private final EditField passwordField;
