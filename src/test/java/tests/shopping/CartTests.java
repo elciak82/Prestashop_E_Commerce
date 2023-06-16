@@ -31,7 +31,7 @@ public class CartTests extends BaseTest {
                 .addProductToCart()
                 .proceedToCheckout();
 
-        Assert.assertEquals(productInCart.getCartProductCounts(), "(1)");
+        Assert.assertEquals(productInCart.getCartProductCounts(), "(2)"); //homework
     }
 
 }
