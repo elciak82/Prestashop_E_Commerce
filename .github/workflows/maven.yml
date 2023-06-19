@@ -23,7 +23,7 @@ jobs:
       - run: chrome --version
 
       - name: Build with Maven
-        run: mvn -B clean test
+        run: mvn -B clean
         continue-on-error: true
   test:
     - name: Test with Maven
