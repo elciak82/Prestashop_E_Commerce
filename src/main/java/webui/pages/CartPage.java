@@ -6,6 +6,9 @@ import webui.components.HeaderComponent;
 import webui.pageobject.element.controls.Button;
 import webui.pageobject.element.controls.Label;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class CartPage extends HeaderComponent {
     private final Label cartProductCountsLabel;
     private final Label productTitleLabel;
@@ -19,28 +22,39 @@ public class CartPage extends HeaderComponent {
 
     }
 
-    public Label getCartProductCountsLabel(){
+    public Label getCartProductCountsLabel() {
         return cartProductCountsLabel;
     }
 
-    public String getCartProductCounts(){
-        return getCartProductCountsLabel().getText();
+    public String getCartProductCounts() {
+        return getShippingPrice(getCartProductCountsLabel().getText());
     }
-    public Label getProductTitleLabel(){
+
+    public Label getProductTitleLabel() {
         return productTitleLabel;
     }
 
-    public String getProductTitle(){
+    public String getProductTitle() {
         return getProductTitleLabel().getText();
     }
 
-    public Button getProceedToCheckoutButton(){
+    public Button getProceedToCheckoutButton() {
         return proceedToCheckoutButton;
     }
 
-    public CheckoutPersonalInfoPage proceedToCheckoutOnCartPage(){
+    public CheckoutPersonalInfoPage proceedToCheckoutOnCartPage() {
         proceedToCheckoutButton.click();
         return new CheckoutPersonalInfoPage(driver);
+    }
+
+    private String getShippingPrice(String numbersOfProducts) {
+        Pattern p = Pattern.compile("[^()]+(?=\\))");
+        Matcher m = p.matcher(numbersOfProducts);
+        while (m.find()) {
+            return m.group();
+
+        }
+        return null;
     }
 
 }
