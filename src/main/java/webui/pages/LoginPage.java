@@ -2,6 +2,8 @@ package webui.pages;
 
 import helpers.Configuration;
 import helpers.models.Customer;
+import helpers.models.UserDto;
+import helpers.providers.UserProvider;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -21,6 +23,7 @@ public class LoginPage extends HeaderComponent {
     private final Button signInButton;
     private final Link forgotPasswordLink;
     private final Link createAccountLink;
+    private UserDto userNoAddress;
 
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -29,6 +32,7 @@ public class LoginPage extends HeaderComponent {
         signInButton = new Button(driver.findElement(By.id("submit-login")));
         forgotPasswordLink = new Link(driver.findElement(By.className("forgot-password")));
         createAccountLink = new Link(driver.findElement(By.className("no-account")));
+        userNoAddress = UserProvider.provideUser("noaddress@noaddress.com");
 
     }
 
@@ -89,8 +93,8 @@ public class LoginPage extends HeaderComponent {
 
     @Step("Correct log in to an account.")
     public AccountPage correctLogInToAccount() {
-        String email = Configuration.getConfiguration().getEmail();
-        String password = Configuration.getConfiguration().getPassword();
+        String email = userNoAddress.getUsername();
+        String password = userNoAddress.getPassword();
 
         logInToAccount(email, password);
         return new AccountPage(driver);
@@ -107,8 +111,8 @@ public class LoginPage extends HeaderComponent {
 
     @Step("Correct log in to an account - customer without an address.")
     public AccountPage logInToAccountByCustomerWithoutAddress() {
-        String email = Configuration.getConfiguration().getNoAddressEmail();
-        String password = Configuration.getConfiguration().getNDefaultPassword();
+        String email = userNoAddress.getUsername();
+        String password = userNoAddress.getPassword();
 
         logInToAccount(email, password);
         return new AccountPage(driver);
