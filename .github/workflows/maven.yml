@@ -8,7 +8,6 @@ on:
 
 jobs:
   build:
-
     runs-on: windows-latest
 
     steps:
@@ -26,3 +25,7 @@ jobs:
       - name: Build with Maven
         run: mvn -B clean test
         continue-on-error: true
+        env:
+          PRESTASHOP_DBURL: ${{ secrets.PRESTASHOP_DBURL }}
+          PRESTASHOP_DBUSER: ${{ secrets.PRESTASHOP_DBUSER }}
+          PRESTASHOP_DBPASSWORD: ${{ secrets.PRESTASHOP_DBPASSWORD }}
