@@ -34,6 +34,8 @@ In order to utilise this project you need to have the following installed locall
 * Chrome and Chromedriver (UI tests use Chrome by default, can be changed in config)
 * Allure Framework
 
+Additionally, it is required to set Environment Variables for database connection.
+
 ## Usage
 start tests: mvn clean test
 
