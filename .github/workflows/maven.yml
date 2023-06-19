@@ -27,7 +27,7 @@ jobs:
         continue-on-error: true
   test:
     - name: Test with Maven
-        run: mvn test
+        run: mvn -B test
         env:
           PRESTASHOP_DBURL: ${{ secrets.PRESTASHOP_DBURL }}
           PRESTASHOP_DBUSER: ${{ secrets.PRESTASHOP_DBUSER }}
