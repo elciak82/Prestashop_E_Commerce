@@ -29,3 +29,12 @@ jobs:
           PRESTASHOP_DBURL: ${{ secrets.PRESTASHOP_DBURL }}
           PRESTASHOP_DBUSER: ${{ secrets.PRESTASHOP_DBUSER }}
           PRESTASHOP_DBPASSWORD: ${{ secrets.PRESTASHOP_DBPASSWORD }}
+
+      - name: Test Report
+        uses: dorny/test-reporter@v1
+        if: success() || failure()
+        with:
+          name: Test Results
+          path: ${{ github.workspace }}/target/surefire-reports/TEST-TestSuite.xml
+          reporter: java-junit
+          java-version: 11
