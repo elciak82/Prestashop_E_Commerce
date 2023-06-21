@@ -153,12 +153,12 @@ public class HeaderComponent extends BasePage {
     }
 
     public void logOut() {
-            boolean displayed = !driver.findElements(By.cssSelector("[class = 'logout hidden-sm-down']")).isEmpty();
-            if (displayed) {
-                getSignOutButton().click();
-                System.out.println("Log out from the account.");
-            } else {
-                System.out.println("Customer is not logged in.");
-            }
+        boolean displayed = !driver.findElements(By.cssSelector("[class = 'logout hidden-sm-down']")).isEmpty();
+        if (displayed) {
+            getSignOutButton().click();
+            System.out.println("Log out from the account.");
+        } else {
+            System.out.println("Customer is not logged in.");
+        }
     }
 }

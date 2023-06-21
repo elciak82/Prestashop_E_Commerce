@@ -99,11 +99,6 @@
             <version>RELEASE</version>
             <scope>compile</scope>
         </dependency>
-        <dependency>
-            <groupId>io.appium</groupId>
-            <artifactId>java-client</artifactId>
-            <version>8.3.0</version>
-        </dependency>
     </dependencies>
     <build>
         <plugins>
